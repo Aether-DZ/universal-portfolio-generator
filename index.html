@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Portfolio Generator</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Devicon (skill icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Tailwind CSS (Play CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            grotesk: ['Space Grotesk', 'sans-serif'],
+            firacode: ['Fira Code', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen">
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl flex flex-col items-center gap-4">
+      <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      <p class="text-lg font-medium" id="loading-text">Loading...</p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-white/70 dark:bg-gray-950/70 border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-wand-magic-sparkles text-2xl text-blue-600 dark:text-blue-400"></i>
+          <h1 class="text-xl font-bold font-grotesk" data-i18n="app.title">Universal Portfolio Generator</h1>
+        </div>
+        <div class="flex items-center gap-4">
+          <button id="lang-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm font-medium">
+            <i class="fas fa-globe"></i>
+            <span id="lang-label">AR</span>
+          </button>
+          <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition" title="Toggle theme">
+            <i class="fas fa-moon dark:fa-sun text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Step Indicator -->
+  <div id="step-indicator" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+    <div class="flex items-center justify-between max-w-2xl mx-auto">
+      <div class="step-dot active" data-step="1" data-i18n="app.step1">Profile</div>
+      <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"><div class="step-progress h-full bg-blue-500 transition-all" style="width:0%"></div></div>
+      <div class="step-dot" data-step="2" data-i18n="app.step2">Social</div>
+      <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"><div class="step-progress h-full bg-blue-500 transition-all" style="width:0%"></div></div>
+      <div class="step-dot" data-step="3" data-i18n="app.step3">Skills</div>
+      <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"><div class="step-progress h-full bg-blue-500 transition-all" style="width:0%"></div></div>
+      <div class="step-dot" data-step="4" data-i18n="app.step4">Projects</div>
+      <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"><div class="step-progress h-full bg-blue-500 transition-all" style="width:0%"></div></div>
+      <div class="step-dot" data-step="5" data-i18n="app.step5">Theme</div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="flex flex-col lg:flex-row gap-6">
+      <!-- Left: Form Panel -->
+      <div id="form-panel" class="w-full lg:w-1/2 xl:w-2/5">
+        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+          <div id="form-container"></div>
+        </div>
+      </div>
+
+      <!-- Right: Preview Panel -->
+      <div id="preview-panel" class="w-full lg:w-1/2 xl:w-3/5">
+        <!-- Viewport Toggle -->
+        <div class="flex items-center gap-2 mb-3 justify-end">
+          <button class="viewport-btn active px-3 py-1.5 rounded-lg text-sm border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition" data-viewport="desktop">
+            <i class="fas fa-desktop"></i>
+          </button>
+          <button class="viewport-btn px-3 py-1.5 rounded-lg text-sm border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition" data-viewport="tablet">
+            <i class="fas fa-tablet-alt"></i>
+          </button>
+          <button class="viewport-btn px-3 py-1.5 rounded-lg text-sm border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition" data-viewport="mobile">
+            <i class="fas fa-mobile-alt"></i>
+          </button>
+        </div>
+        <!-- Preview iframe -->
+        <div id="preview-wrapper" class="rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm bg-white transition-all">
+          <iframe id="preview-frame" class="w-full h-[600px] transition-all" sandbox="allow-scripts allow-same-origin" srcdoc=""></iframe>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer / Export Actions -->
+  <footer class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <button id="btn-deploy" class="btn-primary flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium transition shadow-lg shadow-green-600/20">
+          <i class="fab fa-github"></i>
+          <span data-i18n="export.deploy">Deploy to GitHub Pages</span>
+        </button>
+        <button id="btn-zip" class="btn-secondary flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition shadow-lg shadow-blue-600/20">
+          <i class="fas fa-file-archive"></i>
+          <span data-i18n="export.zip">Download ZIP</span>
+        </button>
+        <button id="btn-save-config" class="btn-outline flex items-center gap-2 px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <i class="fas fa-download"></i>
+          <span data-i18n="export.saveConfig">Export Config</span>
+        </button>
+        <button id="btn-load-config" class="btn-outline flex items-center gap-2 px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <i class="fas fa-upload"></i>
+          <span data-i18n="export.loadConfig">Import Config</span>
+        </button>
+      </div>
+      <!-- Deploy Actions (hidden by default) -->
+      <div id="deploy-section" class="hidden max-w-2xl mx-auto mt-4 space-y-3">
+        <!-- PAT Input -->
+        <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
+          <div class="flex items-start gap-3">
+            <i class="fas fa-shield-halved text-amber-600 mt-1"></i>
+            <div class="flex-1">
+              <label class="block text-sm font-medium mb-1" data-i18n="export.patLabel">GitHub Personal Access Token</label>
+              <input type="password" id="pat-input" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm mb-2" placeholder="ghp_...">
+              <p class="text-xs text-amber-700 dark:text-amber-400" data-i18n="export.patNote">Requires repo scope. Never stored — stays in browser memory only.</p>
+            </div>
+          </div>
+        </div>
+        <!-- GitHub Sync Repos & Custom Domain -->
+        <div class="flex flex-wrap gap-2">
+          <button id="btn-sync-repos" class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-medium transition">
+            <i class="fas fa-sync mr-1"></i> Sync GitHub Repos
+          </button>
+          <button id="btn-cname" class="flex-1 px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-sm font-medium transition">
+            <i class="fas fa-globe mr-1"></i> Generate CNAME
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@octokit/rest"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- App JS files -->
+  <script src="js/i18n.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/themes.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/github.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

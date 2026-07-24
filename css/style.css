@@ -1,0 +1,449 @@
+/* =============================================
+   Universal Portfolio Generator — Style Sheet
+   Tailwind CDN + Custom CSS
+   ============================================= */
+
+/* === CSS Custom Properties === */
+:root {
+  --color-primary: #1E3A5F;
+  --color-primary-light: #2563EB;
+  --color-accent: #A16207;
+  --color-bg: #F8FAFC;
+  --color-fg: #0F172A;
+  --color-muted: #E9EEF5;
+  --color-border: #CBD5E1;
+  --color-card: #FFFFFF;
+  --color-destructive: #DC2626;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-grotesk: 'Space Grotesk', sans-serif;
+  --radius: 1rem;
+  --transition: 200ms ease;
+}
+
+.dark {
+  --color-primary: #3B82F6;
+  --color-primary-light: #60A5FA;
+  --color-accent: #FBBF24;
+  --color-bg: #030712;
+  --color-fg: #F8FAFC;
+  --color-muted: #1F2937;
+  --color-border: #374151;
+  --color-card: #111827;
+}
+
+/* === Base === */
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  transition: background var(--transition), color var(--transition);
+}
+
+/* === Step Indicator === */
+.step-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--color-muted);
+  color: #64748B;
+  border: 2px solid var(--color-border);
+  transition: all var(--transition);
+  cursor: default;
+  position: relative;
+}
+
+.step-dot.active {
+  background: var(--color-primary-light);
+  color: white;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.step-dot.done {
+  background: #22C55E;
+  color: white;
+  border-color: #22C55E;
+}
+
+/* === Form Styles === */
+.form-step {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.form-step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.375rem;
+  color: var(--color-fg);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background: var(--color-card);
+  color: var(--color-fg);
+  font-size: 0.875rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+/* === Tags / Dynamic List === */
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--color-muted);
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.tag-item .tag-remove {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--transition);
+}
+.tag-item .tag-remove:hover {
+  opacity: 1;
+}
+
+/* === Project Card (in form) === */
+.project-card {
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.project-card .remove-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--color-destructive);
+  color: white;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border: none;
+}
+
+/* === Skill Selector === */
+.skill-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-size: 0.8125rem;
+  user-select: none;
+}
+.skill-option:hover {
+  border-color: var(--color-primary-light);
+}
+.skill-option.selected {
+  background: var(--color-primary-light);
+  color: white;
+  border-color: var(--color-primary-light);
+}
+.skill-option i, .skill-option .devicon {
+  font-size: 1.125rem;
+}
+
+/* === Theme Cards (selector) === */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.theme-card {
+  border: 2px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.theme-card:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+.theme-card.selected {
+  border-color: var(--color-primary-light);
+  background: rgba(37, 99, 235, 0.05);
+}
+.theme-card .theme-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.375rem;
+  display: block;
+}
+.theme-card .theme-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* === Preview Viewport === */
+#preview-wrapper.desktop { max-width: 100%; }
+#preview-wrapper.tablet { max-width: 768px; margin: 0 auto; }
+#preview-wrapper.mobile { max-width: 375px; margin: 0 auto; }
+
+#preview-frame {
+  min-height: 600px;
+  transition: all var(--transition);
+}
+
+/* === Buttons === */
+.btn-primary, .btn-secondary, .btn-outline {
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-primary:active, .btn-secondary:active {
+  transform: scale(0.97);
+}
+
+/* === Nav Buttons (prev/next) === */
+.form-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* === Social Input Row === */
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.social-row .social-icon {
+  width: 2rem;
+  text-align: center;
+  font-size: 1.125rem;
+  color: var(--color-fg);
+  opacity: 0.6;
+}
+.social-row .form-input {
+  flex: 1;
+}
+
+/* === File Upload === */
+.file-upload-area {
+  border: 2px dashed var(--color-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.file-upload-area:hover {
+  border-color: var(--color-primary-light);
+  background: rgba(37, 99, 235, 0.02);
+}
+
+.file-upload-area.has-image {
+  border-style: solid;
+  border-color: #22C55E;
+}
+
+/* === Advanced Controls (v1.2) === */
+.control-slider {
+  width: 100%;
+  accent-color: var(--color-primary-light);
+}
+
+.color-swatch {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.color-swatch:hover, .color-swatch.selected {
+  border-color: var(--color-primary-light);
+  transform: scale(1.1);
+}
+
+/* === RTL Support === */
+[dir="rtl"] .form-nav {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .social-row {
+  flex-direction: row-reverse;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  #form-panel, #preview-panel {
+    width: 100%;
+  }
+  #preview-frame {
+    height: 450px;
+  }
+}
+
+@media (max-width: 640px) {
+  .theme-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+  #preview-frame {
+    height: 350px;
+  }
+  footer .flex-wrap {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  footer button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===========================
+   Advanced Controls (v1.2+)
+   =========================== */
+/* Color swatches */
+.color-swatch {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.color-swatch:hover {
+  transform: scale(1.15);
+}
+.color-swatch.selected {
+  border-color: var(--tw-ring-color, #3B82F6);
+  box-shadow: 0 0 0 2px var(--tw-ring-color, #3B82F6);
+}
+
+/* Range slider */
+.control-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #d1d5db;
+  outline: none;
+  cursor: pointer;
+}
+.control-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3B82F6;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.control-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+.control-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3B82F6;
+  cursor: pointer;
+  border: none;
+}
+.dark .control-slider {
+  background: #4B5563;
+}
+
+/* Toggle switch base */
+.peer:checked ~ .peer-checked\:bg-blue-600 {
+  background-color: #2563EB;
+}
+.peer:checked ~ .peer-checked\:bg-green-600 {
+  background-color: #16A34A;
+}
+.peer:checked ~ .peer-checked\:after\:translate-x-full::after {
+  transform: translateX(100%);
+}
+
+/* Form select */
+.form-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background: #fff;
+  font-size: 0.875rem;
+  color: #0F172A;
+}
+.dark .form-select {
+  background: #1F2937;
+  border-color: #374151;
+  color: #F1F5F9;
+}
+
+/* PAT / deploy section animations */
+#deploy-section {
+  transition: all 0.3s ease;
+}
