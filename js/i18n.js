@@ -57,7 +57,7 @@ const I18N = {
     'theme.6': { en: 'Dark Premium', ar: 'ليلي' },
     'theme.7': { en: 'Academic', ar: 'أكاديمي' },
     'btn.next': { en: 'Next →', ar: 'التالي ←' },
-    'btn.prev': { en: '← Back', ar: '← السابق' },
+    'btn.prev': { en: '← Back', ar: '→ السابق' },
     'btn.finish': { en: 'Generate', ar: 'إنشاء' },
     'export.deploy': { en: 'Deploy to GitHub Pages', ar: 'نشر على GitHub Pages' },
     'export.zip': { en: 'Download ZIP', ar: 'تحميل ZIP' },
