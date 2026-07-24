@@ -21,7 +21,6 @@ const I18N = {
     'form.profile.email': { en: 'Email', ar: 'البريد الإلكتروني' },
     'form.profile.location': { en: 'Location', ar: 'الموقع' },
     'form.profile.photo': { en: 'Profile Photo', ar: 'الصورة الشخصية' },
-    'form.profile.cv': { en: 'CV / Resume (PDF)', ar: 'السيرة الذاتية (PDF)' },
     'form.profile.placeholder.name': { en: 'e.g. John Doe', ar: 'مثال: أحمد علي' },
     'form.profile.placeholder.bio': { en: 'Full-stack developer & security researcher', ar: 'مطور ويب وباحث أمني' },
     'form.role.softwareengineer': { en: 'Software Engineer', ar: 'مهندس برمجيات' },

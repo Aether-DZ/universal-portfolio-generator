@@ -6,7 +6,7 @@ const FormState = {
   totalSteps: 5,
   data: {
     name: '', bio: '', role: 'Software Engineer', email: '', location: '',
-    photo: '', photoFile: null, cv: '', cvFile: null,
+    photo: '', photoFile: null,
     socials: {},
     skills: [],
     projects: [],
@@ -189,10 +189,6 @@ const FormState = {
         </div>
         <input type="file" id="photo-input" accept="image/*" class="hidden">
         <input class="form-input mt-2" id="photo-url" placeholder="Or paste image URL" value="${d.photo && !d.photo.startsWith('data:') ? Utils.sanitize(d.photo) : ''}">
-      </div>
-      <div class="form-group">
-        <label class="form-label" data-i18n="form.profile.cv">${I18N.t('form.profile.cv')}</label>
-        <input type="file" id="cv-input" accept=".pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
       </div>
       <!-- Education Section -->
       <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
@@ -486,16 +482,6 @@ const FormState = {
           if (url) { this.data.photo = url; triggerPreview(); }
         }
       }, 500);
-    }
-    // CV upload
-    const cvInput = document.getElementById('cv-input');
-    if (cvInput) {
-      cvInput.onchange = async (e) => {
-        if (e.target.files?.[0]) {
-          this.data.cvFile = e.target.files[0];
-          this.data.cv = await Utils.fileToBase64(e.target.files[0]);
-        }
-      };
     }
     // Social inputs
     document.querySelectorAll('.social-input').forEach(inp => {
