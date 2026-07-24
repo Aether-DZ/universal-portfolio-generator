@@ -513,32 +513,32 @@ const FormState = {
     });
     html += `</div>`;
     // Glassmorphism sliders
-    html += `<h3 class="text-sm font-semibold mb-2 mt-4"><i class="fas fa-glass-water text-blue-500 mr-2"></i>Glassmorphism</h3>`;
+    html += `<h3 class="text-sm font-semibold mb-2 mt-4 flex items-center gap-1.5"><i class="fas fa-glass-water text-blue-500"></i>${I18N.t('form.controls.glass')}</h3>`;
     html += `<div class="grid grid-cols-3 gap-3 mb-4">`;
-    html += `<div><label class="text-xs text-gray-500">Blur: <span id="blur-val">${d.glassBlur}</span>px</label><input type="range" class="control-slider" min="5" max="40" value="${d.glassBlur}" oninput="updateGlass('blur',this.value)"></div>`;
-    html += `<div><label class="text-xs text-gray-500">Opacity: <span id="opacity-val">${Math.round(d.glassTransparency*100)}</span>%</label><input type="range" class="control-slider" min="5" max="50" value="${Math.round(d.glassTransparency*100)}" oninput="updateGlass('opacity',this.value)"></div>`;
-    html += `<div><label class="text-xs text-gray-500">Radius: <span id="radius-val">${d.borderRadius}</span>px</label><input type="range" class="control-slider" min="4" max="32" value="${d.borderRadius}" oninput="updateGlass('radius',this.value)"></div>`;
+    html += `<div><label class="text-xs text-gray-500">${I18N.t('form.controls.blur')}: <span id="blur-val">${d.glassBlur}</span>px</label><input type="range" class="control-slider" min="5" max="40" value="${d.glassBlur}" oninput="updateGlass('blur',this.value)"></div>`;
+    html += `<div><label class="text-xs text-gray-500">${I18N.t('form.controls.opacity')}: <span id="opacity-val">${Math.round(d.glassTransparency*100)}</span>%</label><input type="range" class="control-slider" min="5" max="50" value="${Math.round(d.glassTransparency*100)}" oninput="updateGlass('opacity',this.value)"></div>`;
+    html += `<div><label class="text-xs text-gray-500">${I18N.t('form.controls.radius')}: <span id="radius-val">${d.borderRadius}</span>px</label><input type="range" class="control-slider" min="4" max="32" value="${d.borderRadius}" oninput="updateGlass('radius',this.value)"></div>`;
     html += `</div>`;
     // Animations toggle
-    html += `<div class="flex items-center justify-between mt-4"><span class="text-sm font-medium"><i class="fas fa-play text-blue-500 mr-2"></i>Animations</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer" ${d.animations ? 'checked':''} onchange="toggleAnimations(this.checked)"><div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div></label></div>`;
+    html += `<div class="flex items-center justify-between mt-4"><span class="text-sm font-medium flex items-center gap-1.5"><i class="fas fa-play text-blue-500"></i>${I18N.t('form.controls.animations')}</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer" ${d.animations ? 'checked':''} onchange="toggleAnimations(this.checked)"><div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div></label></div>`;
     // Contact form toggle
-    html += `<h3 class="text-sm font-semibold mb-2 mt-5"><i class="fas fa-envelope text-green-500 mr-2"></i>Contact Form</h3>`;
-    html += `<div class="flex items-center justify-between mb-2"><span class="text-sm">Enable contact form</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer" ${d.contactForm ? 'checked':''} onchange="toggleContactForm(this.checked)"><div class="w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-600"></div></label></div>`;
+    html += `<h3 class="text-sm font-semibold mb-2 mt-5 flex items-center gap-1.5"><i class="fas fa-envelope text-green-500"></i>${I18N.t('form.controls.contact')}</h3>`;
+    html += `<div class="flex items-center justify-between mb-2"><span class="text-sm">${I18N.t('form.controls.enableContact')}</span><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer" ${d.contactForm ? 'checked':''} onchange="toggleContactForm(this.checked)"><div class="w-9 h-5 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-600"></div></label></div>`;
     html += `<div id="contact-email-field" class="${d.contactForm ? '' : 'hidden'}"><input class="form-input" id="contact-email" type="email" placeholder="your@email.com" value="${d.contactEmail}" oninput="FormState.data.contactEmail=this.value"></div>`;
     // GitHub Sync — free & simple, replaces custom domain
     html += `<div class="mt-5 pt-4 border-t border-mono-200 dark:border-mono-700">
-      <h3 class="text-sm font-semibold mb-2"><i class="fab fa-github text-gray-800 dark:text-gray-200 mr-2"></i>GitHub Sync</h3>
-      <p class="text-xs text-mono-500 mb-3">Import your GitHub repos as portfolio projects — free hosting included</p>
-      <input class="form-input mb-2" id="form-pat-input" type="password" placeholder="GitHub Personal Access Token (ghp_...)" value="${d.githubPat||''}" oninput="FormState.data.githubPat=this.value">
+      <h3 class="text-sm font-semibold mb-2 flex items-center gap-1.5"><i class="fab fa-github text-gray-800 dark:text-gray-200"></i>${I18N.t('form.controls.github')}</h3>
+      <p class="text-xs text-mono-500 mb-3">${I18N.t('form.controls.githubDesc')}</p>
+      <input class="form-input mb-2" id="form-pat-input" type="password" placeholder="${I18N.t('form.controls.githubPlaceholder')}" value="${d.githubPat||''}" oninput="FormState.data.githubPat=this.value">
       <div class="flex gap-2">
-        <button class="flex-1 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-medium transition shadow-sm" onclick="syncFromForm()">
-          <i class="fas fa-sync mr-1"></i> Sync Repos
+        <button class="flex-1 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-medium transition shadow-sm flex items-center gap-1.5" onclick="syncFromForm()">
+          <i class="fas fa-sync"></i> ${I18N.t('form.controls.sync')}
         </button>
-        <button class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-medium transition shadow-sm" onclick="deployFromForm()" title="Deploy to GitHub Pages">
-          <i class="fab fa-github mr-1"></i> Deploy
+        <button class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-medium transition shadow-sm flex items-center gap-1.5" onclick="deployFromForm()" title="Deploy to GitHub Pages">
+          <i class="fab fa-github"></i> ${I18N.t('form.controls.deploy')}
         </button>
       </div>
-      <p class="text-xs text-mono-400 mt-2">Token never saved — stays in browser memory. Requires <code>repo</code> scope.</p>
+      <p class="text-xs text-mono-400 mt-2">${I18N.t('form.controls.tokenNote')}</p>
     </div>
     <!-- Export / Import Config (secondary, bottom) -->
     <div class="mt-5 pt-3 border-t border-mono-200 dark:border-mono-700 flex items-center justify-center gap-3">
