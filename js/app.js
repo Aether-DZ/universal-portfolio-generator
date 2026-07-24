@@ -29,6 +29,19 @@ document.addEventListener('DOMContentLoaded', function() {
     icon.className = document.documentElement.classList.contains('dark') ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
   });
 
+  // Color theme cycle: light → cream → dark → light
+  document.getElementById('color-theme-toggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    if (html.classList.contains('dark')) {
+      html.classList.remove('dark');
+      html.classList.add('cream');
+    } else if (html.classList.contains('cream')) {
+      html.classList.remove('cream');
+    } else {
+      html.classList.add('dark');
+    }
+  });
+
   // Preview panel toggle
   const previewToggle = document.getElementById('preview-toggle');
   const previewPanel = document.getElementById('preview-panel');

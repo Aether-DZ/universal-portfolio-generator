@@ -155,83 +155,130 @@ const FormState = {
       'Software Engineer', 'Security Researcher', 'Bug Bounty Hunter',
       'Tech Founder', 'UI/UX Designer', 'Data Scientist'
     ];
+    const countries = this.countryList();
     return `
       <h2 class="text-lg font-semibold mb-4" data-i18n="form.profile.title">${I18N.t('form.profile.title')}</h2>
-      <div class="form-group">
-        <label class="form-label" data-i18n="form.profile.fullName">${I18N.t('form.profile.fullName')}</label>
-        <input class="form-input" id="input-name" value="${Utils.sanitize(d.name)}" placeholder="${I18N.t('form.profile.placeholder.name')}">
+      <!-- Row: Name + Role side by side -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="form-group">
+          <label class="form-label" data-i18n="form.profile.fullName">${I18N.t('form.profile.fullName')}</label>
+          <input class="form-input" id="input-name" value="${Utils.sanitize(d.name)}" placeholder="${I18N.t('form.profile.placeholder.name')}">
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="form.profile.role">${I18N.t('form.profile.role')}</label>
+          <div class="role-grid" id="input-role">
+            ${roles.map(r => {
+              const sel = d.role === r ? ' selected' : '';
+              const key = 'form.role.' + r.toLowerCase().replace(/[\/\s-]/g,'');
+              return `<div class="role-chip${sel}" data-role="${r}" onclick="document.querySelectorAll('.role-chip').forEach(c=>c.classList.remove('selected'));this.classList.add('selected');FormState.data.role='${r}';triggerPreview()">${I18N.t(key) || r}</div>`;
+            }).join('')}
+          </div>
+        </div>
       </div>
+      <!-- Bio full width -->
       <div class="form-group">
         <label class="form-label" data-i18n="form.profile.bio">${I18N.t('form.profile.bio')}</label>
-        <textarea class="form-textarea" id="input-bio" placeholder="${I18N.t('form.profile.placeholder.bio')}">${Utils.sanitize(d.bio)}</textarea>
+        <textarea class="form-textarea" id="input-bio" placeholder="${I18N.t('form.profile.placeholder.bio')}" rows="2">${Utils.sanitize(d.bio)}</textarea>
       </div>
-      <div class="form-group">
-        <label class="form-label" data-i18n="form.profile.role">${I18N.t('form.profile.role')}</label>
-        <select class="form-select" id="input-role">
-          ${roles.map(r => `<option value="${r}" ${d.role === r ? 'selected' : ''}>${I18N.t('form.role.' + r.toLowerCase().replace(/[\/\s-]/g,'')) || r}</option>`).join('')}
-        </select>
-      </div>
+      <!-- Row: Email + Location -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div class="form-group">
           <label class="form-label" data-i18n="form.profile.email">${I18N.t('form.profile.email')}</label>
-          <input class="form-input" id="input-email" type="email" value="${Utils.sanitize(d.email)}">
+          <input class="form-input" id="input-email" type="email" value="${Utils.sanitize(d.email)}" placeholder="user@example.com">
         </div>
         <div class="form-group">
           <label class="form-label" data-i18n="form.profile.location">${I18N.t('form.profile.location')}</label>
-          <input class="form-input" id="input-location" value="${Utils.sanitize(d.location)}">
+          <select class="form-select" id="input-location">
+            <option value="">${I18N.current === 'ar' ? '— اختر الدولة —' : '— Select country —'}</option>
+            ${countries.map(c => `<option value="${c}" ${d.location === c ? 'selected' : ''}>${c}</option>`).join('')}
+          </select>
         </div>
       </div>
+      <!-- Photo -->
       <div class="form-group">
         <label class="form-label" data-i18n="form.profile.photo">${I18N.t('form.profile.photo')}</label>
-        <div class="file-upload-area ${d.photo ? 'has-image' : ''}" id="photo-upload">
-          ${d.photo ? `<img src="${d.photo}" class="w-20 h-20 rounded-full object-cover mx-auto mb-2">` : '<i class="fas fa-camera text-3xl text-gray-400 mb-2"></i>'}
-          <p class="text-sm text-gray-500">${d.photo ? 'Click to change' : 'Click or drag image here'}</p>
-        </div>
-        <input type="file" id="photo-input" accept="image/*" class="hidden">
-        <input class="form-input mt-2" id="photo-url" placeholder="Or paste image URL" value="${d.photo && !d.photo.startsWith('data:') ? Utils.sanitize(d.photo) : ''}">
-      </div>
-      <!-- Education Section -->
-      <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-sm font-semibold"><i class="fas fa-graduation-cap text-blue-500 mr-2"></i>${I18N.t('form.education.title')}</h3>
-          <button class="text-xs px-3 py-1 bg-blue-600 text-white rounded-lg" onclick="addEducation()">+ ${I18N.t('form.education.add')}</button>
-        </div>
-        <div id="education-list" class="space-y-2">
-          ${(d.education||[]).map((e,i)=>`
-            <div class="edu-entry flex gap-2 items-start p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
-              <div class="flex-1 space-y-1">
-                <input class="form-input text-sm edu-degree" data-idx="${i}" value="${Utils.sanitize(e.degree||'')}" placeholder="${I18N.t('form.education.degree')}">
-                <input class="form-input text-sm edu-school" data-idx="${i}" value="${Utils.sanitize(e.school||'')}" placeholder="${I18N.t('form.education.school')}">
-              </div>
-              <input class="form-input text-sm w-20 edu-year" data-idx="${i}" value="${e.year||''}" placeholder="${I18N.t('form.education.year')}">
-              <button class="text-red-500 text-lg leading-none mt-1" onclick="removeEducation(${i})">&times;</button>
-            </div>
-          `).join('')}
+        <div class="photo-wrapper">
+          <div class="file-upload-area ${d.photo ? 'has-image' : ''}" id="photo-upload">
+            ${d.photo
+              ? `<img src="${d.photo}" class="preview-img">`
+              : `<div class="upload-placeholder"><i class="fas fa-camera text-2xl"></i><span>${I18N.current === 'ar' ? 'اضغط لاختيار صورة' : 'Click to add photo'}</span></div>`
+            }
+          </div>
+          <input type="file" id="photo-input" accept="image/*" class="hidden">
+          <input class="form-input photo-url-input" id="photo-url" placeholder="${I18N.current === 'ar' ? 'أو الصق رابط الصورة' : 'Or paste image URL'}" value="${d.photo && !d.photo.startsWith('data:') ? Utils.sanitize(d.photo) : ''}">
         </div>
       </div>
-      <!-- Bug Bounty Section -->
-      <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-sm font-semibold"><i class="fas fa-shield-halved text-green-500 mr-2"></i>${I18N.t('form.bugbounty.title')}</h3>
-          <button class="text-xs px-3 py-1 bg-green-600 text-white rounded-lg" onclick="addBugBounty()">+ ${I18N.t('form.bugbounty.add')}</button>
+      <!-- Education + Bug Bounty in a 2-col card grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5">
+        <!-- Education Card -->
+        <div class="section-card">
+          <div class="section-card-header">
+            <div class="section-card-title"><i class="fas fa-graduation-cap text-blue-500"></i> ${I18N.t('form.education.title')}</div>
+            <button class="section-add-btn" onclick="addEducation()"><i class="fas fa-plus"></i> ${I18N.t('form.education.add')}</button>
+          </div>
+          <div id="education-list" class="section-card-body">
+            ${(d.education||[]).length === 0
+              ? `<p class="text-xs text-mono-400 text-center py-3">${I18N.current === 'ar' ? 'لا توجد مؤهلات بعد' : 'No degrees added yet'}</p>`
+              : (d.education||[]).map((e,i)=>`
+                <div class="sub-entry">
+                  <div class="sub-entry-row">
+                    <input class="form-input sub-input edu-degree" data-idx="${i}" value="${Utils.sanitize(e.degree||'')}" placeholder="${I18N.t('form.education.degree')}">
+                    <input class="form-input sub-input sub-year edu-year" data-idx="${i}" value="${e.year||''}" placeholder="${I18N.t('form.education.year')}">
+                    <button class="sub-remove" onclick="removeEducation(${i})"><i class="fas fa-times"></i></button>
+                  </div>
+                  <input class="form-input sub-input edu-school" data-idx="${i}" value="${Utils.sanitize(e.school||'')}" placeholder="${I18N.t('form.education.school')}">
+                </div>
+              `).join('')
+            }
+          </div>
         </div>
-        <div id="bugbounty-list" class="space-y-2">
-          ${(d.bugbounty||[]).map((b,i)=>`
-            <div class="bb-entry flex gap-2 items-center p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
-              <select class="form-select text-sm flex-1 bb-platform" data-idx="${i}">
-                <option value="hackerone" ${b.platform==='hackerone'?'selected':''}>HackerOne</option>
-                <option value="bugcrowd" ${b.platform==='bugcrowd'?'selected':''}>Bugcrowd</option>
-                <option value="intigriti" ${b.platform==='intigriti'?'selected':''}>Intigriti</option>
-                <option value="yeswehack" ${b.platform==='yeswehack'?'selected':''}>YesWeHack</option>
-              </select>
-              <input class="form-input text-sm flex-1 bb-username" data-idx="${i}" value="${Utils.sanitize(b.username||'')}" placeholder="${I18N.t('form.bugbounty.username')}">
-              <button class="text-red-500 text-lg leading-none" onclick="removeBugBounty(${i})">&times;</button>
-            </div>
-          `).join('')}
+        <!-- Bug Bounty Card -->
+        <div class="section-card">
+          <div class="section-card-header">
+            <div class="section-card-title"><i class="fas fa-shield-halved text-green-500"></i> ${I18N.t('form.bugbounty.title')}</div>
+            <button class="section-add-btn" onclick="addBugBounty()"><i class="fas fa-plus"></i> ${I18N.t('form.bugbounty.add')}</button>
+          </div>
+          <div id="bugbounty-list" class="section-card-body">
+            ${(d.bugbounty||[]).length === 0
+              ? `<p class="text-xs text-mono-400 text-center py-3">${I18N.current === 'ar' ? 'لا توجد منصات بعد' : 'No platforms added yet'}</p>`
+              : (d.bugbounty||[]).map((b,i)=>`
+                <div class="sub-entry">
+                  <div class="sub-entry-row">
+                    <select class="form-select sub-input bb-platform" data-idx="${i}">
+                      <option value="hackerone" ${b.platform==='hackerone'?'selected':''}>HackerOne</option>
+                      <option value="bugcrowd" ${b.platform==='bugcrowd'?'selected':''}>Bugcrowd</option>
+                      <option value="intigriti" ${b.platform==='intigriti'?'selected':''}>Intigriti</option>
+                      <option value="yeswehack" ${b.platform==='yeswehack'?'selected':''}>YesWeHack</option>
+                    </select>
+                    <input class="form-input sub-input bb-username" data-idx="${i}" value="${Utils.sanitize(b.username||'')}" placeholder="${I18N.t('form.bugbounty.username')}">
+                    <button class="sub-remove" onclick="removeBugBounty(${i})"><i class="fas fa-times"></i></button>
+                  </div>
+                </div>
+              `).join('')
+            }
+          </div>
         </div>
       </div>
       ${this.navButtons()}
     `;
+  },
+  countryList() {
+    return [
+      'Algeria', 'Argentina', 'Australia', 'Austria', 'Bangladesh', 'Belgium', 'Brazil', 'Canada',
+      'Chile', 'China', 'Colombia', 'Croatia', 'Czech Republic', 'Denmark', 'Egypt', 'Finland',
+      'France', 'Germany', 'Greece', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia',
+      'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan', 'Kenya', 'Kuwait',
+      'Lebanon', 'Libya', 'Malaysia', 'Maldives', 'Mexico', 'Morocco', 'Netherlands',
+      'New Zealand', 'Nigeria', 'Norway', 'Oman', 'Pakistan', 'Palestine', 'Philippines',
+      'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Saudi Arabia', 'Senegal',
+      'Serbia', 'Singapore', 'Slovakia', 'Slovenia', 'South Africa', 'South Korea', 'Spain',
+      'Sudan', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Thailand', 'Tunisia', 'Turkey',
+      'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States',
+      'Vietnam', 'Yemen'
+    ].sort((a,b) => I18N.current === 'ar'
+      ? a.localeCompare(b, 'ar')
+      : a.localeCompare(b)
+    );
   },
   // --- Step 2: Social Links (curated top 22 platforms) ---
   renderSocialStep() {
@@ -454,12 +501,10 @@ const FormState = {
     if (name) { name.oninput = (e) => { this.data.name = e.target.value; triggerPreview(); }; }
     const bio = document.getElementById('input-bio');
     if (bio) { bio.oninput = (e) => { this.data.bio = e.target.value; triggerPreview(); }; }
-    const role = document.getElementById('input-role');
-    if (role) { role.onchange = (e) => { this.data.role = e.target.value; triggerPreview(); }; }
     const email = document.getElementById('input-email');
     if (email) { email.oninput = (e) => { this.data.email = e.target.value; triggerPreview(); }; }
     const loc = document.getElementById('input-location');
-    if (loc) { loc.oninput = (e) => { this.data.location = e.target.value; triggerPreview(); }; }
+    if (loc) { loc.onchange = (e) => { this.data.location = e.target.value; triggerPreview(); }; }
     // Photo upload
     const photoUpload = document.getElementById('photo-upload');
     const photoInput = document.getElementById('photo-input');

@@ -27,7 +27,7 @@ const I18N = {
     'form.role.securityresearcher': { en: 'Security Researcher', ar: 'باحث أمني' },
     'form.role.bugbountyhunter': { en: 'Bug Bounty Hunter', ar: 'صياد ثغرات' },
     'form.role.techfounder': { en: 'Tech Founder', ar: 'مؤسس تقني' },
-    'form.role.uidesigner': { en: 'UI/UX Designer', ar: 'مصمم واجهات' },
+    'form.role.uiuxdesigner': { en: 'UI/UX Designer', ar: 'مصمم واجهات' },
     'form.role.datascientist': { en: 'Data Scientist', ar: 'عالم بيانات' },
     'form.social.title': { en: 'Social Links', ar: 'حساباتي' },
     'form.social.subtitle': { en: 'Add your online presence links', ar: 'أضف روابط حضورك الرقمي' },

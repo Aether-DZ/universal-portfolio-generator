@@ -65,7 +65,7 @@ footer{padding:2rem;text-align:center;position:relative;z-index:1;color:var(--fg
 [dir="rtl"] .email-tip{right:auto;left:0}
 [dir="rtl"] .profile-col{order:1}
 @media(max-width:785px){.profile-img{width:160px;height:160px}.text-col{text-align:center}.socials{justify-content:center}}
-@media(max-width:640px){.profile-img{width:140px;height:140px}.inner{flex-direction:column;text-align:center}.socials{justify-content:center}}
+@media(max-width:640px){.profile-img{width:140px;height:140px}.inner{flex-direction:column;text-align:center}.socials{justify-content:center}.center{padding:2rem 1rem}.section{padding:2rem 1rem}footer{padding:1.5rem 1rem}}
 </style>
 </head>
 <body>
@@ -163,7 +163,7 @@ h1{font-size:2rem;font-weight:500;color:#00ff88;text-shadow:0 0 20px rgba(0,255,
 [dir="rtl"] .bio{text-align:right}
 [dir="rtl"] .socials{flex-direction:row-reverse}
 footer{border-top:1px solid rgba(255,255,255,0.04);padding:1.5rem 0;margin-top:2rem;text-align:center;font-size:0.7rem;color:rgba(255,255,255,0.15)}
-@media(max-width:640px){h1{font-size:1.5rem}.projects-grid{grid-template-columns:1fr}}
+@media(max-width:640px){h1{font-size:1.5rem}.projects-grid{grid-template-columns:1fr}.content{padding:2rem 1rem}.section{padding:1.5rem 0}}
 </style></head>
 <body>
 <canvas id="particles-canvas"></canvas>
@@ -249,7 +249,7 @@ footer{padding:2rem;text-align:center;color:#94A3B8;font-size:0.8125rem;border-t
 [dir="rtl"] .project-entry{text-align:right}
 [dir="rtl"] .project-entry .tags{justify-content:flex-start}
 [dir="rtl"] .bb-list{justify-content:flex-start}
-@media(max-width:640px){h1{font-size:1.5rem}}
+@media(max-width:640px){h1{font-size:1.5rem}.container{padding:1.5rem 1rem}header{padding:2rem 0 1.5rem}}
 </style></head>
 <body>
 <button class="theme-btn" id="darkToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
@@ -324,7 +324,7 @@ footer{grid-column:1/-1;text-align:center;padding:1rem;color:#94A3B8;font-size:0
 [dir="rtl"] .socials{flex-direction:row-reverse}
 [dir="rtl"] .project-mini{text-align:right}
 [dir="rtl"] .bb-list{justify-content:flex-start}
-@media(max-width:768px){.bento{grid-template-columns:1fr}.profile-section{grid-column:1;grid-row:auto}.card-wide{grid-column:1}}
+@media(max-width:768px){.bento{grid-template-columns:1fr;padding:0.5rem;gap:0.75rem}.profile-section{grid-column:1;grid-row:auto}.card-wide{grid-column:1}.card{padding:1.25rem}}
 </style></head>
 <body>
 <div class="bento">
@@ -398,7 +398,7 @@ footer{text-align:center;color:rgba(255,255,255,0.4);font-size:0.75rem;margin-to
 [dir="rtl"] .glass-card{text-align:right}
 [dir="rtl"] .socials{flex-direction:row-reverse}
 [dir="rtl"] .bb-list{justify-content:flex-start}
-@media(max-width:640px){h1{font-size:1.5rem}.projects{grid-template-columns:1fr}}
+@media(max-width:640px){h1{font-size:1.5rem}.projects{grid-template-columns:1fr}.glass-card{padding:1.25rem}}
 </style></head>
 <body>
 <div class="bg-blob blob1"></div><div class="bg-blob blob2"></div><div class="bg-blob blob3"></div>
@@ -476,7 +476,7 @@ footer{text-align:center;padding:3rem 0;color:#52525b;font-size:0.8125rem;border
 [dir="rtl"] .meta-info{flex-direction:row-reverse}
 [dir="rtl"] .project-card{text-align:right}
 [dir="rtl"] .bb-list{justify-content:flex-start}
-@media(max-width:640px){h1{font-size:2rem}.content{padding:2rem 1rem}.projects-grid{grid-template-columns:1fr}}
+@media(max-width:640px){h1{font-size:2rem}.content{padding:2rem 1rem}.projects-grid{grid-template-columns:1fr}header{padding:3rem 0 2rem}}
 </style></head>
 <body>
 <div class="bg-grid"></div>
@@ -566,7 +566,7 @@ footer{text-align:center;padding:1.5rem;color:#94A3B8;font-size:0.8125rem;border
 [dir="rtl"] .project-card{text-align:right}
 [dir="rtl"] .edu-card{text-align:right}
 [dir="rtl"] .bb-list{justify-content:flex-start}
-@media(max-width:640px){header{flex-direction:column;align-items:center;text-align:center}.contact-line{justify-content:center}}
+@media(max-width:640px){header{flex-direction:column;align-items:center;text-align:center}.contact-line{justify-content:center}.container{padding:1.5rem 1rem}.section{padding:1rem 0}}
 </style></head>
 <body>
 <div class="container">
