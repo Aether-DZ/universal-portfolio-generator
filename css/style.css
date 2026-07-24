@@ -553,9 +553,9 @@ body {
   margin-bottom: 0.5rem;
 }
 .palette-dot {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
+  width: 24px;
+  height: 18px;
+  border-radius: 4px;
   border: 2px solid rgba(0,0,0,0.06);
   transition: transform 0.2s ease;
   display: inline-block;
@@ -825,6 +825,39 @@ body {
 }
 [dir="rtl"] .section-card-body .sub-entry-row {
   flex-direction: row-reverse;
+}
+
+/* Custom color picker — circular */
+.color-picker-wrap {
+  text-align: center;
+}
+.color-picker-wrap label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--color-fg);
+  opacity: 0.6;
+  margin-bottom: 0.25rem;
+}
+input[type="color"].color-picker-circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  padding: 0.15rem;
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  background: none;
+  display: inline-block;
+}
+input[type="color"].color-picker-circle::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"].color-picker-circle::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+input[type="color"].color-picker-circle::-moz-color-swatch {
+  border: none;
+  border-radius: 50%;
 }
 
 /* Scrollbar */

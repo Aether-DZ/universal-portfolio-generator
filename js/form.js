@@ -488,9 +488,9 @@ const FormState = {
     });
     html += `</div>`;
     html += `<div class="grid grid-cols-3 gap-2 mb-4">`;
-    html += `<div><label class="text-xs text-gray-500">Primary</label><input type="color" class="block w-full h-8 rounded border" id="color-primary" value="${d.customColors.primary}" onchange="updateColor('primary',this.value)"></div>`;
-    html += `<div><label class="text-xs text-gray-500">Accent</label><input type="color" class="block w-full h-8 rounded border" id="color-accent" value="${d.customColors.accent}" onchange="updateColor('accent',this.value)"></div>`;
-    html += `<div><label class="text-xs text-gray-500">Background</label><input type="color" class="block w-full h-8 rounded border" id="color-bg" value="${d.customColors.bg}" onchange="updateColor('bg',this.value)"></div>`;
+    html += `<div class="color-picker-wrap"><label>Primary</label><input type="color" class="color-picker-circle" id="color-primary" value="${d.customColors.primary}" onchange="updateColor('primary',this.value)"></div>`;
+    html += `<div class="color-picker-wrap"><label>Accent</label><input type="color" class="color-picker-circle" id="color-accent" value="${d.customColors.accent}" onchange="updateColor('accent',this.value)"></div>`;
+    html += `<div class="color-picker-wrap"><label>Bg</label><input type="color" class="color-picker-circle" id="color-bg" value="${d.customColors.bg}" onchange="updateColor('bg',this.value)"></div>`;
     html += `</div>`;
     // Font selector
     html += `<h3 class="text-sm font-semibold mb-2 mt-4"><i class="fas fa-font text-blue-500 mr-2"></i>Font</h3>`;
