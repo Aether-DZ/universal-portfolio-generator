@@ -345,6 +345,38 @@ const Utils = {
     'blog'
   ],
 
+  socialUrl(platform, value) {
+    if (!value) return '';
+    // If already a full URL, use as-is
+    if (value.startsWith('http://') || value.startsWith('https://')) return value;
+    const clean = value.replace(/^@/, '').trim();
+    const urls = {
+      github: `https://github.com/${clean}`,
+      gitlab: `https://gitlab.com/${clean}`,
+      stackoverflow: `https://stackoverflow.com/users/${clean}`,
+      devto: `https://dev.to/${clean}`,
+      medium: `https://medium.com/@${clean}`,
+      codepen: `https://codepen.io/${clean}`,
+      leetcode: `https://leetcode.com/u/${clean}`,
+      hackerone: `https://hackerone.com/${clean}`,
+      bugcrowd: `https://bugcrowd.com/${clean}`,
+      tryhackme: `https://tryhackme.com/p/${clean}`,
+      hackthebox: `https://app.hackthebox.com/profile/${clean}`,
+      twitter: `https://x.com/${clean}`,
+      linkedin: `https://linkedin.com/in/${clean}`,
+      instagram: `https://instagram.com/${clean}`,
+      youtube: `https://youtube.com/@${clean}`,
+      reddit: `https://reddit.com/u/${clean}`,
+      telegram: `https://t.me/${clean}`,
+      whatsapp: `https://wa.me/${clean.replace(/[^0-9]/g,'')}`,
+      dribbble: `https://dribbble.com/${clean}`,
+      behance: `https://behance.net/${clean}`,
+      buymeacoffee: `https://buymeacoffee.com/${clean}`,
+      blog: value // blog needs full URL, fallback to raw
+    };
+    return urls[platform] || value;
+  },
+
   socialIcon(platform) {
     const icons = {
       github: 'fab fa-github', gitlab: 'fab fa-gitlab',
@@ -381,5 +413,24 @@ const Utils = {
       blog: 'Blog / Website'
     };
     return labels[platform] || platform;
+  },
+
+  socialPlaceholder(platform) {
+    const hints = {
+      github: 'username', gitlab: 'username',
+      stackoverflow: 'user ID', devto: 'username',
+      medium: 'username', codepen: 'username',
+      leetcode: 'username',
+      hackerone: 'username', bugcrowd: 'username',
+      tryhackme: 'username', hackthebox: 'user ID',
+      twitter: 'username', linkedin: 'username',
+      instagram: 'username', youtube: 'channel',
+      reddit: 'username', telegram: 'username',
+      whatsapp: 'phone number',
+      dribbble: 'username', behance: 'username',
+      buymeacoffee: 'username',
+      blog: 'URL'
+    };
+    return hints[platform] || 'username';
   }
 };

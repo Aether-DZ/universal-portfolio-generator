@@ -82,9 +82,9 @@ const FormState = {
       colors,
       socialsArray: Object.entries(d.socials)
         .filter(([k,v]) => v)
-        .map(([platform, url]) => ({
+        .map(([platform, val]) => ({
           platform,
-          url: Utils.sanitize(url),
+          url: Utils.socialUrl(platform, Utils.sanitize(val)),
           icon: Utils.socialIcon(platform),
           label: Utils.socialLabel(platform)
         })),
@@ -372,7 +372,7 @@ const FormState = {
         const val = d.socials[p] || '';
         html += `<div class="social-item">
           <i class="${Utils.socialIcon(p)} social-icon"></i>
-          <input class="social-input" data-platform="${p}" value="${Utils.sanitize(val)}" placeholder="${Utils.socialLabel(p)}" title="${Utils.socialLabel(p)}">
+          <input class="social-input" data-platform="${p}" value="${Utils.sanitize(val)}" placeholder="${Utils.socialPlaceholder(p)}" title="${Utils.socialLabel(p)}">
         </div>`;
       });
       html += `</div></div>`;
@@ -488,7 +488,7 @@ const FormState = {
     html += `</div>`;
     // === Advanced Controls ===
     html += `<div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">`;
-    html += `<h3 class="text-sm font-semibold mb-3"><i class="fas fa-palette text-blue-500 mr-2"></i>Color Palette</h3>`;
+    html += `<h3 class="text-sm font-semibold mb-3 flex items-center gap-1.5"><i class="fas fa-palette text-blue-500"></i>Color Palette</h3>`;
     html += `<div class="palette-grid">`;
     palettes.forEach(p => {
       const sel = d.colorPalette === p.id ? 'selected' : '';
@@ -505,7 +505,7 @@ const FormState = {
     html += `<div class="color-picker-wrap"><label>Bg</label><input type="color" class="color-picker-circle" id="color-bg" value="${d.customColors.bg}" onchange="updateColor('bg',this.value)"></div>`;
     html += `</div>`;
     // Font selector
-    html += `<h3 class="text-sm font-semibold mb-2 mt-4"><i class="fas fa-font text-blue-500 mr-2"></i>Font</h3>`;
+    html += `<h3 class="text-sm font-semibold mb-2 mt-4 flex items-center gap-1.5"><i class="fas fa-font text-blue-500"></i>Font</h3>`;
     html += `<div class="font-grid" id="font-select">`;
     fonts.forEach(f => {
       const sel = d.fontFamily === f ? ' selected' : '';
