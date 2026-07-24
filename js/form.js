@@ -41,9 +41,28 @@ const FormState = {
         Object.assign(this.data, parsed);
       } catch(e) {}
     }
+    // Auto-detect country from IP (silent, no user disruption)
+    this.detectCountry();
     this.renderStep(1);
     // Auto-save on changes
     document.addEventListener('input', this.autoSave.bind(this));
+  },
+  detectCountry() {
+    // Only detect if user hasn't set a country yet
+    if (this.data.location) return;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    fetch('https://ip-api.com/json/?fields=country', { signal: controller.signal })
+      .then(r => r.json())
+      .then(d => {
+        clearTimeout(timeout);
+        if (d && d.country) {
+          this.data.location = d.country;
+          // Re-render if on step 1
+          if (this.currentStep === 1) this.renderStep(1);
+        }
+      })
+      .catch(() => { clearTimeout(timeout); });
   },
   autoSave() {
     clearTimeout(this._saveTimer);
@@ -262,34 +281,61 @@ const FormState = {
     `;
   },
   countryList() {
-    const all = I18N.current === 'ar'
-      ? [
-          'أستراليا', 'ألمانيا', 'أيرلندا', 'إسبانيا', 'إسرائيل', 'إندونيسيا', 'إيران',
-          'إيطاليا', 'الأردن', 'الإمارات', 'البحرين', 'الجزائر', 'السعودية', 'السنغال',
-          'السودان', 'السويد', 'الصين', 'العراق', 'الفلبين', 'الكويت', 'المغرب', 'المكسيك',
-          'النرويج', 'النمسا', 'النيجر', 'الهند', 'الولايات المتحدة', 'اليابان', 'اليمن',
-          'اليونان', 'بولندا', 'بلجيكا', 'بلغاريا', 'بنغلاديش', 'بنما', 'بنين', 'باكستان',
-          'برازيل', 'برتغال', 'بريطانيا', 'تشاد', 'تشيكيا', 'تركيا', 'تونس', 'سريلانكا',
-          'سويسرا', 'سنغافورة', 'سوريا', 'سلوفاكيا', 'سلوفينيا', 'صربيا', 'عُمان',
-          'غانا', 'فنلندا', 'فيتنام', 'فرنسا', 'قطر', 'كازاخستان', 'كرواتيا', 'كندا',
-          'كوبا', 'كوريا الجنوبية', 'كوستاريكا', 'كينيا', 'لاتفيا', 'لبنان', 'لوكسمبورغ',
-          'ليبيريا', 'ليبيا', 'مالطا', 'ماليزيا', 'مصر', 'مقدونيا', 'منغوليا', 'موريتانيا',
-          'نيجيريا', 'نيوزيلندا', 'هايتي', 'هولندا', 'هونغ كونغ', 'هنغاريا'
-        ]
-      : [
-          'Algeria', 'Argentina', 'Australia', 'Austria', 'Bangladesh', 'Belgium', 'Brazil', 'Canada',
-          'Chile', 'China', 'Colombia', 'Croatia', 'Czech Republic', 'Denmark', 'Egypt', 'Finland',
-          'France', 'Germany', 'Greece', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia',
-          'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan', 'Kenya', 'Kuwait',
-          'Lebanon', 'Libya', 'Malaysia', 'Maldives', 'Mexico', 'Morocco', 'Netherlands',
-          'New Zealand', 'Nigeria', 'Norway', 'Oman', 'Pakistan', 'Palestine', 'Philippines',
-          'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Saudi Arabia', 'Senegal',
-          'Serbia', 'Singapore', 'Slovakia', 'Slovenia', 'South Africa', 'South Korea', 'Spain',
-          'Sudan', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Thailand', 'Tunisia', 'Turkey',
-          'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States',
-          'Vietnam', 'Yemen'
-        ];
-    return all.sort((a,b) => a.localeCompare(b, I18N.current === 'ar' ? 'ar' : 'en'));
+    const countries = [
+      { en: 'Algeria', ar: 'الجزائر' }, { en: 'Argentina', ar: 'الأرجنتين' },
+      { en: 'Australia', ar: 'أستراليا' }, { en: 'Austria', ar: 'النمسا' },
+      { en: 'Bahrain', ar: 'البحرين' }, { en: 'Bangladesh', ar: 'بنغلاديش' },
+      { en: 'Belgium', ar: 'بلجيكا' }, { en: 'Benin', ar: 'بنين' },
+      { en: 'Brazil', ar: 'البرازيل' }, { en: 'Bulgaria', ar: 'بلغاريا' },
+      { en: 'Burkina Faso', ar: 'بوركينا فاسو' }, { en: 'Cambodia', ar: 'كمبوديا' },
+      { en: 'Cameroon', ar: 'الكاميرون' }, { en: 'Canada', ar: 'كندا' },
+      { en: 'Chad', ar: 'تشاد' }, { en: 'Chile', ar: 'تشيلي' },
+      { en: 'China', ar: 'الصين' }, { en: 'Colombia', ar: 'كولومبيا' },
+      { en: 'Croatia', ar: 'كرواتيا' }, { en: 'Czech Republic', ar: 'التشيك' },
+      { en: 'Denmark', ar: 'الدنمارك' }, { en: 'Egypt', ar: 'مصر' },
+      { en: 'Finland', ar: 'فنلندا' }, { en: 'France', ar: 'فرنسا' },
+      { en: 'Germany', ar: 'ألمانيا' }, { en: 'Ghana', ar: 'غانا' },
+      { en: 'Greece', ar: 'اليونان' }, { en: 'Hong Kong', ar: 'هونغ كونغ' },
+      { en: 'Hungary', ar: 'هنغاريا' }, { en: 'Iceland', ar: 'آيسلندا' },
+      { en: 'India', ar: 'الهند' }, { en: 'Indonesia', ar: 'إندونيسيا' },
+      { en: 'Iran', ar: 'إيران' }, { en: 'Iraq', ar: 'العراق' },
+      { en: 'Ireland', ar: 'أيرلندا' }, { en: 'Israel', ar: 'إسرائيل' },
+      { en: 'Italy', ar: 'إيطاليا' }, { en: 'Japan', ar: 'اليابان' },
+      { en: 'Jordan', ar: 'الأردن' }, { en: 'Kazakhstan', ar: 'كازاخستان' },
+      { en: 'Kenya', ar: 'كينيا' }, { en: 'Kuwait', ar: 'الكويت' },
+      { en: 'Lebanon', ar: 'لبنان' }, { en: 'Libya', ar: 'ليبيا' },
+      { en: 'Luxembourg', ar: 'لوكسمبورغ' }, { en: 'Malaysia', ar: 'ماليزيا' },
+      { en: 'Maldives', ar: 'جزر المالديف' }, { en: 'Mali', ar: 'مالي' },
+      { en: 'Malta', ar: 'مالطا' }, { en: 'Mexico', ar: 'المكسيك' },
+      { en: 'Morocco', ar: 'المغرب' }, { en: 'Mozambique', ar: 'موزمبيق' },
+      { en: 'Netherlands', ar: 'هولندا' }, { en: 'New Zealand', ar: 'نيوزيلندا' },
+      { en: 'Niger', ar: 'النيجر' }, { en: 'Nigeria', ar: 'نيجيريا' },
+      { en: 'Norway', ar: 'النرويج' }, { en: 'Oman', ar: 'عُمان' },
+      { en: 'Pakistan', ar: 'باكستان' }, { en: 'Palestine', ar: 'فلسطين' },
+      { en: 'Philippines', ar: 'الفلبين' }, { en: 'Poland', ar: 'بولندا' },
+      { en: 'Portugal', ar: 'البرتغال' }, { en: 'Qatar', ar: 'قطر' },
+      { en: 'Romania', ar: 'رومانيا' }, { en: 'Russia', ar: 'روسيا' },
+      { en: 'Saudi Arabia', ar: 'السعودية' }, { en: 'Senegal', ar: 'السنغال' },
+      { en: 'Serbia', ar: 'صربيا' }, { en: 'Singapore', ar: 'سنغافورة' },
+      { en: 'Slovakia', ar: 'سلوفاكيا' }, { en: 'Slovenia', ar: 'سلوفينيا' },
+      { en: 'Somalia', ar: 'الصومال' }, { en: 'South Africa', ar: 'جنوب أفريقيا' },
+      { en: 'South Korea', ar: 'كوريا الجنوبية' }, { en: 'Spain', ar: 'إسبانيا' },
+      { en: 'Sudan', ar: 'السودان' }, { en: 'Sweden', ar: 'السويد' },
+      { en: 'Switzerland', ar: 'سويسرا' }, { en: 'Syria', ar: 'سوريا' },
+      { en: 'Taiwan', ar: 'تايوان' }, { en: 'Thailand', ar: 'تايلاند' },
+      { en: 'Tunisia', ar: 'تونس' }, { en: 'Turkey', ar: 'تركيا' },
+      { en: 'Uganda', ar: 'أوغندا' }, { en: 'Ukraine', ar: 'أوكرانيا' },
+      { en: 'United Arab Emirates', ar: 'الإمارات' },
+      { en: 'United Kingdom', ar: 'بريطانيا' },
+      { en: 'United States', ar: 'الولايات المتحدة' },
+      { en: 'Vietnam', ar: 'فيتنام' }, { en: 'Yemen', ar: 'اليمن' }
+    ].sort((a,b) => {
+      const lang = I18N.current === 'ar' ? 'ar' : 'en';
+      return a[lang].localeCompare(b[lang], lang);
+    });
+    return I18N.current === 'ar'
+      ? countries.map(c => c.ar)
+      : countries.map(c => c.en);
   },
   // --- Step 2: Social Links (curated top 22 platforms) ---
   renderSocialStep() {
