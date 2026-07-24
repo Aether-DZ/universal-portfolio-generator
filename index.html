@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Universal Portfolio Generator</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Archivo + Space Grotesk -->
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Devicon (skill icons) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
@@ -25,10 +25,17 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            sans: ['Archivo', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
-            grotesk: ['Space Grotesk', 'sans-serif'],
-            firacode: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            mono: {
+              50: '#f8f9fa', 100: '#f1f3f5', 200: '#e9ecef',
+              300: '#dee2e6', 400: '#ced4da', 500: '#adb5bd',
+              600: '#868e96', 700: '#495057', 800: '#343a40',
+              900: '#212529', 950: '#0d1117'
+            }
           }
         }
       }
@@ -38,30 +45,67 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen">
+<body class="bg-mono-50 dark:bg-mono-950 text-mono-900 dark:text-mono-100 min-h-screen antialiased">
   <!-- Loading Overlay -->
-  <div id="loading-overlay" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl flex flex-col items-center gap-4">
-      <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-      <p class="text-lg font-medium" id="loading-text">Loading...</p>
+  <div id="loading-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center">
+    <div class="bg-white dark:bg-mono-800 rounded-2xl p-8 shadow-2xl flex flex-col items-center gap-4">
+      <div class="w-10 h-10 border-[3px] border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      <p class="text-sm font-medium text-mono-600 dark:text-mono-300" id="loading-text">Loading...</p>
+    </div>
+  </div>
+
+  <!-- Generate Confirmation Modal -->
+  <div id="generate-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-mono-800 rounded-2xl shadow-2xl max-w-md w-full p-6 text-center animate-fadeIn">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
+        <i class="fas fa-wand-magic-sparkles text-2xl text-white"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2" data-i18n="modal.generate.title">Generate Portfolio</h3>
+      <p class="text-sm text-mono-500 dark:text-mono-400 mb-1" data-i18n="modal.generate.desc">Ready to create your portfolio website</p>
+      <p class="text-xs text-mono-400 dark:text-mono-500 mb-5" id="modal-cooldown-msg"></p>
+      <div class="flex gap-3 justify-center">
+        <button id="modal-cancel" class="px-5 py-2.5 border border-mono-300 dark:border-mono-700 rounded-xl text-sm font-medium hover:bg-mono-100 dark:hover:bg-mono-800 transition" data-i18n="modal.cancel">Cancel</button>
+        <button id="modal-confirm" class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl text-sm font-medium transition shadow-lg flex items-center gap-2">
+          <i class="fas fa-wand-magic-sparkles"></i>
+          <span data-i18n="modal.generate.btn">Generate!</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download Tip Modal -->
+  <div id="tip-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-mono-800 rounded-2xl shadow-2xl max-w-md w-full p-6 text-center animate-fadeIn">
+      <div class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
+        <i class="fas fa-lightbulb text-2xl text-white"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2" id="tip-modal-title" data-i18n="modal.tip.title">💡 Tip</h3>
+      <p class="text-sm text-mono-600 dark:text-mono-300 mb-5" id="tip-modal-text"></p>
+      <button id="tip-modal-ok" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium transition shadow-lg" data-i18n="modal.tip.ok">Got it!</button>
     </div>
   </div>
 
   <!-- Header -->
-  <header class="sticky top-0 z-40 backdrop-blur-xl bg-white/70 dark:bg-gray-950/70 border-b border-gray-200 dark:border-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center gap-3">
-          <i class="fas fa-wand-magic-sparkles text-2xl text-blue-600 dark:text-blue-400"></i>
-          <h1 class="text-xl font-bold font-grotesk" data-i18n="app.title">Universal Portfolio Generator</h1>
+  <header class="sticky top-0 z-30 bg-white/80 dark:bg-mono-950/80 backdrop-blur-xl border-b border-mono-200 dark:border-mono-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-14">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white text-sm">
+            <i class="fas fa-wand-magic-sparkles"></i>
+          </div>
+          <h1 class="text-base font-semibold font-display tracking-tight" data-i18n="app.title">Universal Portfolio Generator</h1>
         </div>
-        <div class="flex items-center gap-4">
-          <button id="lang-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition text-sm font-medium">
-            <i class="fas fa-globe"></i>
+        <div class="flex items-center gap-2">
+          <button id="preview-toggle" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium transition shadow-sm" title="Toggle Preview">
+            <i class="fas fa-eye"></i>
+            <span class="hidden sm:inline">Preview</span>
+          </button>
+          <button id="lang-toggle" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-mono-300 dark:border-mono-700 hover:bg-mono-100 dark:hover:bg-mono-800 transition text-xs font-medium">
+            <i class="fas fa-globe text-blue-600 dark:text-blue-400"></i>
             <span id="lang-label">AR</span>
           </button>
-          <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition" title="Toggle theme">
-            <i class="fas fa-moon dark:fa-sun text-lg"></i>
+          <button id="theme-toggle" class="p-1.5 rounded-lg hover:bg-mono-100 dark:hover:bg-mono-800 transition text-mono-500" title="Toggle dark mode">
+            <i class="fas fa-moon dark:fa-sun text-sm"></i>
           </button>
         </div>
       </div>
@@ -69,134 +113,122 @@
   </header>
 
   <!-- Step Indicator -->
-  <div id="step-indicator" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
-    <div class="flex items-center justify-between max-w-2xl mx-auto">
-      <div class="step-dot active" data-step="1" data-i18n="app.step1">Profile</div>
-      <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"><div class="step-progress h-full bg-blue-500 transition-all" style="width:0%"></div></div>
-      <div class="step-dot" data-step="2" data-i18n="app.step2">Social</div>
-      <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"><div class="step-progress h-full bg-blue-500 transition-all" style="width:0%"></div></div>
-      <div class="step-dot" data-step="3" data-i18n="app.step3">Skills</div>
-      <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"><div class="step-progress h-full bg-blue-500 transition-all" style="width:0%"></div></div>
-      <div class="step-dot" data-step="4" data-i18n="app.step4">Projects</div>
-      <div class="flex-1 h-0.5 mx-2 bg-gray-200 dark:bg-gray-700"><div class="step-progress h-full bg-blue-500 transition-all" style="width:0%"></div></div>
-      <div class="step-dot" data-step="5" data-i18n="app.step5">Theme</div>
+  <div id="step-indicator" class="max-w-5xl mx-auto px-4 sm:px-6 pt-5 pb-3">
+    <div class="flex items-center justify-center gap-0">
+      <div class="step-dot active" data-step="1">
+        <i class="fas fa-user text-xs"></i>
+        <span class="step-label" data-i18n="app.step1">Profile</span>
+      </div>
+      <div class="step-line"><div class="step-progress"></div></div>
+      <div class="step-dot" data-step="2">
+        <i class="fas fa-share-nodes text-xs"></i>
+        <span class="step-label" data-i18n="app.step2">Social</span>
+      </div>
+      <div class="step-line"><div class="step-progress"></div></div>
+      <div class="step-dot" data-step="3">
+        <i class="fas fa-code text-xs"></i>
+        <span class="step-label" data-i18n="app.step3">Skills</span>
+      </div>
+      <div class="step-line"><div class="step-progress"></div></div>
+      <div class="step-dot" data-step="4">
+        <i class="fas fa-folder-open text-xs"></i>
+        <span class="step-label" data-i18n="app.step4">Projects</span>
+      </div>
+      <div class="step-line"><div class="step-progress"></div></div>
+      <div class="step-dot" data-step="5">
+        <i class="fas fa-palette text-xs"></i>
+        <span class="step-label" data-i18n="app.step5">Theme</span>
+      </div>
     </div>
   </div>
 
   <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-    <div class="flex flex-col lg:flex-row gap-6">
-      <!-- Left: Form Panel -->
-      <div id="form-panel" class="w-full lg:w-1/2 xl:w-2/5">
-        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+    <div class="flex gap-6">
+      <!-- Form Panel (centered, takes primary space) -->
+      <div id="form-panel" class="flex-1 min-w-0 transition-all duration-300">
+        <div class="bg-white dark:bg-mono-900 rounded-2xl shadow-sm border border-mono-200 dark:border-mono-800 p-5 sm:p-6">
           <div id="form-container"></div>
         </div>
       </div>
 
-      <!-- Right: Preview Panel -->
-      <div id="preview-panel" class="w-full lg:w-1/2 xl:w-3/5">
-        <!-- Preview Mode Tabs -->
-        <div class="flex items-center gap-2 mb-3">
-          <div class="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5">
-            <button id="preview-tab-portfolio" class="preview-tab active px-4 py-1.5 rounded-md text-sm font-medium transition" data-mode="portfolio">
-              <i class="fas fa-eye mr-1"></i> <span data-i18n="app.preview">Portfolio</span>
-            </button>
-            <button id="preview-tab-readme" class="preview-tab px-4 py-1.5 rounded-md text-sm font-medium transition" data-mode="readme">
-              <i class="fab fa-markdown mr-1"></i> <span data-i18n="readme.tab">README</span>
-            </button>
-          </div>
-          <div class="flex-1"></div>
-          <!-- Viewport Toggle -->
-          <button class="viewport-btn active px-3 py-1.5 rounded-lg text-sm border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition" data-viewport="desktop">
-            <i class="fas fa-desktop"></i>
-          </button>
-          <button class="viewport-btn px-3 py-1.5 rounded-lg text-sm border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition" data-viewport="tablet">
-            <i class="fas fa-tablet-alt"></i>
-          </button>
-          <button class="viewport-btn px-3 py-1.5 rounded-lg text-sm border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition" data-viewport="mobile">
-            <i class="fas fa-mobile-alt"></i>
-          </button>
-        </div>
-        <!-- Preview iframe (Portfolio mode) -->
-        <div id="preview-wrapper" class="rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm bg-white transition-all">
-          <iframe id="preview-frame" class="w-full h-[600px] transition-all" sandbox="allow-scripts allow-same-origin" srcdoc=""></iframe>
-        </div>
-        <!-- README Preview (README mode) -->
-        <div id="readme-preview-wrapper" class="rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm bg-white dark:bg-gray-900 transition-all hidden">
-          <div class="p-4 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between flex-wrap gap-2">
-            <div class="flex items-center gap-2">
-              <span class="text-sm font-medium"><i class="fab fa-markdown mr-1"></i> <span data-i18n="readme.title">GitHub Profile README</span></span>
-              <div class="flex bg-gray-200 dark:bg-gray-700 rounded-lg p-0.5 text-xs">
-                <button id="readme-view-raw" class="readme-view-btn px-2.5 py-1 rounded-md font-medium transition active bg-white dark:bg-gray-600 shadow-sm" data-view="raw">Raw</button>
-                <button id="readme-view-rendered" class="readme-view-btn px-2.5 py-1 rounded-md font-medium transition" data-view="rendered">Preview</button>
-              </div>
+      <!-- Preview Panel (hidden by default, slides in) -->
+      <div id="preview-panel" class="hidden w-[420px] flex-shrink-0 transition-all duration-300">
+        <div class="sticky top-20">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-medium text-mono-500 uppercase tracking-wider">Live Preview</span>
+            <div class="flex items-center gap-1">
+              <button class="viewport-btn active px-2 py-1 rounded text-xs border border-mono-300 dark:border-mono-700 hover:bg-mono-100 dark:hover:bg-mono-800 transition" data-viewport="desktop" title="Desktop">
+                <i class="fas fa-desktop"></i>
+              </button>
+              <button class="viewport-btn px-2 py-1 rounded text-xs border border-mono-300 dark:border-mono-700 hover:bg-mono-100 dark:hover:bg-mono-800 transition" data-viewport="tablet" title="Tablet">
+                <i class="fas fa-tablet-alt"></i>
+              </button>
+              <button class="viewport-btn px-2 py-1 rounded text-xs border border-mono-300 dark:border-mono-700 hover:bg-mono-100 dark:hover:bg-mono-800 transition" data-viewport="mobile" title="Mobile">
+                <i class="fas fa-mobile-alt"></i>
+              </button>
+              <button id="preview-close" class="px-2 py-1 rounded text-xs border border-mono-300 dark:border-mono-700 hover:bg-mono-100 dark:hover:bg-mono-800 transition text-mono-500">
+                <i class="fas fa-times"></i>
+              </button>
             </div>
-            <button id="btn-copy-readme" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium transition flex items-center gap-1">
-              <i class="fas fa-copy"></i> <span data-i18n="readme.export">Copy to Clipboard</span>
-            </button>
           </div>
-          <!-- Raw markdown view -->
-          <pre id="readme-preview-content" class="p-6 overflow-auto max-h-[600px] font-mono text-sm whitespace-pre-wrap leading-relaxed text-gray-800 dark:text-gray-200"></pre>
-          <!-- Rendered HTML view -->
-          <div id="readme-rendered-content" class="p-6 overflow-auto max-h-[600px] prose prose-sm dark:prose-invert max-w-none hidden"></div>
+          <div id="preview-wrapper" class="rounded-xl overflow-hidden border border-mono-200 dark:border-mono-800 shadow-sm bg-white transition-all">
+            <iframe id="preview-frame" class="w-full h-[500px] transition-all" sandbox="allow-scripts allow-same-origin" srcdoc=""></iframe>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
   <!-- Footer / Export Actions -->
-  <footer class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 mt-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="flex flex-wrap items-center justify-center gap-4">
-        <button id="btn-deploy" class="btn-primary flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium transition shadow-lg shadow-green-600/20">
-          <i class="fab fa-github"></i>
+  <footer class="border-t border-mono-200 dark:border-mono-800 bg-white dark:bg-mono-950">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4">
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <button id="btn-deploy" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium transition shadow-sm">
+          <i class="fab fa-github text-xs"></i>
           <span data-i18n="export.deploy">Deploy to GitHub Pages</span>
         </button>
-        <button id="btn-zip" class="btn-secondary flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition shadow-lg shadow-blue-600/20">
-          <i class="fas fa-file-archive"></i>
+        <button id="btn-zip" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition shadow-sm">
+          <i class="fas fa-file-archive text-xs"></i>
           <span data-i18n="export.zip">Download ZIP</span>
         </button>
-        <button id="btn-save-config" class="btn-outline flex items-center gap-2 px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-          <i class="fas fa-download"></i>
+        <button id="btn-save-config" class="inline-flex items-center gap-1.5 px-3 py-2.5 border border-mono-300 dark:border-mono-700 rounded-xl text-sm font-medium hover:bg-mono-100 dark:hover:bg-mono-800 transition">
+          <i class="fas fa-download text-xs text-mono-500"></i>
           <span data-i18n="export.saveConfig">Export Config</span>
         </button>
-        <button id="btn-load-config" class="btn-outline flex items-center gap-2 px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-xl font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-          <i class="fas fa-upload"></i>
+        <button id="btn-load-config" class="inline-flex items-center gap-1.5 px-3 py-2.5 border border-mono-300 dark:border-mono-700 rounded-xl text-sm font-medium hover:bg-mono-100 dark:hover:bg-mono-800 transition">
+          <i class="fas fa-upload text-xs text-mono-500"></i>
           <span data-i18n="export.loadConfig">Import Config</span>
         </button>
       </div>
-      <!-- Deploy Actions (hidden by default) -->
-      <div id="deploy-section" class="hidden max-w-2xl mx-auto mt-4 space-y-3">
-        <!-- Repo Name Input -->
+      <!-- Deploy Section -->
+      <div id="deploy-section" class="hidden max-w-xl mx-auto mt-4 space-y-3">
         <div class="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
           <div class="flex items-start gap-3">
-            <i class="fas fa-code-branch text-blue-600 mt-1"></i>
+            <i class="fas fa-code-branch text-blue-600 mt-0.5"></i>
             <div class="flex-1">
-              <label class="block text-sm font-medium mb-1">Repository Name <span class="text-xs text-gray-400">(optional)</span></label>
-              <input type="text" id="repo-name-input" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm" placeholder="Leave empty for {username}.github.io">
-              <p class="text-xs text-blue-700 dark:text-blue-400 mt-1">Creates this repo under your account. Default: username.github.io</p>
+              <label class="block text-xs font-medium mb-1 text-mono-700 dark:text-mono-300">Repository Name <span class="text-mono-400">(optional)</span></label>
+              <input type="text" id="repo-name-input" class="w-full px-3 py-2 rounded-lg border border-mono-300 dark:border-mono-700 bg-white dark:bg-mono-900 text-sm" placeholder="Leave empty for {username}.github.io">
+              <p class="text-xs text-blue-700 dark:text-blue-400 mt-1">Creates repo under your account. Default: username.github.io</p>
             </div>
           </div>
         </div>
-        <!-- PAT Input -->
         <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
           <div class="flex items-start gap-3">
-            <i class="fas fa-shield-halved text-amber-600 mt-1"></i>
+            <i class="fas fa-shield-halved text-amber-600 mt-0.5"></i>
             <div class="flex-1">
-              <label class="block text-sm font-medium mb-1" data-i18n="export.patLabel">GitHub Personal Access Token</label>
-              <input type="password" id="pat-input" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm mb-2" placeholder="ghp_...">
+              <label class="block text-xs font-medium mb-1 text-mono-700 dark:text-mono-300" data-i18n="export.patLabel">GitHub Personal Access Token</label>
+              <input type="password" id="pat-input" class="w-full px-3 py-2 rounded-lg border border-mono-300 dark:border-mono-700 bg-white dark:bg-mono-900 text-sm mb-1.5" placeholder="ghp_...">
               <p class="text-xs text-amber-700 dark:text-amber-400" data-i18n="export.patNote">Requires repo scope. Never stored — stays in browser memory only.</p>
             </div>
           </div>
         </div>
-        <!-- Deploy Result -->
         <div id="deploy-result"></div>
-        <!-- GitHub Sync Repos & Custom Domain -->
         <div class="flex flex-wrap gap-2">
-          <button id="btn-sync-repos" class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-medium transition">
+          <button id="btn-sync-repos" class="flex-1 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-medium transition shadow-sm">
             <i class="fas fa-sync mr-1"></i> Sync GitHub Repos
           </button>
-          <button id="btn-cname" class="flex-1 px-4 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-sm font-medium transition">
+          <button id="btn-cname" class="flex-1 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-medium transition shadow-sm">
             <i class="fas fa-globe mr-1"></i> Generate CNAME
           </button>
         </div>
@@ -211,7 +243,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@octokit/rest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <!-- App JS files -->
@@ -219,7 +250,6 @@
   <script src="js/utils.js"></script>
   <script src="js/design-tokens.js"></script>
   <script src="js/themes.js"></script>
-  <script src="js/readme-templates.js"></script>
   <script src="js/form.js"></script>
   <script src="js/preview.js"></script>
   <script src="js/github.js"></script>

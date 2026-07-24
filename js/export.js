@@ -30,6 +30,7 @@ async function downloadZIP() {
 
     Utils.hideLoading();
     Utils.showToast(I18N.t('success.zipped'), 'success');
+    showDownloadTip();
   } catch (e) {
     Utils.hideLoading();
     console.error('ZIP error:', e);
@@ -80,4 +81,30 @@ function importConfig() {
     }
   };
   input.click();
+}
+
+function showDownloadTip() {
+  const isAr = I18N.current === 'ar';
+  const tips = isAr ? [
+    '📖 افتح ملف index.html وابحث عن الأقسام التي تعجبك',
+    '🛠️ حاول تغيير الألوان والخطوط بنفسك — التجربة أفضل معلم',
+    '🧠 أضف مهاراتك ومشاريعك الحقيقية — هذا موقعك الشخصي',
+    '🚀 انشر الموقع على GitHub Pages مجاناً',
+    '📱 اختبر الموقع على جوالك — تأكد أن كل شيء يظهر بشكل صحيح',
+    '🎨 غيّر الثيم وجرب تنسيقات مختلفة',
+    '💡 اربط حساب GitHub عشان تجيب مشاريعك تلقائياً'
+  ] : [
+    '📖 Open index.html and explore sections that catch your eye',
+    '🛠️ Try changing colors and fonts yourself — experimentation is the best teacher',
+    '🧠 Add your real skills and projects — this is YOUR portfolio',
+    '🚀 Deploy to GitHub Pages for free hosting',
+    '📱 Test on mobile — make sure everything displays correctly',
+    '🎨 Switch themes and try different layouts',
+    '💡 Connect GitHub to auto-import your repositories'
+  ];
+  const tip = tips[Math.floor(Math.random() * tips.length)];
+  document.getElementById('tip-modal-title').textContent = isAr ? '💡 نصيحة' : '💡 Tip';
+  document.getElementById('tip-modal-text').textContent = tip;
+  document.getElementById('tip-modal').classList.remove('hidden');
+  document.getElementById('tip-modal').style.display = 'flex';
 }

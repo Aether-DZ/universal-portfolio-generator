@@ -4,21 +4,18 @@
 let _previewTimeout = null;
 
 function initPreview() {
-  // Viewport toggle buttons
   document.querySelectorAll('.viewport-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active', 'bg-blue-600', 'text-white'));
-      btn.classList.add('active', 'bg-blue-600', 'text-white');
-      btn.classList.remove('border', 'border-gray-300', 'dark:border-gray-700', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+      document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       const vp = btn.dataset.viewport;
       const wrapper = document.getElementById('preview-wrapper');
-      wrapper.className = 'rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm bg-white transition-all';
+      wrapper.className = 'rounded-xl overflow-hidden border border-mono-200 dark:border-mono-800 shadow-sm bg-white transition-all';
       if (vp === 'tablet') wrapper.classList.add('tablet');
       else if (vp === 'mobile') wrapper.classList.add('mobile');
       renderPreview();
     });
   });
-  // Initial preview
   renderPreview();
 }
 

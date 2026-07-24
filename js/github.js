@@ -4,7 +4,7 @@
 async function deployToGitHub() {
   const pat = document.getElementById('pat-input').value.trim();
   if (!pat) {
-    document.getElementById('pat-section').classList.remove('hidden');
+    document.getElementById('pat-input')?.focus();
     Utils.showToast(I18N.t('error.patRequired'), 'error');
     return;
   }
