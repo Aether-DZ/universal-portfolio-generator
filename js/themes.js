@@ -9,7 +9,7 @@ const THEMES = [
 <html lang="{{lang}}" dir="{{dir}}">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{name}} | Portfolio</title>
+<title>{{name}} · {{portfolioTexts.title}}</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link href="https://fonts.googleapis.com/css?family=Righteous|Ubuntu+Mono&display=swap" rel="stylesheet">
 <style>
@@ -90,7 +90,7 @@ footer{padding:2rem;text-align:center;position:relative;z-index:1;color:var(--fg
 
 {{#if educationArray.length}}<div class="section"><h2># {{sectionTitles.education}}</h2><div class="education">{{#each educationArray}}<div class="edu-item"><h4>{{this.degree}}</h4><div class="meta">{{this.school}}{{#if this.year}} · {{this.year}}{{/if}}</div></div>{{/each}}</div></div>{{/if}}
 
-{{#if projects.length}}<div class="section"><h2># {{sectionTitles.projects}}</h2><div class="projects">{{#each projects}}<div class="project-item"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}عرض المشروع →{{else}}view project →{{/if}}</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
+{{#if projects.length}}<div class="section"><h2># {{sectionTitles.projects}}</h2><div class="projects">{{#each projects}}<div class="project-item"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}{{portfolioTexts.viewProject}} ←{{else}}→ {{portfolioTexts.viewProject}}{{/if}}</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
 
 {{#if bugbountyArray.length}}<div class="section"><h2># {{sectionTitles.bugbounty}}</h2><div class="bugbounty">{{#each bugbountyArray}}<div class="bb-item"><i class="fas fa-shield-halved"></i> {{this.platform}} <span style="color:var(--fg3)">/</span> {{this.username}}</div>{{/each}}</div></div>{{/if}}
 
@@ -113,7 +113,7 @@ particlesJS('particles-js',{particles:{number:{value:70,density:{enable:true,val
 <!DOCTYPE html>
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{name}} | Portfolio</title>
+<title>{{name}} · {{portfolioTexts.title}}</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>*{margin:0;padding:0;box-sizing:border-box}
@@ -179,7 +179,7 @@ footer{border-top:1px solid rgba(255,255,255,0.04);padding:1.5rem 0;margin-top:2
   </header>
   {{#if skills.length}}<div class="section"><div class="section-header"><span class="hash">##</span> <h2>{{sectionTitles.skills}}</h2> <span class="line"></span></div><div class="skills">{{#each skills}}<span class="skill-tag">{{this.name}}</span>{{/each}}</div></div>{{/if}}
   {{#if educationArray.length}}<div class="section"><div class="section-header"><span class="hash">##</span> <h2>{{sectionTitles.education}}</h2> <span class="line"></span></div>{{#each educationArray}}<div class="edu-item"><h4>{{this.degree}}</h4><div class="meta">{{this.school}}{{#if this.year}} · {{this.year}}{{/if}}</div></div>{{/each}}</div>{{/if}}
-  {{#if projects.length}}<div class="section"><div class="section-header"><span class="hash">##</span> <h2>{{sectionTitles.projects}}</h2> <span class="line"></span></div><div class="projects-grid">{{#each projects}}<div class="project-card"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>[{{this}}]</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank" class="project-link">{{#if (eq dir "rtl")}}عرض_المشروع{{else}}view_source{{/if}}</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
+  {{#if projects.length}}<div class="section"><div class="section-header"><span class="hash">##</span> <h2>{{sectionTitles.projects}}</h2> <span class="line"></span></div><div class="projects-grid">{{#each projects}}<div class="project-card"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>[{{this}}]</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank" class="project-link">{{portfolioTexts.viewProject}}</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
   {{#if bugbountyArray.length}}<div class="section"><div class="section-header"><span class="hash">##</span> <h2>{{sectionTitles.bugbounty}}</h2> <span class="line"></span></div><div class="bb-list">{{#each bugbountyArray}}<div class="bb-item"><i class="fas fa-shield-halved"></i> {{this.platform}} / {{this.username}}</div>{{/each}}</div></div>{{/if}}
   <footer>{{name}} · {{year}}</footer>
 </div>
@@ -264,7 +264,7 @@ footer{padding:2rem;text-align:center;color:#94A3B8;font-size:0.8125rem;border-t
   </header>
   {{#if educationArray.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><h2>{{sectionTitles.education}}</h2>{{#each educationArray}}<div class="edu-item"><h4>{{this.degree}}</h4><div class="meta">{{this.school}}{{#if this.year}} · {{this.year}}{{/if}}</div></div>{{/each}}</div>{{/if}}
   {{#if skills.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><h2>{{sectionTitles.skills}}</h2><div class="skills">{{#each skills}}<span class="skill-tag">{{this.name}}</span>{{/each}}</div></div>{{/if}}
-  {{#if projects.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><h2>{{sectionTitles.projects}}</h2><div class="projects-list">{{#each projects}}<div class="project-entry"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}عرض{{else}}View →{{/if}}</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
+  {{#if projects.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><h2>{{sectionTitles.projects}}</h2><div class="projects-list">{{#each projects}}<div class="project-entry"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}{{portfolioTexts.view}} ←{{else}}→ {{portfolioTexts.view}}{{/if}}</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
   {{#if bugbountyArray.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><h2>{{sectionTitles.bugbounty}}</h2><div class="bb-list">{{#each bugbountyArray}}<div class="bb-item"><i class="fas fa-shield-halved" style="color:var(--accent)"></i> {{this.platform}} · {{this.username}}</div>{{/each}}</div></div>{{/if}}
   <footer>{{name}} · {{year}}</footer>
 </div>
@@ -281,7 +281,7 @@ footer{padding:2rem;text-align:center;color:#94A3B8;font-size:0.8125rem;border-t
 <!DOCTYPE html>
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{name}} | Portfolio</title>
+<title>{{name}} · {{portfolioTexts.title}}</title>
 {{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
 <link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -338,7 +338,7 @@ footer{grid-column:1/-1;text-align:center;padding:1rem;color:#94A3B8;font-size:0
   </div>
   <div class="card card-wide"><h2>{{sectionTitles.skills}}</h2><div class="skills-bento">{{#each skills}}<span class="skill-chip">{{this.name}}</span>{{/each}}</div></div>
   {{#if educationArray.length}}<div class="card"><h2>{{sectionTitles.education}}</h2>{{#each educationArray}}<div class="edu-item"><h4>{{this.degree}}</h4><div class="meta">{{this.school}}{{#if this.year}} · {{this.year}}{{/if}}</div></div>{{/each}}</div>{{/if}}
-  <div class="card card-wide"><h2>{{sectionTitles.projects}}</h2><div class="project-bento">{{#each projects}}<div class="project-mini"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}عرض{{else}}View →{{/if}}</a>{{/if}}</div>{{/each}}</div></div>
+  <div class="card card-wide"><h2>{{sectionTitles.projects}}</h2><div class="project-bento">{{#each projects}}<div class="project-mini"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}{{portfolioTexts.view}} ←{{else}}→ {{portfolioTexts.view}}{{/if}}</a>{{/if}}</div>{{/each}}</div></div>
   {{#if bugbountyArray.length}}<div class="card"><h2>{{sectionTitles.bugbounty}}</h2><div class="bb-list">{{#each bugbountyArray}}<span class="bb-item"><i class="fas fa-shield-halved" style="color:var(--accent)"></i> {{this.platform}} · {{this.username}}</span>{{/each}}</div></div>{{/if}}
   <footer>{{name}} · {{year}}</footer>
 </div>
@@ -354,7 +354,7 @@ footer{grid-column:1/-1;text-align:center;padding:1rem;color:#94A3B8;font-size:0
 <!DOCTYPE html>
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{name}} | Portfolio</title>
+<title>{{name}} · {{portfolioTexts.title}}</title>
 {{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
 <link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -413,7 +413,7 @@ footer{text-align:center;color:rgba(255,255,255,0.4);font-size:0.75rem;margin-to
   </div>
   {{#if skills.length}}<div class="glass-card"><h2>✦ {{sectionTitles.skills}}</h2><div class="skills">{{#each skills}}<span class="skill-tag">{{this.name}}</span>{{/each}}</div></div>{{/if}}
   {{#if educationArray.length}}<div class="glass-card"><h2>✦ {{sectionTitles.education}}</h2>{{#each educationArray}}<div class="edu-item"><h4>{{this.degree}}</h4><div class="meta">{{this.school}}{{#if this.year}} · {{this.year}}{{/if}}</div></div>{{/each}}</div>{{/if}}
-  {{#if projects.length}}<div class="glass-card"><h2>✦ {{sectionTitles.projects}}</h2><div class="projects">{{#each projects}}<div class="project-item"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<br><a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}عرض المشروع ←{{else}}View Project →{{/if}}</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
+  {{#if projects.length}}<div class="glass-card"><h2>✦ {{sectionTitles.projects}}</h2><div class="projects">{{#each projects}}<div class="project-item"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<br><a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}{{portfolioTexts.viewProject}} ←{{else}}→ {{portfolioTexts.viewProject}}{{/if}}</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
   {{#if bugbountyArray.length}}<div class="glass-card"><h2>✦ {{sectionTitles.bugbounty}}</h2><div class="bb-list">{{#each bugbountyArray}}<span class="bb-item"><i class="fas fa-shield-halved"></i> {{this.platform}} · {{this.username}}</span>{{/each}}</div></div>{{/if}}
   <footer>{{name}} · {{year}}</footer>
 </div>
@@ -429,7 +429,7 @@ footer{text-align:center;color:rgba(255,255,255,0.4);font-size:0.75rem;margin-to
 <!DOCTYPE html>
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{name}} | Portfolio</title>
+<title>{{name}} · {{portfolioTexts.title}}</title>
 {{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
 <link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -488,11 +488,11 @@ footer{text-align:center;padding:3rem 0;color:#52525b;font-size:0.8125rem;border
     {{#if bio}}<p class="bio">{{bio}}</p>{{/if}}
     <div class="meta-info">{{#if location}}<span><i class="fas fa-location-dot"></i> {{location}}</span>{{/if}}{{#if email}}<span><i class="fas fa-envelope"></i> {{email}}</span>{{/if}}</div>
     <div class="socials">{{#each socials}}<a href="{{this.url}}" target="_blank"><i class="{{this.icon}}"></i></a>{{/each}}</div>
-    {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> Resume</a>{{/if}}
+    {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> {{portfolioTexts.resume}}</a>{{/if}}
   </header>
   {{#if educationArray.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><div class="section-title">{{sectionTitles.education}}</div>{{#each educationArray}}<div class="edu-item"><h4>{{this.degree}}</h4><div class="meta">{{this.school}}{{#if this.year}} · {{this.year}}{{/if}}</div></div>{{/each}}</div>{{/if}}
   {{#if skills.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><div class="section-title">{{sectionTitles.skills}}</div><div class="skills">{{#each skills}}<span class="skill-tag">{{this.name}}</span>{{/each}}</div></div>{{/if}}
-  {{#if projects.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><div class="section-title">{{sectionTitles.projects}}</div><div class="projects-grid">{{#each projects}}<div class="project-card"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank" class="project-link">{{#if (eq dir "rtl")}}عرض المشروع{{else}}View Project{{/if}} <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></a>{{/if}}</div>{{/each}}</div></div>{{/if}}
+  {{#if projects.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><div class="section-title">{{sectionTitles.projects}}</div><div class="projects-grid">{{#each projects}}<div class="project-card"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank" class="project-link">{{#if (eq dir "rtl")}}{{portfolioTexts.viewProject}} ←{{else}}→ {{portfolioTexts.viewProject}}{{/if}} <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></a>{{/if}}</div>{{/each}}</div></div>{{/if}}
   {{#if bugbountyArray.length}}<div class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}><div class="section-title">{{sectionTitles.bugbounty}}</div><div class="bb-list">{{#each bugbountyArray}}<span class="bb-item"><i class="fas fa-shield-halved" style="color:{{colors.primary}}"></i> {{this.platform}} · {{this.username}}</span>{{/each}}</div></div>{{/if}}
   <footer>{{name}} · {{year}}</footer>
 </div>
@@ -508,7 +508,7 @@ footer{text-align:center;padding:3rem 0;color:#52525b;font-size:0.8125rem;border
 <!DOCTYPE html>
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{name}} | Academic</title>
+<title>{{name}} · {{portfolioTexts.titleAcademic}}</title>
 {{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
 <link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
@@ -579,13 +579,13 @@ footer{text-align:center;padding:1.5rem;color:#94A3B8;font-size:0.8125rem;border
       <div class="contact-line">{{#if email}}<span><i class="fas fa-envelope"></i> {{email}}</span>{{/if}}{{#if location}}<span><i class="fas fa-location-dot"></i> {{location}}</span>{{/if}}</div>
       <div class="contact-line" style="margin-top:0.5rem">
         <div class="socials">{{#each socials}}<a href="{{this.url}}" target="_blank"><i class="{{this.icon}}"></i></a>{{/each}}</div>
-        {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> CV</a>{{/if}}
+        {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> {{portfolioTexts.cv}}</a>{{/if}}
       </div>
     </div>
   </header>
   {{#if educationArray.length}}<div class="section"><h2><i class="fas fa-graduation-cap"></i> {{sectionTitles.education}}</h2>{{#each educationArray}}<div class="edu-card"><h4>{{this.degree}}</h4><div class="meta">{{this.school}}{{#if this.year}} · {{this.year}}{{/if}}</div></div>{{/each}}</div>{{/if}}
   {{#if skills.length}}<div class="section"><h2><i class="fas fa-flask"></i> {{sectionTitles.skills}}</h2><div class="skills">{{#each skills}}<span class="skill-tag">{{this.name}}</span>{{/each}}</div></div>{{/if}}
-  <div class="section"><h2><i class="fas fa-book"></i> {{sectionTitles.projects}}</h2>{{#if projects.length}}<div class="timeline">{{#each projects}}<div class="timeline-item"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<p style="margin-top:0.25rem"><a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}عرض ←{{else}}→ View{{/if}}</a></p>{{/if}}</div>{{/each}}</div>{{else}}<p style="color:#94A3B8">{{#if (eq dir "rtl")}}لا توجد مشاريع بعد{{else}}No projects listed yet.{{/if}}</p>{{/if}}</div>
+  <div class="section"><h2><i class="fas fa-book"></i> {{sectionTitles.projects}}</h2>{{#if projects.length}}<div class="timeline">{{#each projects}}<div class="timeline-item"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<p style="margin-top:0.25rem"><a href="{{this.url}}" target="_blank">{{#if (eq dir "rtl")}}{{portfolioTexts.view}} ←{{else}}→ {{portfolioTexts.view}}{{/if}}</a></p>{{/if}}</div>{{/each}}</div>{{else}}<p style="color:#94A3B8">{{portfolioTexts.noProjects}}</p>{{/if}}</div>
   {{#if bugbountyArray.length}}<div class="section"><h2><i class="fas fa-shield-halved"></i> {{sectionTitles.bugbounty}}</h2><div class="bb-list">{{#each bugbountyArray}}<span class="bb-item"><i class="fas fa-shield-halved" style="color:var(--accent)"></i> {{this.platform}} · {{this.username}}</span>{{/each}}</div></div>{{/if}}
   <footer>{{name}} · {{year}}</footer>
 </div>

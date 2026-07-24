@@ -137,8 +137,20 @@ const FormState = {
         bugbounty: I18N.current === 'ar' ? 'صيد الثغرات' : 'Bug Bounty',
         about: I18N.current === 'ar' ? 'نبذة' : 'About',
         contact: I18N.current === 'ar' ? 'للتواصل' : 'Contact',
+        contact_sub: I18N.current === 'ar' ? 'تواصل معي عبر' : 'Get in touch via',
         skills_sub: I18N.current === 'ar' ? 'التقنيات التي أستخدمها' : 'Technologies I work with',
         projects_sub: I18N.current === 'ar' ? 'أعمالي ومشاريعي' : 'My work & projects'
+      },
+      // Portfolio template texts — bilingual for all hardcoded English strings
+      portfolioTexts: {
+        title: I18N.current === 'ar' ? 'ملفي' : 'Portfolio',
+        titleAcademic: I18N.current === 'ar' ? 'أكاديمي' : 'Academic',
+        viewProject: I18N.current === 'ar' ? 'عرض المشروع' : 'View Project',
+        view: I18N.current === 'ar' ? 'عرض' : 'View',
+        source: I18N.current === 'ar' ? 'المصدر' : 'Source',
+        resume: I18N.current === 'ar' ? 'السيرة الذاتية' : 'Resume',
+        cv: I18N.current === 'ar' ? 'السيرة' : 'CV',
+        noProjects: I18N.current === 'ar' ? 'لا توجد مشاريع بعد' : 'No projects yet'
       }
     };
   },

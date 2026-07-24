@@ -5,18 +5,18 @@
 
 /* === CSS Custom Properties === */
 :root {
-  --color-primary: #2563EB;
-  --color-primary-light: #60A5FA;
-  --color-primary-dark: #1D4ED8;
-  --color-accent: #3B82F6;
-  --color-bg: #F8F9FA;
-  --color-fg: #212529;
-  --color-muted: #F1F3F5;
-  --color-border: #DEE2E6;
-  --color-card: #FFFFFF;
+  --color-primary: #A67B5B;
+  --color-primary-light: #C49A7A;
+  --color-primary-dark: #8B5E3C;
+  --color-accent: #B88A6A;
+  --color-bg: #FDF6F0;
+  --color-fg: #2C1810;
+  --color-muted: #F5EBE0;
+  --color-border: #E0D0C0;
+  --color-card: #FFFBF7;
   --color-destructive: #DC2626;
   --color-success: #16A34A;
-  --color-glow: rgba(37,99,235,0.15);
+  --color-glow: rgba(166,123,91,0.18);
   --font-sans: 'Archivo', sans-serif;
   --font-display: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -24,24 +24,8 @@
   --radius-sm: 0.5rem;
   --radius-lg: 1.25rem;
   --transition: 200ms ease;
-  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 25px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.04);
-}
-
-/* Cream / Warm mode — كريمي حليبي دافئ */
-.cream {
-  --color-primary: #C47B4B;
-  --color-primary-light: #D99F6F;
-  --color-primary-dark: #A85D2A;
-  --color-accent: #C47B4B;
-  --color-bg: #FDF8F3;
-  --color-fg: #2C1810;
-  --color-muted: #F5EDE4;
-  --color-border: #E5D5C4;
-  --color-card: #FFFBF7;
-  --color-glow: rgba(196,123,75,0.15);
-  --shadow: 0 1px 3px rgba(44,24,16,0.05), 0 1px 2px rgba(44,24,16,0.04);
-  --shadow-lg: 0 10px 25px rgba(44,24,16,0.06), 0 4px 10px rgba(44,24,16,0.04);
+  --shadow: 0 1px 3px rgba(44,24,16,0.06), 0 1px 2px rgba(44,24,16,0.05);
+  --shadow-lg: 0 10px 25px rgba(44,24,16,0.07), 0 4px 10px rgba(44,24,16,0.05);
 }
 
 .dark {

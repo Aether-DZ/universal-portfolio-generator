@@ -22,24 +22,30 @@ document.addEventListener('DOMContentLoaded', function() {
   // Language toggle
   document.getElementById('lang-toggle').addEventListener('click', () => I18N.toggle());
 
-  // Dark/light theme toggle
+  // Detect system dark mode preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  if (prefersDark.matches) {
+    document.documentElement.classList.add('dark');
+  }
+  const icon = document.querySelector('#theme-toggle i');
+  icon.className = prefersDark.matches ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
+
+  // Listen for system theme changes (browser toggle)
+  prefersDark.addEventListener('change', (e) => {
+    if (e.matches) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    const i = document.querySelector('#theme-toggle i');
+    i.className = e.matches ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
+  });
+
+  // Manual dark/light toggle (overrides system)
   document.getElementById('theme-toggle').addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
     const icon = document.querySelector('#theme-toggle i');
     icon.className = document.documentElement.classList.contains('dark') ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
-  });
-
-  // Color theme cycle: light → cream → dark → light
-  document.getElementById('color-theme-toggle').addEventListener('click', () => {
-    const html = document.documentElement;
-    if (html.classList.contains('dark')) {
-      html.classList.remove('dark');
-      html.classList.add('cream');
-    } else if (html.classList.contains('cream')) {
-      html.classList.remove('cream');
-    } else {
-      html.classList.add('dark');
-    }
   });
 
   // Preview panel toggle
