@@ -356,7 +356,7 @@ const FormState = {
     palettes.forEach(p => {
       const sel = d.colorPalette === p.id ? 'selected' : '';
       html += `<div class="palette-card ${sel}" data-palette="${p.id}" onclick="selectPalette('${p.id}')" title="${p.name}">
-        <div class="palette-bar"><span class="palette-swatch" style="background:${p.colors[0]}"></span><span class="palette-swatch" style="background:${p.colors[1]}"></span><span class="palette-swatch" style="background:${p.colors[2]}"></span></div>
+        <div class="palette-swatches"><span class="palette-dot" style="background:${p.colors[0]}"></span><span class="palette-dot" style="background:${p.colors[1]}"></span><span class="palette-dot" style="background:${p.colors[2]}"></span></div>
         <div class="palette-info"><i class="${p.icon} palette-icon"></i><span class="palette-label">${p.name}</span></div>
         <div class="palette-check"><i class="fas fa-check"></i></div>
       </div>`;
@@ -537,6 +537,14 @@ function confirmGenerate() {
   document.getElementById('generate-modal').style.display = 'none';
 
   localStorage.setItem('portfolio-last-generate', String(Date.now()));
+
+  // Show completion footer with Deploy + ZIP
+  const footer = document.getElementById('completion-footer');
+  footer.classList.remove('hidden');
+  document.getElementById('completion-actions').classList.remove('hidden');
+  document.getElementById('deploy-section').classList.add('hidden');
+  setTimeout(() => footer.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+
   Utils.showToast(I18N.t('export.success') || 'Portfolio ready! Use deploy or ZIP to publish.', 'success');
 }
 function cancelGenerate() {

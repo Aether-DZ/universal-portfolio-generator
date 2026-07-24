@@ -180,10 +180,10 @@
     </div>
   </main>
 
-  <!-- Footer / Export Actions -->
-  <footer class="border-t border-mono-200 dark:border-mono-800 bg-white dark:bg-mono-950">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4">
-      <div class="flex flex-wrap items-center justify-center gap-3">
+    <!-- Footer / Completion Actions (hidden initially, shown after finish) -->
+  <footer id="completion-footer" class="border-t border-mono-200 dark:border-mono-800 bg-white dark:bg-mono-950 hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-5">
+      <div id="completion-actions" class="flex flex-wrap items-center justify-center gap-3">
         <button id="btn-deploy" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium transition shadow-sm">
           <i class="fab fa-github text-xs"></i>
           <span data-i18n="export.deploy">Deploy to GitHub Pages</span>

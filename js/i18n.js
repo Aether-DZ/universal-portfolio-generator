@@ -62,6 +62,7 @@ const I18N = {
     'btn.finish': { en: 'Generate', ar: 'إنشاء' },
     'export.deploy': { en: 'Deploy to GitHub Pages', ar: 'نشر على GitHub Pages' },
     'export.zip': { en: 'Download ZIP', ar: 'تحميل ZIP' },
+    'export.success': { en: 'Portfolio ready!', ar: 'البورتفوليو جاهز!' },
     'export.saveConfig': { en: 'Export Config', ar: 'تصدير الإعدادات' },
     'export.loadConfig': { en: 'Import Config', ar: 'استيراد الإعدادات' },
     'export.patLabel': { en: 'GitHub Token', ar: 'رمز GitHub الشخصي' },
