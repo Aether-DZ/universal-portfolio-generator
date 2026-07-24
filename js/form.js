@@ -297,16 +297,41 @@ const FormState = {
       <button class="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm" onclick="addProject()"><i class="fas fa-plus"></i> ${I18N.t('form.projects.add')}</button>
     </div>`;
     if (d.projects.length === 0) {
-      html += `<p class="text-gray-500 text-sm py-8 text-center">No projects yet. Click "Add Project" to start.</p>`;
+      html += `<div class="text-center py-10 border-2 border-dashed border-mono-300 dark:border-mono-700 rounded-xl">
+        <i class="fas fa-folder-open text-3xl text-mono-300 dark:text-mono-600 mb-2"></i>
+        <p class="text-mono-500 text-sm mb-3">No projects yet. Add your first project!</p>
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-xl text-sm font-medium inline-flex items-center gap-1.5 shadow-sm hover:bg-blue-700 transition" onclick="addProject()">
+          <i class="fas fa-plus"></i> ${I18N.t('form.projects.add')}
+        </button>
+      </div>`;
     } else {
-      html += `<div id="projects-list">`;
+      html += `<p class="text-xs text-mono-500 mb-3">${d.projects.length} project${d.projects.length > 1 ? 's' : ''} added</p>`;
+      html += `<div id="projects-list" class="space-y-2">`;
       d.projects.forEach((proj, i) => {
         html += `<div class="project-card">
-          <button class="remove-btn" onclick="removeProject(${i})">&times;</button>
-          <div class="form-group"><label class="form-label">${I18N.t('form.projects.name')}</label><input class="form-input proj-name" data-idx="${i}" value="${Utils.sanitize(proj.name)}"></div>
-          <div class="form-group"><label class="form-label">${I18N.t('form.projects.desc')}</label><textarea class="form-textarea proj-desc" data-idx="${i}">${Utils.sanitize(proj.desc)}</textarea></div>
-          <div class="form-group"><label class="form-label">${I18N.t('form.projects.tags')}</label><input class="form-input proj-tags" data-idx="${i}" value="${(proj.tags||[]).join(', ')}"></div>
-          <div class="form-group"><label class="form-label">${I18N.t('form.projects.url')}</label><input class="form-input proj-url" data-idx="${i}" value="${Utils.sanitize(proj.url||'')}"></div>
+          <button class="remove-btn" onclick="removeProject(${i})" title="Remove project">&times;</button>
+          <div class="proj-header">
+            <span class="proj-number">${i + 1}</span>
+            <h4>${Utils.sanitize(proj.name) || 'New Project'}</h4>
+          </div>
+          <div class="proj-body">
+            <div class="form-group">
+              <label class="form-label"><i class="fas fa-pen text-xs mr-1 opacity-50"></i>${I18N.t('form.projects.name')}</label>
+              <input class="form-input proj-name" data-idx="${i}" value="${Utils.sanitize(proj.name)}" placeholder="e.g. My Awesome App">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fas fa-align-left text-xs mr-1 opacity-50"></i>${I18N.t('form.projects.desc')}</label>
+              <textarea class="form-textarea proj-desc" data-idx="${i}" rows="3" placeholder="What does this project do?">${Utils.sanitize(proj.desc)}</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fas fa-tags text-xs mr-1 opacity-50"></i>${I18N.t('form.projects.tags')}</label>
+              <input class="form-input proj-tags" data-idx="${i}" value="${(proj.tags||[]).join(', ')}" placeholder="React, Node.js, API">
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fas fa-link text-xs mr-1 opacity-50"></i>${I18N.t('form.projects.url')}</label>
+              <input class="form-input proj-url" data-idx="${i}" value="${Utils.sanitize(proj.url||'')}" placeholder="https://github.com/...">
+            </div>
+          </div>
         </div>`;
       });
       html += `</div>`;
@@ -369,9 +394,12 @@ const FormState = {
     html += `</div>`;
     // Font selector
     html += `<h3 class="text-sm font-semibold mb-2 mt-4"><i class="fas fa-font text-blue-500 mr-2"></i>Font</h3>`;
-    html += `<select class="form-select mb-4" id="font-select" onchange="updateFont(this.value)">`;
-    fonts.forEach(f => html += `<option value="${f}" ${d.fontFamily === f ? 'selected':''}>${f}</option>`);
-    html += `</select>`;
+    html += `<div class="font-grid" id="font-select">`;
+    fonts.forEach(f => {
+      const sel = d.fontFamily === f ? ' selected' : '';
+      html += `<div class="font-chip${sel}" data-font="${f}" onclick="updateFont('${f}');document.querySelectorAll('.font-chip').forEach(c=>c.classList.remove('selected'));this.classList.add('selected')" style="font-family:'${f}',sans-serif">${f}</div>`;
+    });
+    html += `</div>`;
     // Glassmorphism sliders
     html += `<h3 class="text-sm font-semibold mb-2 mt-4"><i class="fas fa-glass-water text-blue-500 mr-2"></i>Glassmorphism</h3>`;
     html += `<div class="grid grid-cols-3 gap-3 mb-4">`;
