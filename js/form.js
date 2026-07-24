@@ -27,7 +27,9 @@ const FormState = {
     customDomain: '',
     analytics: '',
     githubSync: false,
-    githubUsername: ''
+    githubUsername: '',
+    // === README Generator ===
+    readmeTemplate: 1
   },
   init() {
     // Load saved draft from localStorage
@@ -284,6 +286,18 @@ const FormState = {
     // Custom domain
     html += `<h3 class="text-sm font-semibold mb-2 mt-5"><i class="fas fa-globe text-purple-500 mr-2"></i>Custom Domain</h3>`;
     html += `<input class="form-input" placeholder="yourdomain.com" value="${d.customDomain}" oninput="FormState.data.customDomain=this.value">`;
+    // README Template selector
+    html += `<h3 class="text-sm font-semibold mb-2 mt-5"><i class="fab fa-markdown text-orange-500 mr-2"></i>README Template</h3>`;
+    html += `<p class="text-xs text-gray-500 mb-3">Select a template for your GitHub Profile README</p>`;
+    html += `<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">`;
+    README_TEMPLATES.forEach(t => {
+      const sel = d.readmeTemplate === t.id ? 'selected ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/20' : '';
+      html += `<div class="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 cursor-pointer text-center transition-all hover:border-blue-400 ${sel}" onclick="selectReadmeTemplate(${t.id})">
+        <i class="${t.icon} text-lg mb-1 block" style="color:var(--color-primary,#3B82F6)"></i>
+        <span class="text-xs font-medium">${I18N.t(t.nameKey)}</span>
+      </div>`;
+    });
+    html += `</div>`;
     html += `</div>`;
     html += `<div class="mt-4">${this.navButtons(true)}</div>`;
     return html;
@@ -412,6 +426,11 @@ function removeProject(idx) {
 }
 function triggerPreview() {
   if (typeof renderPreview === 'function') renderPreview();
+  // Also update README preview if visible
+  const readmeWrapper = document.getElementById('readme-preview-wrapper');
+  if (readmeWrapper && !readmeWrapper.classList.contains('hidden') && typeof renderReadmePreview === 'function') {
+    renderReadmePreview();
+  }
 }
 
 // === Advanced Controls Global Functions ===
@@ -459,4 +478,13 @@ function toggleAnimations(val) {
 function toggleContactForm(val) {
   FormState.data.contactForm = val;
   document.getElementById('contact-email-field').classList.toggle('hidden', !val);
+}
+function selectReadmeTemplate(id) {
+  FormState.data.readmeTemplate = id;
+  document.querySelectorAll('.theme-grid + .grid.grid-cols-2 .cursor-pointer').forEach(el => el.classList.remove('selected','ring-2','ring-blue-500','bg-blue-50','dark:bg-blue-900/20'));
+  const el = document.querySelector(`.theme-grid + .grid.grid-cols-2 [onclick*="${id}"]`) || document.querySelector(`[onclick*="selectReadmeTemplate(${id})"]`);
+  if (el) el.classList.add('selected','ring-2','ring-blue-500','bg-blue-50','dark:bg-blue-900/20');
+  // If in README preview mode, re-render
+  const rp = document.getElementById('readme-preview-wrapper');
+  if (rp && !rp.classList.contains('hidden') && typeof renderReadmePreview === 'function') renderReadmePreview();
 }

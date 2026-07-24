@@ -1,6 +1,33 @@
 /* =============================================
    app.js — Main App Initialization & Event Binding
    ============================================= */
+/** Render README preview from current form data */
+function renderReadmePreview() {
+  const data = FormState.getData();
+  const templateId = FormState.data.readmeTemplate || 1;
+  const template = getReadmeTemplate(templateId);
+  const readmeData = {
+    ...data,
+    githubUsername: data.githubUsername || 'github-user',
+    githubStats: {
+      repos: data.metrics?.[0]?.value || 0,
+      stars: data.metrics?.[1]?.value || 0,
+      followers: data.metrics?.[2]?.value || 0,
+      forks: 0
+    },
+    skills: data.skillsArray?.map(s => s.name) || data.skills || [],
+    socials: data.socialsArray || [],
+    projects: data.projectsArray || []
+  };
+  try {
+    const md = template.render(readmeData);
+    document.getElementById('readme-preview-content').textContent = md;
+  } catch (e) {
+    console.warn('README render error:', e);
+    document.getElementById('readme-preview-content').textContent = 'Error rendering README template.';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize AOS
   AOS.init({ duration: 600, once: true });
@@ -44,8 +71,50 @@ document.addEventListener('DOMContentLoaded', function() {
   // Custom Domain CNAME
   document.getElementById('btn-cname').addEventListener('click', generateCNAME);
 
+  // === Preview Tab Switching (Portfolio / README) ===
+  let previewMode = 'portfolio'; // 'portfolio' or 'readme'
+
+  document.querySelectorAll('.preview-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const mode = tab.dataset.mode;
+      if (mode === previewMode) return;
+      previewMode = mode;
+      // Toggle active class
+      document.querySelectorAll('.preview-tab').forEach(t => t.classList.remove('active', 'bg-white', 'dark:bg-gray-700', 'shadow-sm'));
+      tab.classList.add('active', 'bg-white', 'dark:bg-gray-700', 'shadow-sm');
+      // Show/hide preview containers
+      document.getElementById('preview-wrapper').classList.toggle('hidden', mode === 'readme');
+      document.getElementById('readme-preview-wrapper').classList.toggle('hidden', mode === 'portfolio');
+      // Render if switching to README
+      if (mode === 'readme') renderReadmePreview();
+    });
+  });
+
+  // README Copy to Clipboard
+  document.getElementById('btn-copy-readme')?.addEventListener('click', () => {
+    const content = document.getElementById('readme-preview-content')?.textContent;
+    if (content) {
+      navigator.clipboard.writeText(content).then(() => {
+        Utils.showToast(I18N.t('readme.copied'), 'success');
+      }).catch(() => {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = content;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        Utils.showToast(I18N.t('readme.copied'), 'success');
+      });
+    }
+  });
+
+  // Initialize first tab active state
+  const firstTab = document.querySelector('.preview-tab');
+  if (firstTab) firstTab.classList.add('active', 'bg-white', 'dark:bg-gray-700', 'shadow-sm');
+
   console.log('🏗️ Universal Portfolio Generator initialized');
   console.log('📦 Libraries: Handlebars, JSZip, FileSaver, Octokit, Chart.js, AOS');
-  console.log('🎨 7 themes loaded');
+  console.log('🎨 10 portfolio themes + 10 README templates loaded');
   console.log('🌐 Bilingual: AR/EN');
 });

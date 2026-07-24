@@ -56,6 +56,7 @@ const I18N = {
     'export.loadConfig': { en: 'Import Config', ar: 'استيراد الإعدادات' },
     'export.patLabel': { en: 'GitHub Personal Access Token', ar: 'رمز الوصول الشخصي GitHub' },
     'export.patNote': { en: 'Requires repo scope. Never stored — stays in browser memory only.', ar: 'يتطلب صلاحية repo. لا يُحفظ — يبقى في ذاكرة المتصفح فقط.' },
+    'app.preview': { en: 'Portfolio', ar: 'البورتفوليو' },
     'loading.generating': { en: 'Generating your portfolio...', ar: 'جارٍ إنشاء البورتفوليو...' },
     'loading.deploying': { en: 'Deploying to GitHub Pages...', ar: 'جارٍ النشر على GitHub Pages...' },
     'loading.zipping': { en: 'Creating ZIP archive...', ar: 'جارٍ إنشاء الملف المضغوط...' },

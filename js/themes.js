@@ -492,8 +492,356 @@ footer{text-align:center;padding:1.5rem;color:#94A3B8;font-size:0.8125rem;border
 </div>
 {{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
+  },
+  // =============================================
+  // 8. Dark Modern — Ultra-minimal dark design
+  // =============================================
+  {
+    id: 8,
+    nameKey: 'theme.8',
+    icon: 'fa-solid fa-moon',
+    description: 'Ultra-minimal dark design with elegant typography and generous whitespace',
+    render: (data) => Handlebars.compile(`
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{name}} | Portfolio</title>
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;color:#e4e4e7;font-family:'{{fontFamilyCss}}',sans-serif;overflow-x:hidden}
+.bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+.content{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:4rem 2rem}
+header{text-align:center;padding:6rem 0 3rem}
+.profile-img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:2px solid {{colors.primary}};margin-bottom:1.5rem}
+h1{font-size:3.5rem;font-weight:700;letter-spacing:-0.03em;background:linear-gradient(135deg,#fff 0%,{{colors.primary}} 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.role{color:{{colors.accent}};font-size:1.1rem;font-weight:500;margin:0.75rem 0 0.25rem;letter-spacing:0.05em;text-transform:uppercase}
+.bio{color:#71717a;font-size:1rem;max-width:550px;margin:1rem auto;line-height:1.7}
+.meta-info{display:flex;justify-content:center;gap:2rem;margin:1.5rem 0;flex-wrap:wrap;color:#52525b;font-size:0.875rem}
+.meta-info i{color:{{colors.primary}};margin-right:0.375rem}
+.socials{display:flex;justify-content:center;gap:0.75rem;margin:2rem 0;flex-wrap:wrap}
+.socials a{width:2.75rem;height:2.75rem;border-radius:50%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;color:#a1a1aa;text-decoration:none;font-size:1.125rem;transition:all 0.3s}
+.socials a:hover{background:{{colors.primary}}22;border-color:{{colors.primary}}44;color:{{colors.primary}};transform:translateY(-3px)}
+.section{padding:3rem 0}
+.section-title{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;color:#52525b;margin-bottom:1.5rem}
+.skills{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-tag{padding:0.5rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:9999px;font-size:0.8125rem;color:#a1a1aa;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.375rem}
+.skill-tag:hover{border-color:{{colors.primary}}44;color:{{colors.primary}}}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.project-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:1rem;padding:1.5rem;transition:all 0.3s;cursor:default}
+.project-card:hover{border-color:{{colors.primary}}33;background:rgba(255,255,255,0.04);transform:translateY(-2px)}
+.project-card h3{font-size:1.125rem;font-weight:600;color:#e4e4e7;margin-bottom:0.5rem}
+.project-card p{color:#71717a;font-size:0.875rem;line-height:1.6;margin-bottom:0.75rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.25rem}
+.project-tags span{font-size:0.7rem;padding:0.125rem 0.5rem;background:rgba(255,255,255,0.04);border-radius:9999px;color:#52525b}
+.project-link{display:inline-flex;align-items:center;gap:0.375rem;color:{{colors.primary}};font-size:0.8125rem;font-weight:500;text-decoration:none;margin-top:0.75rem;transition:gap 0.2s}
+.project-link:hover{gap:0.625rem}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin:1.5rem 0}
+.metric{text-align:center;padding:1.25rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:0.75rem}
+.metric-num{font-size:1.75rem;font-weight:700;color:{{colors.primary}};font-family:'Space Grotesk',sans-serif}
+.metric-label{font-size:0.75rem;color:#52525b;margin-top:0.25rem}
+.cv-link{display:inline-flex;align-items:center;gap:0.5rem;color:{{colors.primary}};text-decoration:none;font-size:0.875rem;font-weight:500;margin-top:0.75rem;padding:0.5rem 1.25rem;border:1px solid {{colors.primary}}33;border-radius:9999px;transition:all 0.2s}
+.cv-link:hover{background:{{colors.primary}}11;border-color:{{colors.primary}}66}
+footer{text-align:center;padding:3rem 0;color:#52525b;font-size:0.8125rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:2rem}
+@media(max-width:640px){h1{font-size:2rem}.content{padding:2rem 1rem}.projects-grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="bg-grid"></div>
+<div class="content">
+  <header{{#if animationsEnabled}} data-aos="fade-down"{{/if}}>
+    {{#if photo}}<img src="{{photo}}" class="profile-img">{{/if}}
+    <h1>{{name}}</h1>
+    <div class="role">{{role}}</div>
+    {{#if bio}}<p class="bio">{{bio}}</p>{{/if}}
+    <div class="meta-info">
+      {{#if location}}<span><i class="fas fa-location-dot"></i> {{location}}</span>{{/if}}
+      {{#if email}}<span><i class="fas fa-envelope"></i> {{email}}</span>{{/if}}
+    </div>
+    <div class="socials">{{#each socials}}<a href="{{this.url}}" target="_blank" rel="noopener"><i class="{{this.icon}}"></i></a>{{/each}}</div>
+    {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> Download CV</a>{{/if}}
+  </header>
+  {{#if metrics}}<div class="metrics">{{#each metrics}}<div class="metric"><div class="metric-num">{{this.value}}</div><div class="metric-label">{{this.label}}</div></div>{{/each}}</div>{{/if}}
+  <section class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}>
+    <div class="section-title">Skills & Technologies</div>
+    <div class="skills">{{#each skills}}<span class="skill-tag">{{#if this.icon}}<i class="{{this.icon}}"></i>{{/if}} {{this.name}}</span>{{/each}}</div>
+  </section>
+  <section class="section"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}>
+    <div class="section-title">Projects</div>
+    <div class="projects-grid">{{#each projects}}<div class="project-card"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank" rel="noopener" class="project-link">View Project <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></a>{{/if}}</div>{{/each}}</div>
+  </section>
+  <footer>&copy; {{year}} {{name}}. Dark Modern Theme</footer>
+</div>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
+</body></html>`)(data)
+  },
+
+  // =============================================
+  // 9. AI Theme — Futuristic tech with gradient glow
+  // =============================================
+  {
+    id: 9,
+    nameKey: 'theme.9',
+    icon: 'fa-solid fa-brain',
+    description: 'Futuristic AI-themed portfolio with animated gradients and neon glow effects',
+    render: (data) => Handlebars.compile(`
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{name}} | AI Portfolio</title>
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulseGlow{0%,100%{opacity:0.6}50%{opacity:1}}
+body{min-height:100vh;background:linear-gradient(-45deg,{{colors.bg}},{{colors.primary}}22,{{colors.accent}}22,{{colors.bg}});background-size:400% 400%;animation:gradientShift 15s ease infinite;color:#e0e0e0;font-family:'{{fontFamilyCss}}',sans-serif;overflow-x:hidden}
+.bg-pattern{position:fixed;top:0;left:0;width:100%;height:100%;background-image:radial-gradient(circle at 25% 25%,{{colors.primary}}11 0%,transparent 50%),radial-gradient(circle at 75% 75%,{{colors.accent}}11 0%,transparent 50%);pointer-events:none;z-index:0}
+.content{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:3rem 1.5rem}
+header{text-align:center;padding:5rem 0 2rem}
+.profile-img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid transparent;background:linear-gradient(135deg,{{colors.primary}},{{colors.accent}}) border-box;-webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;margin-bottom:1.5rem;animation:float 4s ease-in-out infinite}
+h1{font-size:3rem;font-weight:700;background:linear-gradient(135deg,{{colors.primary}},{{colors.accent}},{{colors.primary}});-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradientShift 4s ease infinite}
+.role{color:{{colors.accent}};font-size:1rem;font-weight:500;margin:0.5rem 0;opacity:0.9;letter-spacing:0.1em}
+.bio{color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:550px;margin:0.75rem auto;line-height:1.7}
+.glow-line{width:60px;height:2px;background:linear-gradient(90deg,transparent,{{colors.primary}},{{colors.accent}},transparent);margin:1rem auto;border-radius:2px}
+.socials{display:flex;justify-content:center;gap:0.75rem;margin:1.5rem 0;flex-wrap:wrap}
+.socials a{width:2.5rem;height:2.5rem;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);text-decoration:none;font-size:1rem;transition:all 0.3s;position:relative}
+.socials a:hover{background:{{colors.primary}}22;border-color:{{colors.primary}};color:{{colors.primary}};box-shadow:0 0 20px {{colors.primary}}33;transform:translateY(-3px)}
+.section-card{background:rgba(255,255,255,0.03);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.06);border-radius:1.25rem;padding:2rem;margin-bottom:1.5rem;transition:all 0.3s}
+.section-card:hover{border-color:{{colors.primary}}33;box-shadow:0 0 30px {{colors.primary}}11}
+.section-title{font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;color:{{colors.primary}};margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+.skills{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-tag{padding:0.4rem 0.875rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:0.5rem;font-size:0.8125rem;color:rgba(255,255,255,0.7);transition:all 0.2s;display:inline-flex;align-items:center;gap:0.375rem}
+.skill-tag:hover{border-color:{{colors.accent}}66;color:{{colors.accent}};box-shadow:0 0 12px {{colors.accent}}22}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.project-item{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-radius:1rem;padding:1.25rem;transition:all 0.3s;position:relative;overflow:hidden}
+.project-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,{{colors.primary}},{{colors.accent}},transparent);opacity:0;transition:opacity 0.3s}
+.project-item:hover::before{opacity:1}
+.project-item:hover{border-color:{{colors.primary}}44;transform:translateY(-2px)}
+.project-item h3{font-size:1rem;font-weight:600;color:#e0e0e0;margin-bottom:0.375rem}
+.project-item p{font-size:0.8125rem;color:rgba(255,255,255,0.5);line-height:1.5;margin-bottom:0.625rem}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.25rem}
+.project-tags span{font-size:0.65rem;padding:0.125rem 0.5rem;background:rgba(255,255,255,0.04);border-radius:9999px;color:rgba(255,255,255,0.4)}
+.project-link{display:inline-flex;align-items:center;gap:0.375rem;color:{{colors.primary}};font-size:0.8rem;text-decoration:none;font-weight:500;margin-top:0.5rem;transition:gap 0.2s}
+.project-link:hover{gap:0.75rem}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.75rem;margin-top:1rem}
+.metric{text-align:center;padding:1rem;background:rgba(255,255,255,0.03);border-radius:0.75rem;border:1px solid rgba(255,255,255,0.04)}
+.metric-num{font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,{{colors.primary}},{{colors.accent}});-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Space Grotesk',sans-serif}
+.metric-label{font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:0.125rem}
+.cv-link{display:inline-flex;align-items:center;gap:0.5rem;color:{{colors.primary}};text-decoration:none;font-size:0.85rem;font-weight:500;padding:0.5rem 1.25rem;border:1px solid {{colors.primary}}44;border-radius:9999px;transition:all 0.2s}
+.cv-link:hover{background:{{colors.primary}}11;border-color:{{colors.primary}};box-shadow:0 0 15px {{colors.primary}}22}
+footer{text-align:center;padding:2rem;color:rgba(255,255,255,0.25);font-size:0.75rem;border-top:1px solid rgba(255,255,255,0.04);margin-top:2rem}
+.typing-wrapper{display:inline-block;overflow:hidden;white-space:nowrap;border-right:2px solid {{colors.accent}};animation:typing 3s steps(30) 1s forwards,blinkCaret 0.75s step-end infinite;max-width:0;animation-fill-mode:forwards}
+@keyframes typing{to{max-width:30ch}}@keyframes blinkCaret{50%{border-color:transparent}}
+@media(max-width:640px){h1{font-size:2rem}.content{padding:2rem 1rem}.projects-grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="bg-pattern"></div>
+<div class="content">
+  <header{{#if animationsEnabled}} data-aos="fade-down"{{/if}}>
+    {{#if photo}}<img src="{{photo}}" class="profile-img">{{/if}}
+    <h1>{{name}}</h1>
+    <div class="role">{{role}}</div>
+    <div class="glow-line"></div>
+    {{#if bio}}<p class="bio">{{bio}}</p>{{/if}}
+    <div class="bio" style="font-size:0.85rem;opacity:0.5">
+      {{#if location}}<i class="fas fa-location-dot"></i> {{location}}{{/if}}
+      {{#if email}} &nbsp;·&nbsp; <i class="fas fa-envelope"></i> {{email}}{{/if}}
+    </div>
+    <div class="socials">{{#each socials}}<a href="{{this.url}}" target="_blank" rel="noopener"><i class="{{this.icon}}"></i></a>{{/each}}</div>
+    {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> Download CV</a>{{/if}}
+  </header>
+  {{#if metrics}}<div class="metrics">{{#each metrics}}<div class="metric"><div class="metric-num">{{this.value}}</div><div class="metric-label">{{this.label}}</div></div>{{/each}}</div>{{/if}}
+  <section class="section-card"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}>
+    <div class="section-title"><span>✦</span> Neural Skills Matrix</div>
+    <div class="skills">{{#each skills}}<span class="skill-tag">{{#if this.icon}}<i class="{{this.icon}}"></i>{{/if}} {{this.name}}</span>{{/each}}</div>
+  </section>
+  <section class="section-card"{{#if animationsEnabled}} data-aos="fade-up"{{/if}}>
+    <div class="section-title"><span>◆</span> Deployed Projects</div>
+    <div class="projects-grid">{{#each projects}}<div class="project-item"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank" rel="noopener" class="project-link">View Project →</a>{{/if}}</div>{{/each}}</div>
+  </section>
+  <footer>© {{year}} {{name}} · AI Theme · Powered by Innovation</footer>
+</div>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
+</body></html>`)(data)
+  },
+
+  // =============================================
+  // 10. Developer Dashboard — Sidebar, widgets, stats
+  // =============================================
+  {
+    id: 10,
+    nameKey: 'theme.10',
+    icon: 'fa-solid fa-chart-simple',
+    description: 'Data-dense dashboard layout with sidebar navigation, stat widgets, and timeline',
+    render: (data) => Handlebars.compile(`
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{name}} | Dashboard</title>
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:{{colors.primary}};--accent:{{colors.accent}};--bg:{{colors.bg}};--surface:{{colors.surface}};--fg:{{colors.text}};--muted:{{colors.muted}};--border:{{colors.border}}}
+body{font-family:'{{fontFamilyCss}}',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;display:flex}
+.sidebar{width:260px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);padding:2rem 1.25rem;position:fixed;left:0;top:0;display:flex;flex-direction:column;z-index:10}
+.main{margin-left:260px;flex:1;padding:2rem}
+.sidebar-profile{text-align:center;padding-bottom:1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.profile-img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid var(--primary);margin-bottom:0.75rem}
+.sidebar h1{font-size:1.125rem;font-weight:700}
+.sidebar .role{color:var(--accent);font-size:0.8rem;font-weight:500;margin:0.25rem 0}
+.sidebar .bio{font-size:0.75rem;color:#64748B;margin:0.5rem 0;line-height:1.4}
+.sidebar .contact{font-size:0.75rem;color:#64748B;margin:0.25rem 0;display:flex;align-items:center;gap:0.375rem;justify-content:center}
+.sidebar .contact i{color:var(--accent);width:1rem}
+.socials{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;padding:1rem 0;border-bottom:1px solid var(--border);margin-bottom:1rem}
+.socials a{width:2rem;height:2rem;border-radius:0.5rem;background:var(--muted);display:flex;align-items:center;justify-content:center;color:var(--fg);text-decoration:none;font-size:0.8125rem;transition:all 0.2s}
+.socials a:hover{background:var(--primary);color:white}
+.sidebar-nav{display:flex;flex-direction:column;gap:0.25rem;margin-top:auto;padding-top:1rem;border-top:1px solid var(--border)}
+.sidebar-nav a{font-size:0.8125rem;color:#64748B;text-decoration:none;padding:0.5rem 0.75rem;border-radius:0.5rem;transition:all 0.15s;display:flex;align-items:center;gap:0.5rem}
+.sidebar-nav a:hover{background:var(--muted);color:var(--fg)}
+.cv-link{display:inline-flex;align-items:center;gap:0.375rem;font-size:0.75rem;color:var(--accent);text-decoration:none;margin-top:0.5rem}
+.cv-link:hover{text-decoration:underline}
+.header-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.header-bar h2{font-size:1.25rem;font-weight:700}
+.header-bar .badge{font-size:0.7rem;padding:0.25rem 0.75rem;background:var(--muted);border-radius:9999px;color:#64748B}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:0.75rem;padding:1.25rem;display:flex;align-items:center;gap:1rem}
+.stat-icon{width:2.5rem;height:2.5rem;border-radius:0.75rem;display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0}
+.stat-icon.primary{background:var(--primary);color:white}
+.stat-icon.accent{background:var(--accent);color:white}
+.stat-icon.muted{background:var(--muted);color:var(--fg)}
+.stat-content .stat-num{font-size:1.5rem;font-weight:700;font-family:'Space Grotesk',sans-serif}
+.stat-content .stat-label{font-size:0.75rem;color:#64748B;margin-top:0.125rem}
+.section-title{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#64748B;margin-bottom:1rem}
+.skills{display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:2rem}
+.skill-chip{padding:0.3rem 0.75rem;background:var(--muted);border-radius:0.375rem;font-size:0.75rem;font-weight:500;transition:all 0.15s;display:inline-flex;align-items:center;gap:0.25rem}
+.skill-chip:hover{background:var(--primary);color:white}
+.content-grid{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem}
+.project-list{display:flex;flex-direction:column;gap:0.75rem}
+.dashboard-card{background:var(--surface);border:1px solid var(--border);border-radius:0.75rem;padding:1.25rem}
+.dashboard-card h3{font-size:0.95rem;font-weight:600;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem}
+.dashboard-card h3 .count{font-size:0.7rem;background:var(--muted);padding:0.125rem 0.5rem;border-radius:9999px;color:#64748B;font-weight:400}
+.project-entry{padding:0.75rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:start;gap:0.75rem}
+.project-entry:last-child{border-bottom:none}
+.project-entry .proj-info{flex:1}
+.project-entry .proj-name{font-weight:600;font-size:0.875rem;margin-bottom:0.125rem}
+.project-entry .proj-desc{font-size:0.75rem;color:#64748B;line-height:1.4}
+.project-entry .proj-tags{display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.375rem}
+.project-entry .proj-tags span{font-size:0.65rem;padding:0.1rem 0.375rem;background:var(--muted);border-radius:9999px}
+.project-entry .proj-link{font-size:0.75rem;color:var(--accent);text-decoration:none;white-space:nowrap;margin-top:0.25rem;display:inline-block}
+.project-entry .proj-link:hover{text-decoration:underline}
+.activity-timeline{position:relative;padding-left:1.25rem}
+.activity-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border)}
+.activity-item{position:relative;padding-bottom:1rem}
+.activity-item:last-child{padding-bottom:0}
+.activity-item::before{content:'';position:absolute;left:-1.35rem;top:0.375rem;width:0.5rem;height:0.5rem;border-radius:50%;background:var(--primary);border:2px solid var(--bg)}
+.activity-item .act-title{font-size:0.8125rem;font-weight:500}
+.activity-item .act-meta{font-size:0.7rem;color:#64748B;margin-top:0.125rem}
+footer.dash-footer{grid-column:1/-1;text-align:center;padding:1.5rem 0 0;color:#94A3B8;font-size:0.75rem;border-top:1px solid var(--border);margin-top:1rem}
+@media(max-width:768px){.sidebar{width:100%;position:relative;min-height:auto;padding:1rem}.main{margin-left:0}.content-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.stats-grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="sidebar">
+  <div class="sidebar-profile">
+    {{#if photo}}<img src="{{photo}}" class="profile-img">{{/if}}
+    <h1>{{name}}</h1>
+    <div class="role">{{role}}</div>
+    {{#if bio}}<p class="bio">{{bio}}</p>{{/if}}
+    {{#if location}}<p class="contact"><i class="fas fa-location-dot"></i> {{location}}</p>{{/if}}
+    {{#if email}}<p class="contact"><i class="fas fa-envelope"></i> {{email}}</p>{{/if}}
+    {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> CV</a>{{/if}}
+  </div>
+  <div class="socials">{{#each socials}}<a href="{{this.url}}" target="_blank" rel="noopener"><i class="{{this.icon}}"></i></a>{{/each}}</div>
+  <div class="sidebar-nav">
+    <a href="#"><i class="fas fa-chart-pie"></i> Dashboard</a>
+    <a href="#"><i class="fas fa-code"></i> Repositories</a>
+    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+</div>
+<div class="main">
+  <div class="header-bar">
+    <div>
+      <h2>Dashboard</h2>
+      <p style="font-size:0.8rem;color:#64748B;margin-top:0.25rem">Developer Overview · {{year}}</p>
+    </div>
+    <span class="badge"><i class="fas fa-circle" style="font-size:0.5rem;color:#22C55E;margin-right:0.375rem"></i>Active</span>
+  </div>
+
+  {{#if metrics.length}}
+  <div class="stats-grid">
+    {{#each metrics}}
+    <div class="stat-card"{{#if ../animationsEnabled}} data-aos="fade-up"{{/if}}>
+      <div class="stat-icon {{#if @first}}primary{{else}}{{#if @last}}muted{{else}}accent{{/if}}{{/if}}">
+        {{#if @first}}<i class="fas fa-code-branch"></i>{{else}}{{#if @last}}<i class="fas fa-code-fork"></i>{{else}}<i class="fas fa-star"></i>{{/if}}{{/if}}
+      </div>
+      <div class="stat-content">
+        <div class="stat-num">{{this.value}}</div>
+        <div class="stat-label">{{this.label}}</div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+
+  <div class="section-title">Skills</div>
+  <div class="skills">{{#each skills}}<span class="skill-chip">{{#if this.icon}}<i class="{{this.icon}}"></i>{{/if}} {{this.name}}</span>{{/each}}</div>
+
+  <div class="content-grid">
+    <div>
+      <div class="section-title">Recent Projects</div>
+      <div class="project-list">
+        <div class="dashboard-card">
+          {{#if projects.length}}
+          {{#each projects}}
+          <div class="project-entry">
+            <div class="proj-info">
+              <div class="proj-name">{{this.name}}</div>
+              <div class="proj-desc">{{this.desc}}</div>
+              <div class="proj-tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>
+            </div>
+            {{#if this.url}}<a href="{{this.url}}" target="_blank" rel="noopener" class="proj-link"><i class="fas fa-external-link-alt"></i></a>{{/if}}
+          </div>
+          {{/each}}
+          {{else}}
+          <p style="color:#64748B;font-size:0.875rem;text-align:center;padding:1rem">No projects yet</p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-title">Activity</div>
+      <div class="dashboard-card">
+        <div class="activity-timeline">
+          <div class="activity-item">
+            <div class="act-title">Profile Created</div>
+            <div class="act-meta"><i class="fas fa-calendar" style="margin-right:0.25rem"></i>{{year}}</div>
+          </div>
+          {{#each projects}}
+          <div class="activity-item">
+            <div class="act-title">Project: {{this.name}}</div>
+            <div class="act-meta">{{#if this.tags}}{{this.tags.[0]}}{{/if}}</div>
+          </div>
+          {{/each}}
+          <div class="activity-item">
+            <div class="act-title">Dashboard Active</div>
+            <div class="act-meta">🟢 Online</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="dash-footer">&copy; {{year}} {{name}} · Developer Dashboard</footer>
+  </div>
+</div>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
+</body></html>`)(data)
   }
 ];
+
+if (typeof I18N !== 'undefined') {
+  I18N.strings['theme.8'] = { en: 'Dark Modern', ar: 'داكن حديث' };
+  I18N.strings['theme.9'] = { en: 'AI Theme', ar: 'ذكاء اصطناعي' };
+  I18N.strings['theme.10'] = { en: 'Developer Dashboard', ar: 'لوحة المطور' };
+}
 
 // Helper: get theme by ID
 function getTheme(id) {
