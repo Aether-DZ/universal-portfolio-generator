@@ -55,10 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // ZIP download
   document.getElementById('btn-zip').addEventListener('click', downloadZIP);
 
-  // Config export/import
-  document.getElementById('btn-save-config').addEventListener('click', exportConfig);
-  document.getElementById('btn-load-config').addEventListener('click', importConfig);
-
   // Show deploy section on first deploy click
   document.getElementById('btn-deploy').addEventListener('click', function showDeploy() {
     document.getElementById('deploy-section').classList.remove('hidden');

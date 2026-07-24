@@ -399,6 +399,17 @@ const FormState = {
         </button>
       </div>
       <p class="text-xs text-mono-400 mt-2">Token never saved — stays in browser memory. Requires <code>repo</code> scope.</p>
+    </div>
+    <!-- Export / Import Config (secondary, bottom) -->
+    <div class="mt-5 pt-3 border-t border-mono-200 dark:border-mono-700 flex items-center justify-center gap-3">
+      <button class="text-xs px-4 py-2 border border-mono-300 dark:border-mono-700 rounded-xl font-medium hover:bg-mono-100 dark:hover:bg-mono-800 transition flex items-center gap-1.5" onclick="exportConfig()">
+        <i class="fas fa-download text-mono-500"></i>
+        <span>${I18N.t('export.saveConfig')}</span>
+      </button>
+      <button class="text-xs px-4 py-2 border border-mono-300 dark:border-mono-700 rounded-xl font-medium hover:bg-mono-100 dark:hover:bg-mono-800 transition flex items-center gap-1.5" onclick="importConfig()">
+        <i class="fas fa-upload text-mono-500"></i>
+        <span>${I18N.t('export.loadConfig')}</span>
+      </button>
     </div>`;
     html += `</div>`;
     html += `<div class="mt-4">${this.navButtons(true)}</div>`;
