@@ -12,11 +12,12 @@ const THEMES = [
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{name}} | Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#1E3A5F;--accent:#2563EB;--bg:#F8FAFC;--fg:#0F172A;--card:#fff;--muted:#E9EEF5}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+:root{--primary:{{colors.primary}};--accent:{{colors.accent}};--bg:{{colors.bg}};--fg:#0F172A;--card:#fff;--muted:#E9EEF5}
+body{font-family:'{{fontFamilyCss}}',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
 .container{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
 header{text-align:center;padding:4rem 1.5rem 2rem}
 .profile-img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);margin-bottom:1rem}
@@ -50,8 +51,8 @@ footer{text-align:center;padding:2rem;color:#94A3B8;font-size:0.875rem;border-to
 .metric-label{font-size:0.8rem;color:#64748B} {{/if}}
 @media(max-width:640px){h1{font-size:1.75rem}.projects-grid{grid-template-columns:1fr}}
 </style></head>
-<body>
-<header>
+<body{{#if animationsEnabled}} data-aos="fade-up"{{/if}}>
+<header{{#if animationsEnabled}} data-aos="fade-down"{{/if}}>
   {{#if photo}}<img src="{{photo}}" alt="{{name}}" class="profile-img">{{/if}}
   <h1>{{name}}</h1>
   <div class="role">{{role}}</div>
@@ -73,6 +74,7 @@ footer{text-align:center;padding:2rem;color:#94A3B8;font-size:0.875rem;border-to
   </section>
 </div>
 <footer>&copy; {{year}} {{name}}. Built with Universal Portfolio Generator.</footer>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
   },
 
@@ -86,38 +88,39 @@ footer{text-align:center;padding:2rem;color:#94A3B8;font-size:0.875rem;border-to
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{name}} | Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0f;color:#e0e0e0;font-family:'Inter',sans-serif;overflow-x:hidden;min-height:100vh}
+body{background:{{colors.bg}};color:#e0e0e0;font-family:'{{fontFamilyCss}}',sans-serif;overflow-x:hidden;min-height:100vh}
 #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .content{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:3rem 1.5rem}
 header{text-align:center;padding:4rem 0 2rem}
-.profile-img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:2px solid #00ff88;box-shadow:0 0 20px rgba(0,255,136,0.3);margin-bottom:1rem}
-h1{font-family:'JetBrains Mono',monospace;font-size:2rem;color:#00ff88;text-shadow:0 0 10px rgba(0,255,136,0.3)}
-.role{color:#00ff88;opacity:0.8;font-family:'JetBrains Mono',monospace;font-size:0.9rem;margin:0.5rem 0;letter-spacing:0.1em}
+.profile-img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:2px solid {{colors.accent}};box-shadow:0 0 20px {{colors.accent}}33;margin-bottom:1rem}
+h1{font-family:'JetBrains Mono',monospace;font-size:2rem;color:{{colors.accent}};text-shadow:0 0 10px {{colors.accent}}44}
+.role{color:{{colors.accent}};opacity:0.8;font-family:'JetBrains Mono',monospace;font-size:0.9rem;margin:0.5rem 0;letter-spacing:0.1em}
 .bio{color:#94A3B8;font-size:0.9rem;max-width:600px;margin:0.75rem auto;font-family:'JetBrains Mono',monospace}
 .socials{display:flex;justify-content:center;gap:1rem;margin:1.5rem 0;flex-wrap:wrap}
-.socials a{color:#00ff88;font-size:1.25rem;opacity:0.6;transition:opacity 0.2s}
-.socials a:hover{opacity:1;text-shadow:0 0 8px rgba(0,255,136,0.5)}
-.section{border:1px solid rgba(0,255,136,0.15);border-radius:0.75rem;padding:1.5rem;margin-bottom:1.5rem;background:rgba(0,255,136,0.02)}
-.section h2{font-family:'JetBrains Mono',monospace;font-size:1rem;color:#00ff88;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.15em}
+.socials a{color:{{colors.accent}};font-size:1.25rem;opacity:0.6;transition:opacity 0.2s}
+.socials a:hover{opacity:1;text-shadow:0 0 8px {{colors.accent}}77}
+.section{border:1px solid {{colors.accent}}22;border-radius:0.75rem;padding:1.5rem;margin-bottom:1.5rem;background:{{colors.accent}}08}
+.section h2{font-family:'JetBrains Mono',monospace;font-size:1rem;color:{{colors.accent}};margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.15em}
 .skills{display:flex;flex-wrap:wrap;gap:0.5rem}
-.skill-tag{padding:0.35rem 0.75rem;border:1px solid rgba(0,255,136,0.2);border-radius:0.25rem;font-size:0.8rem;font-family:'JetBrains Mono',monospace;color:#94A3B8}
+.skill-tag{padding:0.35rem 0.75rem;border:1px solid {{colors.accent}}33;border-radius:0.25rem;font-size:0.8rem;font-family:'JetBrains Mono',monospace;color:#94A3B8}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
-.project-card{border:1px solid rgba(0,255,136,0.15);border-radius:0.5rem;padding:1.25rem;background:rgba(0,0,0,0.3);transition:border-color 0.2s}
-.project-card:hover{border-color:#00ff88}
-.project-card h3{color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:0.95rem;margin-bottom:0.5rem}
+.project-card{border:1px solid {{colors.accent}}22;border-radius:0.5rem;padding:1.25rem;background:rgba(0,0,0,0.3);transition:border-color 0.2s}
+.project-card:hover{border-color:{{colors.accent}}}
+.project-card h3{color:{{colors.accent}};font-family:'JetBrains Mono',monospace;font-size:0.95rem;margin-bottom:0.5rem}
 .project-card p{color:#94A3B8;font-size:0.8rem;margin-bottom:0.5rem}
 .project-tags{display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.5rem}
 .project-tags span{font-size:0.7rem;color:#64748B;font-family:'JetBrains Mono',monospace}
-.project-card a{color:#00ff88;font-size:0.8rem;text-decoration:none;font-family:'JetBrains Mono',monospace;display:inline-block;margin-top:0.5rem}
+.project-card a{color:{{colors.accent}};font-size:0.8rem;text-decoration:none;font-family:'JetBrains Mono',monospace;display:inline-block;margin-top:0.5rem}
 .project-card a:hover{text-decoration:underline}
 .ln{color:#64748B;font-family:'JetBrains Mono',monospace;font-size:0.8rem;margin-bottom:0.25rem}
-.ln span{color:#00ff88}.cursor{animation:blink 1s step-end infinite}
+.ln span{color:{{colors.accent}}}.cursor{animation:blink 1s step-end infinite}
 @keyframes blink{50%{opacity:0}}
-footer{border-top:1px solid rgba(0,255,136,0.1);padding:1.5rem 0;margin-top:2rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#64748B}
-.cv-link{display:inline-flex;align-items:center;gap:0.5rem;color:#00ff88;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.85rem;margin-top:1rem}
+footer{border-top:1px solid {{colors.accent}}18;padding:1.5rem 0;margin-top:2rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#64748B}
+.cv-link{display:inline-flex;align-items:center;gap:0.5rem;color:{{colors.accent}};text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.85rem;margin-top:1rem}
 @media(max-width:640px){h1{font-size:1.5rem}.projects-grid{grid-template-columns:1fr}}
 </style></head>
 <body>
@@ -154,6 +157,7 @@ const particles=Array.from({length:80},()=>({x:Math.random()*w,y:Math.random()*h
 function anim(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;const dx=mouse.x-p.x,dy=mouse.y-p.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle='rgba(0,255,136,'+(0.2-dist/600)+')';ctx.lineWidth=0.5;ctx.stroke()}ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle='rgba(0,255,136,0.6)';ctx.fill()});requestAnimationFrame(anim)}
 anim()
 </script>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
   },
 
@@ -167,11 +171,12 @@ anim()
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{name}} | {{role}}</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#FAFAFA;--fg:#09090B;--muted:#E8ECF0;--accent:#2563EB;--card:#fff;--border:#E4E4E7}
-.dark{--bg:#09090B;--fg:#FAFAFA;--muted:#27272A;--card:#18181B;--border:#3F3F46}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.7;transition:background 0.3s,color 0.3s}
+:root{--bg:{{colors.bg}};--fg:#09090B;--muted:#E8ECF0;--accent:{{colors.accent}};--card:#fff;--border:#E4E4E7}
+.dark{--bg:{{colors.bg}};--fg:#FAFAFA;--muted:#27272A;--card:#18181B;--border:#3F3F46}
+body{font-family:'{{fontFamilyCss}}',sans-serif;background:var(--bg);color:var(--fg);line-height:1.7;transition:background 0.3s,color 0.3s}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .container{max-width:720px;margin:0 auto;padding:2rem 1.5rem}
 .theme-btn{position:fixed;top:1rem;right:1rem;z-index:10;width:2.5rem;height:2.5rem;border-radius:9999px;border:1px solid var(--border);background:var(--card);color:var(--fg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.125rem;transition:all 0.2s}
@@ -216,6 +221,7 @@ footer{padding:2rem;text-align:center;color:#94A3B8;font-size:0.8125rem;border-t
 </div>
 <footer>&copy; {{year}} {{name}}</footer>
 <script>(()=>{const b=document.getElementById('darkToggle'),i=b.querySelector('i');const t=()=>{document.documentElement.classList.toggle('dark');const d=document.documentElement.classList.contains('dark');i.className=d?'fas fa-sun':'fas fa-moon';localStorage.setItem('theme',d?'dark':'light')};if(localStorage.getItem('theme')==='dark')t();b.addEventListener('click',t)})()</script>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
   },
 
@@ -229,10 +235,11 @@ footer{padding:2rem;text-align:center;color:#94A3B8;font-size:0.8125rem;border-t
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{name}} | Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#FAFAFA;--fg:#09090B;--card:#fff;--muted:#F0F0F0;--accent:#2563EB;--radius:1.5rem}
-body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--fg);padding:1rem;min-height:100vh}
+:root{--bg:{{colors.bg}};--fg:#09090B;--card:#fff;--muted:#F0F0F0;--accent:{{colors.accent}};--radius:1.5rem}
+body{font-family:'{{fontFamilyCss}}',sans-serif;background:var(--bg);color:var(--fg);padding:1rem;min-height:100vh}
 .bento{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;grid-auto-rows:auto;gap:1rem;padding:1rem}
 .card{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.04);transition:transform 0.2s,box-shadow 0.2s}
 .card:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.06)}
@@ -279,6 +286,7 @@ footer{grid-column:1/-1;text-align:center;padding:1rem;color:#94A3B8;font-size:0
   <div class="card card-tall card-wide"><h2>Projects</h2><div class="project-bento">{{#each projects}}<div class="project-mini"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank">View →</a>{{/if}}</div>{{/each}}</div></div>
   <footer>&copy; {{year}} {{name}}</footer>
 </div>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
   },
 
@@ -292,9 +300,10 @@ footer{grid-column:1/-1;text-align:center;padding:1rem;color:#94A3B8;font-size:0
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{name}} ~ portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0d1117;color:#c9d1d9;font-family:'JetBrains Mono',monospace;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+body{background:{{colors.bg}};color:#c9d1d9;font-family:'{{fontFamilyCss}}',monospace;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
 .terminal{background:#161b22;border:1px solid #30363d;border-radius:0.75rem;width:100%;max-width:820px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
 .terminal-bar{background:#21262d;padding:0.625rem 1rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid #30363d}
 .terminal-dot{width:0.75rem;height:0.75rem;border-radius:50%}.dot-red{background:#ff5555}.dot-yellow{background:#f1fa8c}.dot-green{background:#50fa7b}
@@ -336,6 +345,7 @@ a{color:#58a6ff;text-decoration:none}a:hover{text-decoration:underline}
     <div><span class="prompt">visitor@portfolio:~</span>$ <span class="error">|</span><span class="cursor-blink">_</span></div>
   </div>
 </div>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
   },
 
@@ -349,16 +359,17 @@ a{color:#58a6ff;text-decoration:none}a:hover{text-decoration:underline}
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{name}} | Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-body{min-height:100vh;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);font-family:'Archivo',sans-serif;display:flex;align-items:center;justify-content:center;padding:1rem;position:relative;overflow-x:hidden}
+body{min-height:100vh;background:linear-gradient(135deg,{{colors.primary}} 0%,{{colors.accent}} 100%);font-family:'{{fontFamilyCss}}',sans-serif;display:flex;align-items:center;justify-content:center;padding:1rem;position:relative;overflow-x:hidden}
 .bg-blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:0.4;animation:float 20s ease-in-out infinite;pointer-events:none;z-index:0}
 .blob1{width:400px;height:400px;background:#ff6b6b;top:-100px;left:-100px;animation-delay:0s}
 .blob2{width:350px;height:350px;background:#48dbfb;bottom:-80px;right:-80px;animation-delay:-7s}
 .blob3{width:300px;height:300px;background:#ff9ff3;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:-14s}
 @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(0.9)}}
 .glass-container{position:relative;z-index:1;width:100%;max-width:820px}
-.glass-card{background:rgba(255,255,255,0.12);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.2);border-radius:1.5rem;padding:2rem;margin-bottom:1rem;transition:transform 0.3s,background 0.3s}
+.glass-card{background:rgba(255,255,255,0.12);backdrop-filter:blur({{#if glassmorphism}}{{glassmorphism.blur}}{{else}}20{{/if}}px);-webkit-backdrop-filter:blur({{#if glassmorphism}}{{glassmorphism.blur}}{{else}}20{{/if}}px);border:1px solid rgba(255,255,255,0.2);border-radius:{{#if glassmorphism}}{{glassmorphism.radius}}{{else}}24{{/if}}px;padding:2rem;margin-bottom:1rem;transition:transform 0.3s,background 0.3s}
 .glass-card:hover{background:rgba(255,255,255,0.18);transform:translateY(-2px)}
 .text-center{text-align:center}.profile-img{width:88px;height:88px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.3);margin-bottom:1rem}
 h1{color:white;font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,0.1)}
@@ -401,6 +412,7 @@ footer{text-align:center;color:rgba(255,255,255,0.4);font-size:0.75rem;margin-to
   {{#if projects.length}}<div class="glass-card"><h2>✦ Projects</h2><div class="projects">{{#each projects}}<div class="project-item"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="tags">{{#each this.tags}}<span>{{this}}</span>{{/each}}</div>{{#if this.url}}<br><a href="{{this.url}}" target="_blank">View Project →</a>{{/if}}</div>{{/each}}</div></div>{{/if}}
   <footer>&copy; {{year}} {{name}}. Glassmorphic.</footer>
 </div>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
   },
 
@@ -414,10 +426,11 @@ footer{text-align:center;color:rgba(255,255,255,0.4);font-size:0.75rem;margin-to
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{name}} | Academic Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
+<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#1E3A5F;--accent:#A16207;--bg:#F8FAFC;--fg:#0F172A;--card:#fff;--muted:#F1F5F9}
-body{font-family:'Atkinson Hyperlegible',sans-serif;background:var(--bg);color:var(--fg);line-height:1.7}
+:root{--primary:{{colors.primary}};--accent:{{colors.accent}};--bg:{{colors.bg}};--fg:#0F172A;--card:#fff;--muted:#F1F5F9}
+body{font-family:'{{fontFamilyCss}}',sans-serif;background:var(--bg);color:var(--fg);line-height:1.7}
 .container{max-width:860px;margin:0 auto;padding:2rem 1.5rem}
 header{border-bottom:2px solid var(--primary);padding-bottom:1.5rem;margin-bottom:2rem;display:flex;gap:1.5rem;align-items:start}
 .profile-img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid var(--primary);flex-shrink:0}
@@ -477,6 +490,7 @@ footer{text-align:center;padding:1.5rem;color:#94A3B8;font-size:0.8125rem;border
 
   <footer>&copy; {{year}} {{name}}. Academic Portfolio</footer>
 </div>
+{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
   }
 ];
