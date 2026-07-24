@@ -123,13 +123,22 @@
         </div>
         <!-- README Preview (README mode) -->
         <div id="readme-preview-wrapper" class="rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm bg-white dark:bg-gray-900 transition-all hidden">
-          <div class="p-4 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-            <span class="text-sm font-medium"><i class="fab fa-markdown mr-1"></i> <span data-i18n="readme.title">GitHub Profile README</span></span>
+          <div class="p-4 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium"><i class="fab fa-markdown mr-1"></i> <span data-i18n="readme.title">GitHub Profile README</span></span>
+              <div class="flex bg-gray-200 dark:bg-gray-700 rounded-lg p-0.5 text-xs">
+                <button id="readme-view-raw" class="readme-view-btn px-2.5 py-1 rounded-md font-medium transition active bg-white dark:bg-gray-600 shadow-sm" data-view="raw">Raw</button>
+                <button id="readme-view-rendered" class="readme-view-btn px-2.5 py-1 rounded-md font-medium transition" data-view="rendered">Preview</button>
+              </div>
+            </div>
             <button id="btn-copy-readme" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium transition flex items-center gap-1">
               <i class="fas fa-copy"></i> <span data-i18n="readme.export">Copy to Clipboard</span>
             </button>
           </div>
-          <div id="readme-preview-content" class="p-6 overflow-auto max-h-[600px] font-mono text-sm whitespace-pre-wrap leading-relaxed text-gray-800 dark:text-gray-200"></div>
+          <!-- Raw markdown view -->
+          <pre id="readme-preview-content" class="p-6 overflow-auto max-h-[600px] font-mono text-sm whitespace-pre-wrap leading-relaxed text-gray-800 dark:text-gray-200"></pre>
+          <!-- Rendered HTML view -->
+          <div id="readme-rendered-content" class="p-6 overflow-auto max-h-[600px] prose prose-sm dark:prose-invert max-w-none hidden"></div>
         </div>
       </div>
     </div>
@@ -202,6 +211,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@octokit/rest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <!-- App JS files -->

@@ -21,7 +21,15 @@ function renderReadmePreview() {
   };
   try {
     const md = template.render(readmeData);
-    document.getElementById('readme-preview-content').textContent = md;
+    const rawEl = document.getElementById('readme-preview-content');
+    const renderedEl = document.getElementById('readme-rendered-content');
+    rawEl.textContent = md;
+    // Use marked if available for rendered view
+    if (typeof marked !== 'undefined') {
+      renderedEl.innerHTML = marked.parse(md, { breaks: true });
+    } else {
+      renderedEl.textContent = md;
+    }
   } catch (e) {
     console.warn('README render error:', e);
     document.getElementById('readme-preview-content').textContent = 'Error rendering README template.';
@@ -109,12 +117,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // README View Toggle (Raw / Rendered)
+  document.querySelectorAll('.readme-view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.view;
+      document.querySelectorAll('.readme-view-btn').forEach(b => {
+        b.classList.remove('active', 'bg-white', 'dark:bg-gray-600', 'shadow-sm');
+      });
+      btn.classList.add('active', 'bg-white', 'dark:bg-gray-600', 'shadow-sm');
+      document.getElementById('readme-preview-content').classList.toggle('hidden', view !== 'raw');
+      document.getElementById('readme-rendered-content').classList.toggle('hidden', view !== 'rendered');
+    });
+  });
+
   // Initialize first tab active state
   const firstTab = document.querySelector('.preview-tab');
   if (firstTab) firstTab.classList.add('active', 'bg-white', 'dark:bg-gray-700', 'shadow-sm');
 
   console.log('🏗️ Universal Portfolio Generator initialized');
   console.log('📦 Libraries: Handlebars, JSZip, FileSaver, Octokit, Chart.js, AOS');
-  console.log('🎨 10 portfolio themes + 10 README templates loaded');
+  console.log('🎨 13 portfolio themes + 10 README templates loaded');
   console.log('🌐 Bilingual: AR/EN');
 });

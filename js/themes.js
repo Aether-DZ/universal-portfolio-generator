@@ -82,70 +82,84 @@ footer{text-align:center;padding:2rem;color:#94A3B8;font-size:0.875rem;border-to
     id: 2,
     nameKey: 'theme.2',
     icon: 'fa-solid fa-network-wired',
-    description: 'Dark cyber aesthetic with canvas particle network background',
+    description: 'Polished cyber aesthetic with particle network, terminal-inspired UI, neon accents',
     render: (data) => Handlebars.compile(`
 <!DOCTYPE html>
 <html lang="{{lang}}" dir="{{dir}}">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{name}} | Portfolio</title>
-{{#if animationsEnabled}}<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">{{/if}}
-<link href="https://fonts.googleapis.com/css2?family={{fontUrl}}&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:{{colors.bg}};color:#e0e0e0;font-family:'{{fontFamilyCss}}',sans-serif;overflow-x:hidden;min-height:100vh}
-#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+body{background:#0a0a0f;color:#c9d1d9;font-family:'JetBrains Mono',monospace;overflow-x:hidden;min-height:100vh}
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.7}
 .content{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:3rem 1.5rem}
-header{text-align:center;padding:4rem 0 2rem}
-.profile-img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:2px solid {{colors.accent}};box-shadow:0 0 20px {{colors.accent}}33;margin-bottom:1rem}
-h1{font-family:'JetBrains Mono',monospace;font-size:2rem;color:{{colors.accent}};text-shadow:0 0 10px {{colors.accent}}44}
-.role{color:{{colors.accent}};opacity:0.8;font-family:'JetBrains Mono',monospace;font-size:0.9rem;margin:0.5rem 0;letter-spacing:0.1em}
-.bio{color:#94A3B8;font-size:0.9rem;max-width:600px;margin:0.75rem auto;font-family:'JetBrains Mono',monospace}
-.socials{display:flex;justify-content:center;gap:1rem;margin:1.5rem 0;flex-wrap:wrap}
-.socials a{color:{{colors.accent}};font-size:1.25rem;opacity:0.6;transition:opacity 0.2s}
-.socials a:hover{opacity:1;text-shadow:0 0 8px {{colors.accent}}77}
-.section{border:1px solid {{colors.accent}}22;border-radius:0.75rem;padding:1.5rem;margin-bottom:1.5rem;background:{{colors.accent}}08}
-.section h2{font-family:'JetBrains Mono',monospace;font-size:1rem;color:{{colors.accent}};margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.15em}
-.skills{display:flex;flex-wrap:wrap;gap:0.5rem}
-.skill-tag{padding:0.35rem 0.75rem;border:1px solid {{colors.accent}}33;border-radius:0.25rem;font-size:0.8rem;font-family:'JetBrains Mono',monospace;color:#94A3B8}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
-.project-card{border:1px solid {{colors.accent}}22;border-radius:0.5rem;padding:1.25rem;background:rgba(0,0,0,0.3);transition:border-color 0.2s}
-.project-card:hover{border-color:{{colors.accent}}}
-.project-card h3{color:{{colors.accent}};font-family:'JetBrains Mono',monospace;font-size:0.95rem;margin-bottom:0.5rem}
-.project-card p{color:#94A3B8;font-size:0.8rem;margin-bottom:0.5rem}
-.project-tags{display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.5rem}
-.project-tags span{font-size:0.7rem;color:#64748B;font-family:'JetBrains Mono',monospace}
-.project-card a{color:{{colors.accent}};font-size:0.8rem;text-decoration:none;font-family:'JetBrains Mono',monospace;display:inline-block;margin-top:0.5rem}
-.project-card a:hover{text-decoration:underline}
-.ln{color:#64748B;font-family:'JetBrains Mono',monospace;font-size:0.8rem;margin-bottom:0.25rem}
-.ln span{color:{{colors.accent}}}.cursor{animation:blink 1s step-end infinite}
-@keyframes blink{50%{opacity:0}}
-footer{border-top:1px solid {{colors.accent}}18;padding:1.5rem 0;margin-top:2rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#64748B}
-.cv-link{display:inline-flex;align-items:center;gap:0.5rem;color:{{colors.accent}};text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.85rem;margin-top:1rem}
+.term-line{color:rgba(255,255,255,0.2);font-size:0.75rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.04)}
+.term-line span{color:#00ff88}
+.term-cursor{animation:blink 1s step-end infinite}@keyframes blink{50%{opacity:0}}
+header{text-align:center;padding:2rem 0}
+.profile-img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,255,136,0.2);box-shadow:0 0 30px rgba(0,255,136,0.08);margin-bottom:1rem}
+h1{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:500;color:#00ff88;text-shadow:0 0 20px rgba(0,255,136,0.15);letter-spacing:-0.02em}
+.role{color:#00ff88;opacity:0.7;font-family:'JetBrains Mono',monospace;font-size:0.85rem;margin:0.5rem 0;letter-spacing:0.15em;text-transform:uppercase}
+.bio{color:rgba(255,255,255,0.4);font-size:0.85rem;max-width:600px;margin:0.75rem auto;line-height:1.7}
+.socials{display:flex;justify-content:center;gap:0.625rem;margin:1.25rem 0;flex-wrap:wrap}
+.socials a{color:rgba(255,255,255,0.35);font-size:1.25rem;transition:all 0.25s;text-decoration:none;width:2.5rem;height:2.5rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.06);border-radius:6px}
+.socials a:hover{color:#00ff88;border-color:rgba(0,255,136,0.3);background:rgba(0,255,136,0.05);transform:translateY(-2px)}
+.section{padding:2rem 0}
+.section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem}
+.section-header .hash{color:#00ff88;font-size:0.85rem;opacity:0.5}
+.section-header h2{font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:400;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.12em}
+.section-header .line{flex:1;height:1px;background:linear-gradient(90deg,rgba(0,255,136,0.15),transparent)}
+.skills{display:flex;flex-wrap:wrap;gap:0.4rem}
+.skill-tag{padding:0.3rem 0.7rem;border:1px solid rgba(255,255,255,0.06);border-radius:4px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.5);transition:all 0.2s}
+.skill-tag:hover{border-color:rgba(0,255,136,0.25);color:#00ff88}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.75rem}
+.project-card{border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:1.25rem;background:rgba(255,255,255,0.015);transition:all 0.25s}
+.project-card:hover{border-color:rgba(0,255,136,0.2);background:rgba(0,255,136,0.02)}
+.project-card h3{color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:0.9rem;font-weight:500;margin-bottom:0.35rem}
+.project-card h3::before{content:'$ ';opacity:0.4}
+.project-card p{color:rgba(255,255,255,0.4);font-size:0.78rem;margin-bottom:0.5rem;line-height:1.5}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.5rem}
+.project-tags span{font-size:0.65rem;padding:0.15rem 0.4rem;border:1px solid rgba(255,255,255,0.05);border-radius:3px;color:rgba(255,255,255,0.3)}
+.project-link{color:rgba(0,255,136,0.5);font-size:0.75rem;text-decoration:none;font-family:'JetBrains Mono',monospace;display:inline-flex;align-items:center;gap:0.375rem;transition:color 0.2s}
+.project-link:hover{color:#00ff88}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.5rem;margin-bottom:1.5rem}
+.metric{border:1px solid rgba(255,255,255,0.04);border-radius:6px;padding:0.75rem;text-align:center;background:rgba(255,255,255,0.01)}
+.metric-num{font-family:'JetBrains Mono',monospace;font-size:1.25rem;color:#00ff88;font-weight:500}
+.metric-label{font-size:0.6rem;color:rgba(255,255,255,0.25);margin-top:0.15rem;text-transform:uppercase;letter-spacing:0.08em}
+.cv-link{display:inline-flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.4);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:0.8rem;padding:0.4rem 1rem;border:1px solid rgba(255,255,255,0.08);border-radius:6px;transition:all 0.25s;margin-top:0.5rem}
+.cv-link:hover{color:#00ff88;border-color:rgba(0,255,136,0.3);background:rgba(0,255,136,0.04)}
+footer{border-top:1px solid rgba(255,255,255,0.04);padding:1.5rem 0;margin-top:2rem;text-align:center;font-size:0.7rem;color:rgba(255,255,255,0.15)}
+footer span{color:rgba(0,255,136,0.3)}
 @media(max-width:640px){h1{font-size:1.5rem}.projects-grid{grid-template-columns:1fr}}
 </style></head>
 <body>
 <canvas id="particles-canvas"></canvas>
 <div class="content">
-  <div class="ln"><span>visitor@{{slug}}</span>:~$ <span>cat</span> /home/{{slug}}/profile.txt <span class="cursor">|</span></div>
+  <div class="term-line"><span>visitor</span>@<span>{{slug}}</span>:~$ <span>cat</span> profile.txt <span class="term-cursor">▌</span></div>
   <header>
     {{#if photo}}<img src="{{photo}}" class="profile-img">{{/if}}
-    <h1>> {{name}}</h1>
+    <h1>{{name}}</h1>
     <div class="role">{{role}}</div>
     {{#if bio}}<p class="bio">/* {{bio}} */</p>{{/if}}
-    {{#if email}}<p class="bio">[+] contact: {{email}}</p>{{/if}}
-    <div class="socials">{{#each socials}}<a href="{{this.url}}" target="_blank"><i class="{{this.icon}}"></i></a>{{/each}}</div>
-    {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> [download_cv.sh]</a>{{/if}}
+    {{#if email}}<p class="bio">// contact: {{email}}</p>{{/if}}
+    <div class="socials">{{#each socialsArray}}<a href="{{this.url}}" target="_blank" rel="noopener"><i class="{{this.icon}}"></i></a>{{/each}}</div>
+    {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> download_cv.sh</a>{{/if}}
   </header>
+
+  {{#if metrics.length}}
+  <div class="metrics">{{#each metrics}}<div class="metric"><div class="metric-num">{{this.value}}</div><div class="metric-label">{{this.label}}</div></div>{{/each}}</div>
+  {{/if}}
+
   <section class="section">
-    <h2># skills.txt</h2>
-    <div class="skills">{{#each skills}}<span class="skill-tag">{{this.name}}</span>{{/each}}</div>
+    <div class="section-header"><span class="hash">##</span> <h2>skills</h2> <span class="line"></span></div>
+    <div class="skills">{{#each skillsArray}}<span class="skill-tag">{{this.name}}</span>{{/each}}</div>
   </section>
   <section class="section">
-    <h2># projects.log</h2>
-    <div class="projects-grid">{{#each projects}}<div class="project-card"><h3>$ {{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>[{{this}}]</span>{{/each}}</div>{{#if this.url}}<br><a href="{{this.url}}" target="_blank">> view_source</a>{{/if}}</div>{{/each}}</div>
+    <div class="section-header"><span class="hash">##</span> <h2>projects</h2> <span class="line"></span></div>
+    <div class="projects-grid">{{#each projectsArray}}<div class="project-card"><h3>{{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>[{{this}}]</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank" rel="noopener" class="project-link"><i class="fas fa-arrow-right"></i> view_source</a>{{/if}}</div>{{/each}}</div>
   </section>
-  <footer>>
- <span class="cursor">_</span>  &copy; {{year}} {{name}}. All rights reserved.</footer>
+  <footer><span>{{name}}</span> &copy; {{year}}</footer>
 </div>
 <script>
 const c=document.getElementById('particles-canvas'),ctx=c.getContext('2d');
@@ -153,11 +167,10 @@ let w,h,mouse={x:0,y:0};
 function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
 resize();window.addEventListener('resize',resize);
 document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
-const particles=Array.from({length:80},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,size:Math.random()*2+1}));
-function anim(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;const dx=mouse.x-p.x,dy=mouse.y-p.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle='rgba(0,255,136,'+(0.2-dist/600)+')';ctx.lineWidth=0.5;ctx.stroke()}ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle='rgba(0,255,136,0.6)';ctx.fill()});requestAnimationFrame(anim)}
+const particles=Array.from({length:60},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,size:Math.random()*2+1}));
+function anim(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;const dx=mouse.x-p.x,dy=mouse.y-p.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle='rgba(0,255,136,'+(0.15-dist/800)+')';ctx.lineWidth=0.5;ctx.stroke()}ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fillStyle='rgba(0,255,136,0.5)';ctx.fill()});requestAnimationFrame(anim)}
 anim()
 </script>
-{{#if animationsEnabled}}<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration:600,once:true})</script>{{/if}}
 </body></html>`)(data)
   },
 
@@ -843,7 +856,377 @@ if (typeof I18N !== 'undefined') {
   I18N.strings['theme.10'] = { en: 'Developer Dashboard', ar: 'لوحة المطور' };
 }
 
+  // =============================================
+  // 11. Aether — Exact match of aether-dz.github.io/portfolio/
+  //     Pure hero landing with particles.js, Righteous+Ubuntu Mono, #00ffaa
+  // =============================================
+  {
+    id: 11,
+    nameKey: 'theme.11',
+    icon: 'fa-solid fa-user-astronaut',
+    description: 'Premium hacker aesthetic — particle network, monospace, green glow. Inspired by aether-dz',
+    render: (data) => Handlebars.compile(`
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{name}} — {{role}}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css?family=Righteous|Ubuntu+Mono&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;overflow:hidden;color:#fff;height:100vh;width:100vw;font-family:'Ubuntu Mono',monospace}
+#particles-js{position:absolute;width:100%;height:100%;z-index:0}
+.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;width:90%;max-width:1100px}
+.profile-row{display:flex;flex-wrap:wrap;align-items:center;gap:2rem}
+.profile-left{flex:0 0 auto;text-align:center}
+.profile-right{flex:1;min-width:250px}
+.image{border-radius:50%;border:3px solid rgba(255,255,255,0.08);max-width:220px;width:100%;height:auto}
+.header1{font-family:'Righteous',cursive;font-size:clamp(2.5rem,6vw,5rem);color:#fff;margin-bottom:0;line-height:1.1}
+.header2{font-family:'Ubuntu Mono',monospace;font-size:clamp(0.8rem,1.4vw,1.2rem);color:rgba(255,255,255,0.55);margin-bottom:0.5rem}
+.header3{font-family:'Ubuntu Mono',monospace;font-size:clamp(1rem,2.2vw,2rem);color:rgba(255,255,255,0.3);margin-bottom:0.2rem}
+.bio-text{font-family:'Ubuntu Mono',monospace;font-size:clamp(0.75rem,1.1vw,0.95rem);color:rgba(255,255,255,0.45);margin-top:0.75rem;max-width:500px;line-height:1.6}
+.location-text{font-family:'Ubuntu Mono',monospace;font-size:clamp(0.65rem,0.9vw,0.8rem);color:rgba(255,255,255,0.3);margin-top:0.35rem}
+.socials{display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap}
+.link1{font-family:'Ubuntu Mono',monospace;font-size:clamp(1.5rem,2.8vw,2.5rem);color:rgba(255,255,255,0.65);margin:0 5px;transition:all 0.3s ease;text-decoration:none!important;display:inline-block}
+.link1:hover{color:#00ffaa;transform:translateY(-3px)}
+.cv-link{display:inline-flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.5);text-decoration:none;font-family:'Ubuntu Mono',monospace;font-size:clamp(0.7rem,0.95vw,0.85rem);margin-top:0.75rem;padding:0.4rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:4px;transition:all 0.3s}
+.cv-link:hover{color:#00ffaa;border-color:rgba(0,255,170,0.3);background:rgba(0,255,170,0.05)}
+.email-tooltip{position:fixed;right:0;bottom:0;margin:0;z-index:10000;font-family:'Ubuntu Mono',monospace;background:#111;color:rgba(255,255,255,0.35);padding:8px 14px;border:1px solid rgba(255,255,255,0.06);border-radius:4px;cursor:pointer;transition:all 0.3s ease;font-size:0.85rem}
+.email-tooltip:hover{color:#00ffaa;border-color:rgba(0,255,170,0.25);background:#1a1a1a}
+.email-tooltip summary{list-style:none;outline:none;cursor:pointer}
+.email-tooltip summary::-webkit-details-marker{display:none}
+.footer-credit{position:fixed;left:0;bottom:0;margin:0;z-index:10000;font-family:'Ubuntu Mono',monospace;color:rgba(255,255,255,0.12);padding:8px 14px;font-size:0.65rem}
+@media(max-width:785px){.profile-row{justify-content:center;text-align:center}.profile-right{text-align:center}.socials{justify-content:center}.bio-text{margin-left:auto;margin-right:auto}}
+@media(max-width:640px){.image{max-width:160px}.header1{font-size:clamp(1.8rem,8vw,2.5rem)}.link1{font-size:clamp(1.2rem,4vw,1.8rem)}}
+</style>
+</head>
+<body>
+<div id="particles-js"></div>
+<div class="center">
+  <div class="profile-row">
+    <div class="profile-left">
+      {{#if photo}}<img src="{{photo}}" alt="{{name}}" class="image">{{/if}}
+    </div>
+    <div class="profile-right">
+      <p class="header1">{{name}}</p>
+      <p class="header3">{{slug}}</p>
+      <p class="header2">{{role}}</p>
+      {{#if bio}}<p class="bio-text">{{bio}}</p>{{/if}}
+      {{#if location}}<p class="location-text"><i class="fas fa-location-dot" style="color:#00ffaa;margin-right:0.25rem"></i>{{location}}</p>{{/if}}
+      <div class="socials">{{#each socialsArray}}<a href="{{this.url}}" target="_blank" rel="noopener" class="link1"><i class="{{this.icon}}"></i></a>{{/each}}</div>
+      {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> Download CV</a>{{/if}}
+    </div>
+  </div>
+</div>
+{{#if email}}
+<details class="email-tooltip">
+  <summary>{{email}}</summary>
+</details>
+{{/if}}
+<div class="footer-credit">✦ {{name}} · {{year}}</div>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+particlesJS('particles-js',{
+  particles:{
+    number:{value:70,density:{enable:true,value_area:800}},
+    color:{value:"#ffffff"},
+    shape:{type:"circle"},
+    opacity:{value:0.6,random:true,anim:{enable:true,speed:0.5,opacity_min:0.2}},
+    size:{value:6,random:true},
+    line_linked:{enable:true,distance:180,color:"#ffffff",opacity:0.5,width:3},
+    move:{enable:true,speed:3,direction:"none",random:false,straight:false,out_mode:"out"}
+  },
+  interactivity:{
+    detect_on:"canvas",
+    events:{onhover:{enable:true,mode:"grab"},onclick:{enable:false},resize:true},
+    modes:{grab:{distance:260,line_linked:{opacity:1}}}
+  },
+  retina_detect:true
+});
+</script>
+</body>
+</html>`)(data)
+  },
+
+  // =============================================
+  // 12. Aether Pro — Full portfolio in Aether design language
+  //     Same dark/particles/mono aesthetic with sections
+  // =============================================
+  {
+    id: 12,
+    nameKey: 'theme.12',
+    icon: 'fa-solid fa-crown',
+    description: 'Aether Pro — Full portfolio with the hacker aesthetic: particles, monospace, glow, plus skills & projects',
+    render: (data) => Handlebars.compile(`
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{name}} | Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css?family=Righteous|Ubuntu+Mono&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:rgba(255,255,255,0.85);font-family:'Ubuntu Mono',monospace;overflow-x:hidden;min-height:100vh}
+#particles-js{position:fixed;width:100%;height:100%;z-index:0;pointer-events:none}
+.content{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem}
+/* Terminal line */
+.term-line{color:rgba(255,255,255,0.25);font-family:'Ubuntu Mono',monospace;font-size:0.8rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.term-line span{color:#00ffaa}
+.term-cursor{animation:blink 1s step-end infinite}@keyframes blink{50%{opacity:0}}
+/* Hero */
+.hero{display:flex;flex-wrap:wrap;align-items:center;gap:2.5rem;padding:3rem 0 2rem}
+.hero-left{flex:0 0 auto}
+.hero-right{flex:1;min-width:260px}
+.profile-img{width:140px;height:140px;border-radius:50%;object-fit:cover;border:3px solid rgba(0,255,170,0.15);box-shadow:0 0 30px rgba(0,255,170,0.06)}
+h1{font-family:'Righteous',cursive;font-size:clamp(2rem,4vw,3.5rem);color:#fff;line-height:1.1}
+.h1-accent{color:rgba(0,255,170,0.15);font-family:'Righteous',cursive;font-size:clamp(2rem,4vw,3.5rem);line-height:1.1;margin-top:-0.3rem}
+.role-tag{display:inline-block;padding:0.3rem 0.75rem;border:1px solid rgba(0,255,170,0.2);border-radius:3px;font-size:0.8rem;color:#00ffaa;margin:0.5rem 0;font-family:'Ubuntu Mono',monospace}
+.bio-text{color:rgba(255,255,255,0.45);font-size:0.9rem;line-height:1.7;margin:0.75rem 0;max-width:550px}
+.info-line{color:rgba(255,255,255,0.3);font-size:0.8rem;margin:0.25rem 0;display:flex;align-items:center;gap:0.5rem}
+.info-line i{color:#00ffaa;width:1rem}
+.socials{display:flex;gap:0.5rem;margin:1rem 0;flex-wrap:wrap}
+.socials a{color:rgba(255,255,255,0.4);font-size:1.3rem;text-decoration:none;transition:all 0.3s;width:2.5rem;height:2.5rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.06);border-radius:4px}
+.socials a:hover{color:#00ffaa;border-color:rgba(0,255,170,0.3);background:rgba(0,255,170,0.05);transform:translateY(-2px)}
+.cv-link{display:inline-flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;padding:0.4rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:3px;transition:all 0.3s;margin-top:0.5rem}
+.cv-link:hover{color:#00ffaa;border-color:rgba(0,255,170,0.3);background:rgba(0,255,170,0.05)}
+/* Sections */
+.section{margin:2.5rem 0;border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.5rem;background:rgba(255,255,255,0.01)}
+.section-title{font-family:'Righteous',cursive;font-size:1rem;color:rgba(0,255,170,0.6);margin-bottom:1.25rem;letter-spacing:0.05em;display:flex;align-items:center;gap:0.5rem}
+.section-title::before{content:'>';color:#00ffaa;font-family:'Ubuntu Mono',monospace}
+.skills{display:flex;flex-wrap:wrap;gap:0.4rem}
+.skill-tag{padding:0.3rem 0.7rem;border:1px solid rgba(255,255,255,0.08);border-radius:3px;font-size:0.75rem;color:rgba(255,255,255,0.6);transition:all 0.2s;font-family:'Ubuntu Mono',monospace}
+.skill-tag:hover{border-color:rgba(0,255,170,0.3);color:#00ffaa}
+/* Projects grid */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem}
+.project-card{border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.25rem;background:rgba(255,255,255,0.02);transition:all 0.3s}
+.project-card:hover{border-color:rgba(0,255,170,0.2);background:rgba(0,255,170,0.02)}
+.project-card h3{color:#fff;font-family:'Righteous',cursive;font-size:1rem;margin-bottom:0.35rem}
+.project-card p{color:rgba(255,255,255,0.4);font-size:0.8rem;margin-bottom:0.6rem;line-height:1.5}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.5rem}
+.project-tags span{font-size:0.65rem;padding:0.15rem 0.45rem;border:1px solid rgba(255,255,255,0.06);border-radius:2px;color:rgba(255,255,255,0.3)}
+.project-link{color:rgba(0,255,170,0.6);font-size:0.75rem;text-decoration:none;font-family:'Ubuntu Mono',monospace;display:inline-flex;align-items:center;gap:0.375rem;transition:color 0.2s}
+.project-link:hover{color:#00ffaa}
+/* Metrics */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.75rem;margin-bottom:1.5rem}
+.metric{border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1rem;text-align:center;background:rgba(255,255,255,0.01)}
+.metric-num{font-family:'Righteous',cursive;font-size:1.5rem;color:#00ffaa}
+.metric-label{font-size:0.65rem;color:rgba(255,255,255,0.3);margin-top:0.2rem}
+/* Footer */
+.footer{border-top:1px solid rgba(255,255,255,0.06);padding:1.5rem 0;margin-top:2rem;text-align:center;font-size:0.7rem;color:rgba(255,255,255,0.2)}
+.footer span{color:#00ffaa}
+/* Email tooltip */
+.email-tooltip{position:fixed;right:0;bottom:0;z-index:100;font-family:'Ubuntu Mono',monospace;background:#111;color:rgba(255,255,255,0.35);padding:6px 12px;border:1px solid rgba(255,255,255,0.06);border-radius:4px 0 0 0;cursor:pointer;font-size:0.75rem}
+.email-tooltip:hover{color:#00ffaa;border-color:rgba(0,255,170,0.25)}
+.email-tooltip summary{list-style:none;cursor:pointer}
+.email-tooltip summary::-webkit-details-marker{display:none}
+@media(max-width:640px){.hero{text-align:center;justify-content:center}.hero-right{text-align:center}.socials{justify-content:center}.info-line{justify-content:center}.projects-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="particles-js"></div>
+<div class="content">
+  <div class="term-line"><span>visitor</span>@<span>{{slug}}</span>:~$ <span>cat</span> profile.txt <span class="term-cursor">▌</span></div>
+
+  <div class="hero">
+    <div class="hero-left">
+      {{#if photo}}<img src="{{photo}}" class="profile-img">{{/if}}
+    </div>
+    <div class="hero-right">
+      <h1>{{name}}</h1>
+      <div class="h1-accent">// {{slug}}</div>
+      <div class="role-tag">{{role}}</div>
+      {{#if bio}}<p class="bio-text">{{bio}}</p>{{/if}}
+      {{#if location}}<p class="info-line"><i class="fas fa-location-dot"></i> {{location}}</p>{{/if}}
+      {{#if email}}<p class="info-line"><i class="fas fa-envelope"></i> {{email}}</p>{{/if}}
+      <div class="socials">{{#each socialsArray}}<a href="{{this.url}}" target="_blank" rel="noopener"><i class="{{this.icon}}"></i></a>{{/each}}</div>
+      {{#if cv}}<a href="{{cv}}" class="cv-link" download><i class="fas fa-file-pdf"></i> download_cv</a>{{/if}}
+    </div>
+  </div>
+
+  {{#if metrics.length}}
+  <div class="metrics">{{#each metrics}}<div class="metric"><div class="metric-num">{{this.value}}</div><div class="metric-label">{{this.label}}</div></div>{{/each}}</div>
+  {{/if}}
+
+  {{#if skillsArray.length}}
+  <section class="section">
+    <div class="section-title">skills.txt</div>
+    <div class="skills">{{#each skillsArray}}<span class="skill-tag">{{#if this.icon}}<i class="{{this.icon}}" style="margin-right:0.25rem"></i>{{/if}}{{this.name}}</span>{{/each}}</div>
+  </section>
+  {{/if}}
+
+  {{#if projectsArray.length}}
+  <section class="section">
+    <div class="section-title">projects.log</div>
+    <div class="projects-grid">{{#each projectsArray}}<div class="project-card"><h3>$ {{this.name}}</h3><p>{{this.desc}}</p><div class="project-tags">{{#each this.tags}}<span>[{{this}}]</span>{{/each}}</div>{{#if this.url}}<a href="{{this.url}}" target="_blank" rel="noopener" class="project-link"><i class="fas fa-arrow-right"></i> view_source</a>{{/if}}</div>{{/each}}</div>
+  </section>
+  {{/if}}
+
+  <div class="footer"><span>{{name}}</span> · {{year}} · built with Universal Portfolio Generator</div>
+</div>
+
+{{#if email}}
+<details class="email-tooltip">
+  <summary>{{email}}</summary>
+</details>
+{{/if}}
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+particlesJS('particles-js',{
+  particles:{
+    number:{value:60,density:{enable:true,value_area:800}},
+    color:{value:"#00ffaa"},
+    shape:{type:"circle"},
+    opacity:{value:0.4,random:true,anim:{enable:true,speed:0.3,opacity_min:0.1}},
+    size:{value:4,random:true},
+    line_linked:{enable:true,distance:150,color:"#00ffaa",opacity:0.15,width:1.5},
+    move:{enable:true,speed:2,direction:"none",random:false,straight:false,out_mode:"out"}
+  },
+  interactivity:{
+    detect_on:"canvas",
+    events:{onhover:{enable:true,mode:"grab"},onclick:{enable:false},resize:true},
+    modes:{grab:{distance:200,line_linked:{opacity:0.4}}}
+  },
+  retina_detect:true
+});
+</script>
+</body>
+</html>`)(data)
+  },
+
+  // =============================================
+  // 13. Terminal Pro — Premium terminal emulator with history
+  // =============================================
+  {
+    id: 13,
+    nameKey: 'theme.13',
+    icon: 'fa-solid fa-display',
+    description: 'Full terminal emulator portfolio with command history, typing effects, and dracula colors',
+    render: (data) => Handlebars.compile(`
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{name}} ~ terminal</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#c9d1d9;font-family:'JetBrains Mono',monospace;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+.terminal{background:#161b22;border:1px solid #30363d;border-radius:12px;width:100%;max-width:860px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.6),0 0 0 1px rgba(48,54,61,0.5)}
+.term-bar{background:#21262d;padding:0.75rem 1rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid #30363d;user-select:none}
+.term-dot{width:12px;height:12px;border-radius:50%}.d-red{background:#ff5555}.d-yel{background:#f1fa8c}.d-grn{background:#50fa7b}
+.term-title{color:#8b949e;font-size:0.75rem;margin-left:0.5rem;font-weight:500}
+.term-body{padding:1.5rem;max-height:75vh;overflow-y:auto;font-size:0.85rem;line-height:1.7;scrollbar-width:thin;scrollbar-color:#30363d transparent}
+.term-body::-webkit-scrollbar{width:6px}.term-body::-webkit-scrollbar-thumb{background:#30363d;border-radius:3px}
+.prompt{color:#50fa7b;user-select:none}.cmd{color:#ff79c6}.dir{color:#8be9fd}
+.output{color:#c9d1d9;margin-bottom:0.35rem;white-space:pre-wrap}
+.out-sec{color:#8b949e;font-size:0.75rem;margin:0.75rem 0 0.35rem;text-transform:uppercase;letter-spacing:0.1em}
+.out-grn{color:#50fa7b}.out-pnk{color:#ff79c6}.out-blu{color:#8be9fd}.out-org{color:#ffb86c}.out-red{color:#ff5555}
+a{color:#8be9fd;text-decoration:none;transition:color 0.15s}a:hover{color:#50fa7b;text-decoration:underline}
+.skills-line{display:flex;flex-wrap:wrap;gap:0.25rem 0.75rem;margin:0.25rem 0}
+.skill-item{color:#f1fa8c;font-size:0.8rem}
+.project-box{border-left:2px solid #30363d;padding-left:1rem;margin:0.5rem 0}
+.project-name{color:#8be9fd;font-weight:500}
+.project-desc{color:#8b949e;font-size:0.8rem}
+.project-tags{margin:0.15rem 0 0.25rem}
+.project-tags span{color:#f1fa8c;font-size:0.7rem;margin-right:0.5rem}
+.metrics-line{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.5rem;margin:0.5rem 0}
+.metric-box{border:1px solid #30363d;border-radius:6px;padding:0.5rem;text-align:center}
+.metric-num{color:#50fa7b;font-size:1rem;font-weight:500}
+.metric-lbl{color:#8b949e;font-size:0.65rem;margin-top:0.15rem}
+.cursor-blink{animation:blink 1s step-end infinite}@keyframes blink{50%{opacity:0}}
+.typing-line{overflow:hidden;white-space:nowrap;animation:typeIn 1.5s steps(40) forwards;max-width:0}@keyframes typeIn{to{max-width:100%}}
+@media(max-width:640px){.term-body{font-size:0.75rem;padding:1rem}}
+</style>
+</head>
+<body>
+<div class="terminal">
+  <div class="term-bar"><span class="term-dot d-red"></span><span class="term-dot d-yel"></span><span class="term-dot d-grn"></span><span class="term-title">{{name}}@portfolio:~</span></div>
+  <div class="term-body">
+    <div><span class="prompt">visitor@github</span>:<span class="dir">~</span>$ <span class="cmd">cat</span> /etc/motd</div>
+    <div class="output out-grn">
+╔══════════════════════════════════════╗<br>
+║  <span class="out-pnk">{{name}}</span> · <span class="out-blu">{{role}}</span>  ║<br>
+╚══════════════════════════════════════╝
+    </div>
+
+    {{#if bio}}<div><span class="prompt">visitor@github</span>:<span class="dir">~</span>$ <span class="cmd">echo</span> $BIO</div>
+    <div class="output out-sec">"{{bio}}"</div>{{/if}}
+
+    <div><span class="prompt">visitor@github</span>:<span class="dir">~</span>$ <span class="cmd">whoami</span></div>
+    <div class="output">{{name}}{{#if location}} · {{location}}{{/if}}{{#if email}} · {{email}}{{/if}}</div>
+
+    {{#if skillsArray.length}}
+    <div class="out-sec">── skills ──────────────────────────────────</div>
+    <div><span class="prompt">visitor@github</span>:<span class="dir">~</span>$ <span class="cmd">ls</span> /usr/local/lib/</div>
+    <div class="skills-line">{{#each skillsArray}}<span class="skill-item">⟐ {{this.name}}</span>{{/each}}</div>
+    {{/if}}
+
+    {{#if metrics.length}}
+    <div class="out-sec">── metrics ─────────────────────────────────</div>
+    <div class="metrics-line">{{#each metrics}}<div class="metric-box"><div class="metric-num">{{this.value}}</div><div class="metric-lbl">{{this.label}}</div></div>{{/each}}</div>
+    {{/if}}
+
+    {{#if projectsArray.length}}
+    <div class="out-sec">── projects ────────────────────────────────</div>
+    {{#each projectsArray}}
+    <div><span class="prompt">visitor@github</span>:<span class="dir">~</span>$ <span class="cmd">cat</span> projects/{{slugify this.name}}.md</div>
+    <div class="project-box">
+      <div class="project-name">⟐ {{this.name}}</div>
+      <div class="project-desc">{{this.desc}}</div>
+      <div class="project-tags">{{#each this.tags}}<span>#{{this}}</span>{{/each}}</div>
+      {{#if this.url}}<div><a href="{{this.url}}" target="_blank">→ view on github</a></div>{{/if}}
+    </div>
+    {{/each}}
+    {{/if}}
+
+    <div class="out-sec">── connect ────────────────────────────────</div>
+    <div class="output" style="margin-bottom:0.75rem">
+      {{#each socialsArray}}<a href="{{this.url}}" target="_blank">[{{this.label}}]</a> {{/each}}
+    </div>
+    {{#if cv}}<div><span class="prompt">visitor@github</span>:<span class="dir">~</span>$ <span class="cmd">wget</span> <a href="{{cv}}" download>cv.pdf</a></div>{{/if}}
+
+    <div style="margin-top:1rem">
+      <span class="prompt">visitor@github</span>:<span class="dir">~</span>$ <span class="cursor-blink">▌</span>
+    </div>
+  </div>
+</div>
+{{#if animationsEnabled}}
+<script>
+// Typing simulation for first command
+document.addEventListener('DOMContentLoaded',()=>{
+  const lines=document.querySelectorAll('.term-body > div');
+  if(lines.length>0) lines.forEach((l,i)=>l.style.animation=`fadeIn 0.3s ${i*0.1}s both`);
+});
+</script>
+<style>@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}</style>
+{{/if}}
+</body>
+</html>`)(data)
+  }
+];
+
+if (typeof I18N !== 'undefined') {
+  // Existing translations
+  I18N.strings['theme.8'] = { en: 'Dark Modern', ar: 'داكن حديث' };
+  I18N.strings['theme.9'] = { en: 'AI Theme', ar: 'ذكاء اصطناعي' };
+  I18N.strings['theme.10'] = { en: 'Developer Dashboard', ar: 'لوحة المطور' };
+  I18N.strings['theme.11'] = { en: 'Aether', ar: 'أثير' };
+  I18N.strings['theme.12'] = { en: 'Aether Pro', ar: 'أثير برو' };
+  I18N.strings['theme.13'] = { en: 'Terminal Pro', ar: 'طرفية برو' };
+}
+
 // Helper: get theme by ID
 function getTheme(id) {
   return THEMES.find(t => t.id === id) || THEMES[0];
 }
+
+// Register Handlebars helpers needed by themes
+Handlebars.registerHelper('slugify', function(str) {
+  return String(str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+});
