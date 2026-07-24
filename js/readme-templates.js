@@ -121,6 +121,24 @@ const README_TEMPLATES = [
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username={{githubUsername}}&layout=compact&theme=radical&hide_border=true" width="40%" />
 </p>
 
+### ⏱️ WakaTime Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/wakatime?username={{githubUsername}}&theme=radical&hide_border=true&layout=compact" width="60%" alt="WakaTime Stats" />
+</p>
+
+### 🏆 GitHub Trophies
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username={{githubUsername}}&theme=radical&no-frame=true&no-bg=true&margin-w=4&row=1" alt="GitHub Trophies" />
+</p>
+
+### 📈 Contribution Activity
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username={{githubUsername}}&theme=react-dark&bg_color=0d1117&hide_border=true&area=true" width="100%" alt="Activity Graph" />
+</p>
+
 {{#if projects.length}}
 ### 💼 Featured Projects
 
@@ -352,6 +370,18 @@ $ cat README.md
 | ⭐ Total Stars | {{githubStats.stars}} |
 | 👥 Followers | {{githubStats.followers}} |
 | 🍴 Forks | {{githubStats.forks}} |
+
+## 📈 Contribution Activity
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username={{githubUsername}}&theme=react-dark&bg_color=0d1117&hide_border=true&area=true" width="100%" alt="Activity Graph" />
+</p>
+
+## ⏱️ Coding Activity
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/wakatime?username={{githubUsername}}&theme=react-dark&hide_border=true&layout=compact" width="60%" alt="WakaTime Stats" />
+</p>
 
 {{#if projects.length}}
 ## 🚀 Deployed Projects

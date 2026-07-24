@@ -171,13 +171,33 @@ const FormState = {
   // --- Step 2: Social Links ---
   renderSocialStep() {
     const d = this.data;
-    let html = `<h2 class="text-lg font-semibold mb-4" data-i18n="form.social.title">${I18N.t('form.social.title')}</h2><p class="text-sm text-gray-500 mb-4">Add your social profiles (optional — leave blank to skip)</p>`;
-    Utils.SOCIAL_PLATFORMS.forEach(p => {
-      const val = d.socials[p] || '';
-      html += `<div class="social-row">
-        <i class="${Utils.socialIcon(p)} social-icon"></i>
-        <input class="form-input social-input" data-platform="${p}" value="${Utils.sanitize(val)}" placeholder="${Utils.socialLabel(p)} URL">
-      </div>`;
+    const categories = [
+      { label: 'Developer / Code', key: 'dev', platforms: ['github','gitlab','bitbucket','codepen','codesandbox','replit','stackblitz','leetcode','hackerrank','codewars','exercism','stackoverflow','devto','medium','hashnode','substack','dockerhub','npmjs','pypi','cratesio'] },
+      { label: 'Security / Bug Bounty', key: 'sec', platforms: ['hackerone','bugcrowd','intigriti','tryhackme','hackthebox','pentesterlab','rootme','synack'] },
+      { label: 'Social Media', key: 'soc', platforms: ['twitter','linkedin','facebook','instagram','threads','tiktok','snapchat','pinterest','reddit','mastodon','bluesky'] },
+      { label: 'Messaging / Chat', key: 'chat', platforms: ['telegram','whatsapp','discord','signal','matrix'] },
+      { label: 'Creative / Design', key: 'creative', platforms: ['dribbble','behance','artstation','deviantart','flickr','unsplash','imgur','letterboxd','goodreads'] },
+      { label: 'Video / Streaming', key: 'video', platforms: ['youtube','twitch','kick','vimeo','dailymotion','rumble','odysee'] },
+      { label: 'Audio / Podcast', key: 'audio', platforms: ['spotify','soundcloud','bandcamp','mixcloud'] },
+      { label: 'Support / Donation', key: 'support', platforms: ['patreon','ko-fi','buymeacoffee','githubsponsors','paypal','liberapay','opencollective'] },
+      { label: 'Professional', key: 'pro', platforms: ['upwork','fiverr','freelancer','toptal','wellfound','calendly','linktree','aboutme'] },
+      { label: 'Gaming', key: 'gaming', platforms: ['steam','epicgames','xbox','playstation'] },
+      { label: 'Other', key: 'other', platforms: ['blog','notion','wikipedia','keybase','etsy','strava'] }
+    ];
+    let html = `<h2 class="text-lg font-semibold mb-4" data-i18n="form.social.title">${I18N.t('form.social.title')}</h2>
+      <p class="text-sm text-gray-500 mb-4">${I18N.t('form.social.subtitle')}</p>`;
+    categories.forEach(cat => {
+      html += `<div class="mb-6">
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">${cat.label}</h3>
+        <div class="social-grid">`;
+      cat.platforms.forEach(p => {
+        const val = d.socials[p] || '';
+        html += `<div class="social-item">
+          <i class="${Utils.socialIcon(p)} social-icon"></i>
+          <input class="social-input" data-platform="${p}" value="${Utils.sanitize(val)}" placeholder="${Utils.socialLabel(p)}" title="${Utils.socialLabel(p)}">
+        </div>`;
+      });
+      html += `</div></div>`;
     });
     html += this.navButtons();
     return html;
@@ -368,6 +388,16 @@ const FormState = {
 
 // === Global helper functions (called from inline onclick) ===
 function nextStep() {
+  // Validate required fields before advancing
+  if (FormState.currentStep === 1) {
+    const name = (document.getElementById('input-name')?.value || '').trim();
+    if (!name) {
+      document.getElementById('input-name')?.classList.add('border-red-500', 'ring-1', 'ring-red-300');
+      Utils.showToast('Name is required to build your portfolio', 'error');
+      return;
+    }
+    document.getElementById('input-name')?.classList.remove('border-red-500', 'ring-1', 'ring-red-300');
+  }
   if (FormState.currentStep < FormState.totalSteps) {
     FormState.renderStep(FormState.currentStep + 1);
   }
@@ -379,13 +409,21 @@ function prevStep() {
 }
 function finishForm() {
   // Validate required fields
-  if (!FormState.data.name.trim()) {
-    Utils.showToast(I18N.t('error.fillRequired'), 'error');
+  const name = (FormState.data.name || '').trim();
+  const hasProjects = FormState.data.projects.length > 0;
+  const hasSkills = FormState.data.skills.length > 0;
+  const hasSocial = Object.values(FormState.data.socials).some(v => v);
+
+  if (!name) {
+    Utils.showToast('Please enter your name first!', 'error');
     FormState.renderStep(1);
     return;
   }
+  if (!hasSocial) {
+    // Warn but don't block — socials are optional
+  }
   triggerPreview();
-  Utils.showToast('Portfolio ready! Generate or deploy using the buttons below.', 'success');
+  Utils.showToast(I18N.t('export.success') || 'Portfolio ready! Use deploy or ZIP to publish.', 'success');
 }
 function selectTheme(id) {
   FormState.data.theme = id;

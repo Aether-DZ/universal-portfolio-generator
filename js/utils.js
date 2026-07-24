@@ -183,47 +183,194 @@ const Utils = {
 
   // Available skills list
   AVAILABLE_SKILLS: [
+    // Languages
     'JavaScript', 'TypeScript', 'Python', 'Rust', 'Go', 'Java', 'Kotlin',
-    'Swift', 'PHP', 'Ruby', 'C', 'C++', 'C#',
-    'React', 'Vue', 'Angular', 'Svelte', 'Next.js',
+    'Swift', 'PHP', 'Ruby', 'C', 'C++', 'C#', 'Zig', 'Scala',
+    'Elixir', 'Haskell', 'Lua', 'R', 'Julia', 'Dart', 'Assembly',
+    'Shell Script', 'Bash', 'PowerShell',
+    // Frontend
+    'React', 'Vue', 'Angular', 'Svelte', 'Next.js', 'Nuxt', 'Astro',
+    'Solid.js', 'Qwik', 'Remix', 'SvelteKit',
+    // Backend
     'Node.js', 'Express', 'Django', 'Flask', 'FastAPI', 'Laravel',
+    'Spring Boot', 'ASP.NET', 'Gin', 'Echo', 'Actix',
+    'NestJS', 'Ruby on Rails', 'Phoenix', 'Symfony',
+    // Database
+    'MongoDB', 'PostgreSQL', 'MySQL', 'MariaDB', 'Redis',
+    'SQLite', 'Elasticsearch', 'Cassandra', 'DynamoDB',
+    'Firebase', 'Supabase', 'Neon', 'PlanetScale',
+    // DevOps & Cloud
     'Docker', 'Kubernetes', 'AWS', 'Azure', 'GCP',
-    'MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'GraphQL',
-    'Figma', 'Tailwind', 'Flutter', 'React Native', 'Solidity',
-    'Terraform', 'Nginx', 'Git', 'Linux'
+    'Terraform', 'Ansible', 'Helm', 'Cloudflare', 'Vercel',
+    'Netlify', 'GitHub Actions', 'CI/CD', 'Nginx', 'Apache',
+    'Prometheus', 'Grafana', 'Datadog', 'Sentry',
+    // Security
+    'Burp Suite', 'Metasploit', 'Nmap', 'Wireshark',
+    'OWASP', 'Penetration Testing', 'Web Security',
+    'API Security', 'Reverse Engineering', 'Binary Exploitation',
+    'Social Engineering', 'OSINT', 'Threat Modeling',
+    'Cryptography', 'Malware Analysis', 'Forensics',
+    'Cloud Security', 'Kubernetes Security', 'Zero Trust',
+    // AI / ML
+    'Machine Learning', 'Deep Learning', 'LLM', 'AI Security',
+    'Prompt Engineering', 'TensorFlow', 'PyTorch', 'OpenAI',
+    'LangChain', 'Hugging Face', 'RAG', 'Computer Vision',
+    // Mobile
+    'Flutter', 'React Native', 'SwiftUI', 'Jetpack Compose',
+    'Android', 'iOS', 'Kotlin Multiplatform',
+    // Tools
+    'Figma', 'Tailwind', 'Git', 'Linux', 'Vim', 'Neovim',
+    'Docker Compose', 'Kafka', 'RabbitMQ', 'WebAssembly',
+    'GraphQL', 'gRPC', 'REST API', 'WebSockets',
+    // Blockchain / Web3
+    'Solidity', 'Ethereum', 'Web3', 'Smart Contracts',
+    'Rust Solana', 'Foundry', 'Hardhat'
   ],
 
-  // Social platforms
+  // Social platforms — ALL platforms with username/profile ID
   SOCIAL_PLATFORMS: [
-    'github', 'linkedin', 'twitter', 'telegram', 'instagram',
-    'facebook', 'whatsapp', 'tiktok', 'youtube', 'discord',
-    'medium', 'devto', 'blog', 'dribbble', 'behance',
-    'stackoverflow', 'reddit', 'pinterest', 'threads', 'snapchat',
-    'hashnode', 'producthunt'
+    // Developer / Code
+    'github', 'gitlab', 'bitbucket', 'codepen', 'codesandbox', 'replit',
+    'stackblitz', 'leetcode', 'hackerrank', 'codewars', 'exercism',
+    'stackoverflow', 'devto', 'medium', 'hashnode', 'substack',
+    'dockerhub', 'npmjs', 'pypi', 'cratesio',
+    // Security / Bug Bounty
+    'hackerone', 'bugcrowd', 'intigriti', 'tryhackme', 'hackthebox',
+    'pentesterlab', 'rootme', 'synack',
+    // Social Media
+    'twitter', 'linkedin', 'facebook', 'instagram', 'threads',
+    'tiktok', 'snapchat', 'pinterest', 'reddit', 'mastodon', 'bluesky',
+    // Messaging / Chat
+    'telegram', 'whatsapp', 'discord', 'signal', 'matrix',
+    // Creative / Design
+    'dribbble', 'behance', 'artstation', 'deviantart', 'flickr',
+    'unsplash', 'imgur', 'letterboxd', 'goodreads',
+    // Video / Streaming
+    'youtube', 'twitch', 'kick', 'vimeo', 'dailymotion', 'rumble', 'odysee',
+    // Audio / Podcast
+    'spotify', 'soundcloud', 'bandcamp', 'mixcloud',
+    // Support / Donation
+    'patreon', 'ko-fi', 'buymeacoffee', 'githubsponsors',
+    'paypal', 'liberapay', 'opencollective',
+    // Professional
+    'upwork', 'fiverr', 'freelancer', 'toptal', 'wellfound',
+    'calendly', 'linktree', 'aboutme',
+    // Gaming
+    'steam', 'epicgames', 'xbox', 'playstation',
+    // Other
+    'blog', 'notion', 'wikipedia', 'keybase', 'etsy', 'strava'
   ],
 
   socialIcon(platform) {
     const icons = {
-      github: 'fab fa-github', linkedin: 'fab fa-linkedin-in', twitter: 'fab fa-x-twitter',
-      telegram: 'fab fa-telegram-plane', instagram: 'fab fa-instagram', facebook: 'fab fa-facebook-f',
-      whatsapp: 'fab fa-whatsapp', tiktok: 'fab fa-tiktok', youtube: 'fab fa-youtube',
-      discord: 'fab fa-discord', medium: 'fab fa-medium', devto: 'fab fa-dev',
-      blog: 'fas fa-blog', dribbble: 'fab fa-dribbble', behance: 'fab fa-behance',
-      stackoverflow: 'fab fa-stack-overflow', reddit: 'fab fa-reddit-alien',
-      pinterest: 'fab fa-pinterest', threads: 'fab fa-threads', snapchat: 'fab fa-snapchat',
-      hashnode: 'fas fa-hashtag', producthunt: 'fab fa-product-hunt'
+      // Developer / Code
+      github: 'fab fa-github', gitlab: 'fab fa-gitlab', bitbucket: 'fab fa-bitbucket',
+      codepen: 'fab fa-codepen', codesandbox: 'fas fa-cube', replit: 'fas fa-terminal',
+      stackblitz: 'fas fa-bolt', leetcode: 'fas fa-code', hackerrank: 'fab fa-hackerrank',
+      codewars: 'fas fa-khanda', exercism: 'fas fa-dumbbell',
+      stackoverflow: 'fab fa-stack-overflow', devto: 'fab fa-dev',
+      medium: 'fab fa-medium', hashnode: 'fas fa-hashtag', substack: 'fas fa-scroll',
+      dockerhub: 'fab fa-docker', npmjs: 'fab fa-npm', pypi: 'fab fa-python',
+      cratesio: 'fas fa-cube',
+      // Security
+      hackerone: 'fab fa-hackerone', bugcrowd: 'fas fa-bug',
+      intigriti: 'fas fa-shield-halved', tryhackme: 'fas fa-mask',
+      hackthebox: 'fas fa-cube', pentesterlab: 'fas fa-flask',
+      rootme: 'fas fa-skull', synack: 'fas fa-shield',
+      // Social
+      twitter: 'fab fa-x-twitter', linkedin: 'fab fa-linkedin-in',
+      facebook: 'fab fa-facebook-f', instagram: 'fab fa-instagram',
+      threads: 'fab fa-threads', tiktok: 'fab fa-tiktok',
+      snapchat: 'fab fa-snapchat', pinterest: 'fab fa-pinterest',
+      reddit: 'fab fa-reddit-alien', mastodon: 'fab fa-mastodon',
+      bluesky: 'fab fa-bluesky',
+      // Messaging
+      telegram: 'fab fa-telegram-plane', whatsapp: 'fab fa-whatsapp',
+      discord: 'fab fa-discord', signal: 'fas fa-message',
+      matrix: 'fas fa-arrow-right-arrow-left',
+      // Creative
+      dribbble: 'fab fa-dribbble', behance: 'fab fa-behance',
+      artstation: 'fab fa-artstation', deviantart: 'fab fa-deviantart',
+      flickr: 'fab fa-flickr', unsplash: 'fas fa-camera',
+      imgur: 'fas fa-image', letterboxd: 'fas fa-film',
+      goodreads: 'fab fa-goodreads',
+      // Video
+      youtube: 'fab fa-youtube', twitch: 'fab fa-twitch',
+      kick: 'fas fa-play', vimeo: 'fab fa-vimeo-v',
+      dailymotion: 'fab fa-dailymotion', rumble: 'fas fa-video',
+      odysee: 'fas fa-eye',
+      // Audio
+      spotify: 'fab fa-spotify', soundcloud: 'fab fa-soundcloud',
+      bandcamp: 'fab fa-bandcamp', mixcloud: 'fab fa-mixcloud',
+      // Support
+      patreon: 'fab fa-patreon', 'ko-fi': 'fas fa-coffee',
+      buymeacoffee: 'fas fa-mug-hot', githubsponsors: 'fab fa-github',
+      paypal: 'fab fa-paypal', liberapay: 'fab fa-liberapay',
+      opencollective: 'fab fa-opencollective',
+      // Professional
+      upwork: 'fab fa-upwork', fiverr: 'fas fa-hand-peace',
+      freelancer: 'fas fa-briefcase', toptal: 'fas fa-crown',
+      wellfound: 'fas fa-rocket', calendly: 'fas fa-calendar',
+      linktree: 'fas fa-tree', aboutme: 'fas fa-user',
+      // Gaming
+      steam: 'fab fa-steam', epicgames: 'fab fa-epic-games',
+      xbox: 'fab fa-xbox', playstation: 'fab fa-playstation',
+      // Other
+      blog: 'fas fa-blog', notion: 'fab fa-notion',
+      wikipedia: 'fab fa-wikipedia-w', keybase: 'fab fa-keybase',
+      etsy: 'fab fa-etsy', strava: 'fab fa-strava'
     };
     return icons[platform] || 'fas fa-link';
   },
 
   socialLabel(platform) {
     const labels = {
-      github: 'GitHub', linkedin: 'LinkedIn', twitter: 'X (Twitter)', telegram: 'Telegram',
-      instagram: 'Instagram', facebook: 'Facebook', whatsapp: 'WhatsApp', tiktok: 'TikTok',
-      youtube: 'YouTube', discord: 'Discord', medium: 'Medium', devto: 'Dev.to',
-      blog: 'Blog / Website', dribbble: 'Dribbble', behance: 'Behance',
-      stackoverflow: 'Stack Overflow', reddit: 'Reddit', pinterest: 'Pinterest',
-      threads: 'Threads', snapchat: 'Snapchat', hashnode: 'Hashnode', producthunt: 'Product Hunt'
+      // Developer / Code
+      github: 'GitHub', gitlab: 'GitLab', bitbucket: 'Bitbucket',
+      codepen: 'CodePen', codesandbox: 'CodeSandbox', replit: 'Replit',
+      stackblitz: 'StackBlitz', leetcode: 'LeetCode', hackerrank: 'HackerRank',
+      codewars: 'Codewars', exercism: 'Exercism',
+      stackoverflow: 'Stack Overflow', devto: 'Dev.to',
+      medium: 'Medium', hashnode: 'Hashnode', substack: 'Substack',
+      dockerhub: 'Docker Hub', npmjs: 'npm', pypi: 'PyPI', cratesio: 'crates.io',
+      // Security
+      hackerone: 'HackerOne', bugcrowd: 'Bugcrowd', intigriti: 'Intigriti',
+      tryhackme: 'TryHackMe', hackthebox: 'HackTheBox',
+      pentesterlab: 'PentesterLab', rootme: 'Root Me', synack: 'Synack',
+      // Social
+      twitter: 'X (Twitter)', linkedin: 'LinkedIn', facebook: 'Facebook',
+      instagram: 'Instagram', threads: 'Threads', tiktok: 'TikTok',
+      snapchat: 'Snapchat', pinterest: 'Pinterest', reddit: 'Reddit',
+      mastodon: 'Mastodon', bluesky: 'Bluesky',
+      // Messaging
+      telegram: 'Telegram', whatsapp: 'WhatsApp', discord: 'Discord',
+      signal: 'Signal', matrix: 'Matrix',
+      // Creative
+      dribbble: 'Dribbble', behance: 'Behance', artstation: 'ArtStation',
+      deviantart: 'DeviantArt', flickr: 'Flickr', unsplash: 'Unsplash',
+      imgur: 'Imgur', letterboxd: 'Letterboxd', goodreads: 'Goodreads',
+      // Video
+      youtube: 'YouTube', twitch: 'Twitch', kick: 'Kick',
+      vimeo: 'Vimeo', dailymotion: 'Dailymotion', rumble: 'Rumble',
+      odysee: 'Odysee',
+      // Audio
+      spotify: 'Spotify', soundcloud: 'SoundCloud', bandcamp: 'Bandcamp',
+      mixcloud: 'Mixcloud',
+      // Support
+      patreon: 'Patreon', 'ko-fi': 'Ko-fi', buymeacoffee: 'Buy Me a Coffee',
+      githubsponsors: 'GitHub Sponsors', paypal: 'PayPal',
+      liberapay: 'Liberapay', opencollective: 'Open Collective',
+      // Professional
+      upwork: 'Upwork', fiverr: 'Fiverr', freelancer: 'Freelancer',
+      toptal: 'Toptal', wellfound: 'Wellfound (AngelList)',
+      calendly: 'Calendly', linktree: 'Linktree', aboutme: 'About.me',
+      // Gaming
+      steam: 'Steam', epicgames: 'Epic Games',
+      xbox: 'Xbox', playstation: 'PlayStation',
+      // Other
+      blog: 'Blog / Website', notion: 'Notion',
+      wikipedia: 'Wikipedia', keybase: 'Keybase',
+      etsy: 'Etsy', strava: 'Strava'
     };
     return labels[platform] || platform;
   }
