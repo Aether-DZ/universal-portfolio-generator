@@ -10,6 +10,8 @@ const FormState = {
     socials: {},
     skills: [],
     projects: [],
+    education: [],
+    bugbounty: [],
     theme: 3,
     metrics: [],
     lang: 'en', dir: 'ltr',
@@ -157,9 +159,9 @@ const FormState = {
     ];
     const countries = this.countryList();
     return `
-      <h2 class="text-lg font-semibold mb-4" data-i18n="form.profile.title">${I18N.t('form.profile.title')}</h2>
+      <h2 class="text-sm font-semibold mb-3 uppercase tracking-wider text-mono-500" data-i18n="form.profile.title">${I18N.t('form.profile.title')}</h2>
       <!-- Row: Name + Role side by side -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
         <div class="form-group">
           <label class="form-label" data-i18n="form.profile.fullName">${I18N.t('form.profile.fullName')}</label>
           <input class="form-input" id="input-name" value="${Utils.sanitize(d.name)}" placeholder="${I18N.t('form.profile.placeholder.name')}">
@@ -181,35 +183,32 @@ const FormState = {
         <textarea class="form-textarea" id="input-bio" placeholder="${I18N.t('form.profile.placeholder.bio')}" rows="2">${Utils.sanitize(d.bio)}</textarea>
       </div>
       <!-- Row: Email + Location -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
         <div class="form-group">
           <label class="form-label" data-i18n="form.profile.email">${I18N.t('form.profile.email')}</label>
           <input class="form-input" id="input-email" type="email" value="${Utils.sanitize(d.email)}" placeholder="user@example.com">
         </div>
         <div class="form-group">
           <label class="form-label" data-i18n="form.profile.location">${I18N.t('form.profile.location')}</label>
-          <select class="form-select" id="input-location">
+          <select class="form-select" id="input-location" aria-label="${I18N.current === 'ar' ? 'الدولة' : 'Country'}">
             <option value="">${I18N.current === 'ar' ? '— اختر الدولة —' : '— Select country —'}</option>
             ${countries.map(c => `<option value="${c}" ${d.location === c ? 'selected' : ''}>${c}</option>`).join('')}
           </select>
         </div>
       </div>
-      <!-- Photo -->
-      <div class="form-group">
-        <label class="form-label" data-i18n="form.profile.photo">${I18N.t('form.profile.photo')}</label>
-        <div class="photo-wrapper">
-          <div class="file-upload-area ${d.photo ? 'has-image' : ''}" id="photo-upload">
-            ${d.photo
-              ? `<img src="${d.photo}" class="preview-img">`
-              : `<div class="upload-placeholder"><i class="fas fa-camera text-2xl"></i><span>${I18N.current === 'ar' ? 'اضغط لاختيار صورة' : 'Click to add photo'}</span></div>`
-            }
-          </div>
-          <input type="file" id="photo-input" accept="image/*" class="hidden">
-          <input class="form-input photo-url-input" id="photo-url" placeholder="${I18N.current === 'ar' ? 'أو الصق رابط الصورة' : 'Or paste image URL'}" value="${d.photo && !d.photo.startsWith('data:') ? Utils.sanitize(d.photo) : ''}">
+      <!-- Photo compact row -->
+      <div class="photo-wrapper" style="gap:0.5rem">
+        <div class="file-upload-area ${d.photo ? 'has-image' : ''}" id="photo-upload" title="${I18N.current === 'ar' ? 'اختر صورة' : 'Choose photo'}" style="width:3.5rem;height:3.5rem;flex-shrink:0">
+          ${d.photo
+            ? `<img src="${d.photo}" class="preview-img">`
+            : `<div class="upload-placeholder"><i class="fas fa-camera text-lg"></i></div>`
+          }
         </div>
+        <input type="file" id="photo-input" accept="image/*" class="hidden">
+        <input class="form-input photo-url-input flex-1 min-w-0" id="photo-url" placeholder="${I18N.current === 'ar' ? 'أو الصق رابط الصورة' : 'Or paste image URL'}" value="${d.photo && !d.photo.startsWith('data:') ? Utils.sanitize(d.photo) : ''}">
       </div>
       <!-- Education + Bug Bounty in a 2-col card grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
         <!-- Education Card -->
         <div class="section-card">
           <div class="section-card-header">
@@ -263,22 +262,34 @@ const FormState = {
     `;
   },
   countryList() {
-    return [
-      'Algeria', 'Argentina', 'Australia', 'Austria', 'Bangladesh', 'Belgium', 'Brazil', 'Canada',
-      'Chile', 'China', 'Colombia', 'Croatia', 'Czech Republic', 'Denmark', 'Egypt', 'Finland',
-      'France', 'Germany', 'Greece', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia',
-      'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan', 'Kenya', 'Kuwait',
-      'Lebanon', 'Libya', 'Malaysia', 'Maldives', 'Mexico', 'Morocco', 'Netherlands',
-      'New Zealand', 'Nigeria', 'Norway', 'Oman', 'Pakistan', 'Palestine', 'Philippines',
-      'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Saudi Arabia', 'Senegal',
-      'Serbia', 'Singapore', 'Slovakia', 'Slovenia', 'South Africa', 'South Korea', 'Spain',
-      'Sudan', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Thailand', 'Tunisia', 'Turkey',
-      'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States',
-      'Vietnam', 'Yemen'
-    ].sort((a,b) => I18N.current === 'ar'
-      ? a.localeCompare(b, 'ar')
-      : a.localeCompare(b)
-    );
+    const all = I18N.current === 'ar'
+      ? [
+          'أستراليا', 'ألمانيا', 'أيرلندا', 'إسبانيا', 'إسرائيل', 'إندونيسيا', 'إيران',
+          'إيطاليا', 'الأردن', 'الإمارات', 'البحرين', 'الجزائر', 'السعودية', 'السنغال',
+          'السودان', 'السويد', 'الصين', 'العراق', 'الفلبين', 'الكويت', 'المغرب', 'المكسيك',
+          'النرويج', 'النمسا', 'النيجر', 'الهند', 'الولايات المتحدة', 'اليابان', 'اليمن',
+          'اليونان', 'بولندا', 'بلجيكا', 'بلغاريا', 'بنغلاديش', 'بنما', 'بنين', 'باكستان',
+          'برازيل', 'برتغال', 'بريطانيا', 'تشاد', 'تشيكيا', 'تركيا', 'تونس', 'سريلانكا',
+          'سويسرا', 'سنغافورة', 'سوريا', 'سلوفاكيا', 'سلوفينيا', 'صربيا', 'عُمان',
+          'غانا', 'فنلندا', 'فيتنام', 'فرنسا', 'قطر', 'كازاخستان', 'كرواتيا', 'كندا',
+          'كوبا', 'كوريا الجنوبية', 'كوستاريكا', 'كينيا', 'لاتفيا', 'لبنان', 'لوكسمبورغ',
+          'ليبيريا', 'ليبيا', 'مالطا', 'ماليزيا', 'مصر', 'مقدونيا', 'منغوليا', 'موريتانيا',
+          'نيجيريا', 'نيوزيلندا', 'هايتي', 'هولندا', 'هونغ كونغ', 'هنغاريا'
+        ]
+      : [
+          'Algeria', 'Argentina', 'Australia', 'Austria', 'Bangladesh', 'Belgium', 'Brazil', 'Canada',
+          'Chile', 'China', 'Colombia', 'Croatia', 'Czech Republic', 'Denmark', 'Egypt', 'Finland',
+          'France', 'Germany', 'Greece', 'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia',
+          'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Japan', 'Jordan', 'Kenya', 'Kuwait',
+          'Lebanon', 'Libya', 'Malaysia', 'Maldives', 'Mexico', 'Morocco', 'Netherlands',
+          'New Zealand', 'Nigeria', 'Norway', 'Oman', 'Pakistan', 'Palestine', 'Philippines',
+          'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Saudi Arabia', 'Senegal',
+          'Serbia', 'Singapore', 'Slovakia', 'Slovenia', 'South Africa', 'South Korea', 'Spain',
+          'Sudan', 'Sweden', 'Switzerland', 'Syria', 'Taiwan', 'Thailand', 'Tunisia', 'Turkey',
+          'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States',
+          'Vietnam', 'Yemen'
+        ];
+    return all.sort((a,b) => a.localeCompare(b, I18N.current === 'ar' ? 'ar' : 'en'));
   },
   // --- Step 2: Social Links (curated top 22 platforms) ---
   renderSocialStep() {

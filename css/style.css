@@ -809,6 +809,23 @@ body {
 [dir="rtl"] .social-item {
   flex-direction: row-reverse;
 }
+[dir="rtl"] .form-select {
+  background-position: left 0.5rem center;
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
+  text-align: right;
+}
+[dir="rtl"] .role-chip {
+  text-align: right;
+}
+[dir="rtl"] .section-card-header {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .photo-wrapper {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .section-card-body .sub-entry-row {
+  flex-direction: row-reverse;
+}
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
