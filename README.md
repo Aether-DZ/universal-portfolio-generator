@@ -1,193 +1,255 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Universal%20Portfolio%20Generator-0a0a0f?style=for-the-badge&labelColor=111&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjMjU2M0VCIi8+PHBhdGggZD0iTTEyIDIwaDE2TTIwIDEydjE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE0IDE0bDEyIDEyTTI2IDE0bC0xMiAxMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC40Ii8+PC9zdmc+">
-    <img src="https://img.shields.io/badge/Universal%20Portfolio%20Generator-2563EB?style=for-the-badge&labelColor=1e40af&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjMjU2M0VCIi8+PHBhdGggZD0iTTEyIDIwaDE2TTIwIDEydjE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE0IDE0bDEyIDEyTTI2IDE0bC0xMiAxMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC40Ii8+PC9zdmc+">
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/ارسم%20هويتك%20Draw%20Your%20Profile-0a0a0f?style=for-the-badge&labelColor=111&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjQTY3QjVCIi8+PHBhdGggZD0iTTEyIDIwaDE2TTIwIDEydjE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE0IDE0bDEyIDEyTTI2IDE0bC0xMiAxMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC40Ii8+PC9zdmc+">
+    <img src="https://img.shields.io/badge/ارسم%20هويتك%20Draw%20Your%20Profile-A67B5B?style=for-the-badge&labelColor=8B5E3C&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjQTY3QjVCIi8+PHBhdGggZD0iTTEyIDIwaDE2TTIwIDEydjE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE0IDE0bDEyIDEyTTI2IDE0bC0xMiAxMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2V0eT0iMC40Ii8+PC9zdmc+">
   </picture>
 </p>
 
 <p align="center">
-  <b>10 portfolio themes</b> &bull; <b>RTL/Arabic support</b> &bull; <b>GitHub Pages deploy</b> &bull; <b>ZIP export</b>
+  <samp>
+    <b>ارسم هويتك</b> &nbsp;·&nbsp; <b>Draw Your Profile</b>
+  </samp>
+  <br>
+  <sub>‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎Front-end portfolio builder for developers, hackers, and creators</sub>
 </p>
 
+<br>
+
 <p align="center">
-  <a href="#features">Features</a> &bull;
-  <a href="#quick-start">Quick Start</a> &bull;
-  <a href="#themes">Themes</a> &bull;
-  <a href="#deploy">Deploy</a> &bull;
-  <a href="#tech-stack">Tech Stack</a>
+  <a href="#-features">✨ Features</a> &nbsp;·&nbsp;
+  <a href="#-quick-start">🚀 Quick Start</a> &nbsp;·&nbsp;
+  <a href="#-themes">🎨 Themes</a> &nbsp;·&nbsp;
+  <a href="#-deploy">📦 Deploy</a> &nbsp;·&nbsp;
+  <a href="#-tech-stack">🧰 Tech Stack</a>
 </p>
+
+<br>
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT">
   <img src="https://img.shields.io/badge/AR%2FRTL-Full%20Support-22c55e?style=flat-square" alt="RTL">
-  <img src="https://img.shields.io/badge/themes-10-8b5cf6?style=flat-square" alt="Themes">
+  <img src="https://img.shields.io/badge/themes-7-8b5cf6?style=flat-square" alt="Themes">
   <img src="https://img.shields.io/badge/deploy-GitHub%20Pages-181717?style=flat-square&logo=github" alt="GitHub">
+  <img src="https://img.shields.io/badge/skills-80%2B-f59e0b?style=flat-square" alt="Skills">
+  <img src="https://img.shields.io/badge/i18n-AR%2FEN-06b6d4?style=flat-square" alt="i18n">
 </p>
 
----
-
-A fully client-side portfolio website generator. No build step, no server, no backend. Pick a theme, fill in your details, and deploy to GitHub Pages or download a ZIP. Supports Arabic/RTL natively across all themes.
-
----
-
-## Features
-
-- **10 visually distinct themes** -- from terminal-inspired to glassmorphic to bento grid
-- **Arabic/RTL support** -- all themes mirror layout and typography for right-to-left scripts
-- **Live preview** -- see changes as you type across desktop, tablet, and mobile viewports
-- **GitHub Pages deploy** -- one-click deploy with auto-created repository and Pages enablement
-- **ZIP download** -- standalone HTML ready to host anywhere
-- **Color palettes** -- 8 curated palettes plus custom color picker
-- **16+ premium Google Fonts** -- including Playfair Display, Fraunces, Bricolage Grotesk, and more
-- **Glassmorphism controls** -- blur, opacity, and border-radius sliders
-- **Education & Bug Bounty sections** -- built-in fields for academic background and security platform profiles
-- **GitHub repo sync** -- auto-import your repositories as portfolio projects
-- **Animations** -- toggleable AOS scroll animations
-- **Config export/import** -- save and reload your portfolio setup
-- **Dark/Light mode** -- respects system preference with manual toggle
-
----
-
-## Quick Start
-
-No installation required. Open the tool in any modern browser:
-
-```
-https://aether-dz.github.io/universal-portfolio-generator
-```
-
-Or serve locally:
+<br>
 
 ```bash
-npx serve /path/to/universal-portfolio-generator
-# or
-python3 -m http.server 8080 -d /path/to/universal-portfolio-generator
+▐⠂ Open - Fill - Deploy ⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⢀⣄
+▐⠄ No build step · No backend · No BS ⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⢀⣴⠟
+▐⠂ Just HTML + vanilla JS + your imagination ⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⣠⣾⠟⠁
+▐⠄ ⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⢀⣀⣀⡀
+▐⠂ 100% client-side. Zero servers. Zero tracking. ⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⣀⣤⣶⣶⣶⣶⣶⣶⣤⣤⣄⣀
+▐⠄ ⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉
+▐⠂ ⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⢀⣀⣤⣴⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠛⠛⠋⠉⠁
 ```
 
-Then open `http://localhost:8080` in your browser.
+<br>
 
-### Usage
+## ✨ Features
+
+<pre>
+┌─ 🎨 <b>7 Portfolio Themes</b> ─────────────────────────────────────────────┐
+│  Aether · Terminal · Minimal · Bento Grid · Glassmorphic · Dark Premium · Academic │
+│  All themes support <b>dark/light mode</b> + <b>RTL Arabic</b>                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ 🌍 <b>Bilingual (AR/EN)</b> ───────────────────────────────────────────────┐
+│  Full Arabic interface · RTL layout · Arabic section titles in portfolio output  │
+│  Enter in Arabic → Portfolio shows Arabic                                       │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ 🚀 <b>One-Click Deploy</b> ───────────────────────────────────────────────┐
+│  GitHub Pages · ZIP download · No servers, no databases                        │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ 🎯 <b>Smart Features</b> ─────────────────────────────────────────────────┐
+│  ▸ 80+ skills with auto-detected devicon icons                                │
+│  ▸ 8 curated color palettes + custom color picker                             │
+│  ▸ 16+ premium Google Fonts                                                   │
+│  ▸ Glassmorphism controls (blur, opacity, radius)                             │
+│  ▸ Education & Bug Bounty sections                                            │
+│  ▸ GitHub repo sync → auto-import repos as projects                          │
+│  ▸ AOS scroll animations (toggleable)                                        │
+│  ▸ Config export/import — save & reload your setup                          │
+│  ▸ System dark mode detection + manual toggle                                │
+│  ▸ Cappuccino/cream theme ☕ (default)                                       │
+└──────────────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<br>
+
+## 🚀 Quick Start
+
+```bash
+# Open in browser (no install)
+open https://aether-dz.github.io/universal-portfolio-generator
+
+# Or serve locally
+npx serve /path/to/portfolio-generator
+python3 -m http.server 8080
+```
+
+Then open `http://localhost:8080` and start building.
+
+### 📝 How it works
+
+```
+   STEP 1          STEP 2         STEP 3          STEP 4          STEP 5
+┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
+│  Profile  │ → │  Social  │ → │  Skills  │ → │ Projects │ → │  Theme   │
+│  Name     │   │  GitHub  │   │  80+     │   │  Add     │   │  Pick    │
+│  Bio      │   │  X       │   │  tech    │   │  desc    │   │  Colors  │
+│  Role     │   │  H1      │   │  icons   │   │  tags    │   │  Fonts   │
+│  Photo    │   │  20+     │   │  auto    │   │  URL     │   │  Deploy! │
+│  Country  │   │  plats   │   │  search  │   │          │   │          │
+└──────────┘   └──────────┘   └──────────┘   └──────────┘   └──────────┘
+```
+
+<br>
+
+## 🎨 Themes
+
+| # | Theme | Style | Best For | Arabic |
+|---|-------|-------|----------|--------|
+| 1 | **Aether** 🪐 | Cyberpunk/glow with particles | Developers, tech | ✅ RTL |
+| 2 | **Terminal** 💻 | CLI-inspired with green neon | Security researchers, hackers | ✅ RTL |
+| 3 | **Minimal** ✨ | Clean white space, typography | Designers, creatives | ✅ RTL |
+| 4 | **Bento Grid** 🔲 | Modern card-based layout | Multi-section portfolios | ✅ RTL |
+| 5 | **Glassmorphic** 🪟 | Frosted glass over gradients | Premium/modern feel | ✅ RTL |
+| 6 | **Dark Premium** 🌙 | Dark mode grid + gradient text | SaaS founders, executives | ✅ RTL |
+| 7 | **Academic** 🎓 | Timeline layout, serif headers | Researchers, academics | ✅ RTL |
+
+<pre>
+╭────────────────────────────────────────────────────────────╮
+│  🎨 Color Palettes                                          │
+│                                                            │
+│  ████████████████████  Default (blue)                      │
+│  ████████████████████  Cappuccino ☕  ← default             │
+│  ████████████████████  Emerald 🟢                           │
+│  ████████████████████  Sunset 🌅                            │
+│  ████████████████████  Ocean 🌊                             │
+│  ████████████████████  Midnight 🌃                          │
+│  ████████████████████  Sakura 🌸                            │
+│  ████████████████████  Custom (pick your own colors) 🎯     │
+╰────────────────────────────────────────────────────────────╯
+</pre>
+
+<br>
+
+## 📦 Deploy
+
+### ▸ GitHub Pages (one-click)
 
 | Step | Action |
-|------|--------|
-| 1. Profile | Enter name, bio, role, photo, education, and Bug Bounty profiles |
-| 2. Social | Connect GitHub, LinkedIn, HackerOne, and 20+ other platforms |
-| 3. Skills | Select from 75+ pre-loaded skills with auto-detected icons |
-| 4. Projects | Add projects with descriptions, tags, and URLs |
-| 5. Theme & Deploy | Pick a theme, tune colors/fonts, preview live, then deploy |
+|:----:|--------|
+| ① | Generate your portfolio |
+| ② | Enter GitHub PAT (`repo` scope) |
+| ③ | Click **Deploy** |
+| ④ | ✨ Live at `https://{user}.github.io/{repo}/` |
 
----
+Automatically:
+- Creates repo (or pushes to existing)
+- Commits `index.html` + `.nojekyll` + `CNAME`
+- Enables GitHub Pages
 
-## Themes
+### ▸ ZIP Export
 
-| Theme | Style | Best for |
-|-------|-------|----------|
-| **Aether** | Cyberpunk/glow | Developers, tech portfolios |
-| **Terminal** | CLI-inspired | Security researchers, hackers |
-| **Minimal** | Clean white space | Designers, creatives |
-| **Bento Grid** | Card-based layout | Multi-section portfolios |
-| **Glassmorphic** | Frosted glass | Modern, premium feel |
-| **Dark Premium** | Dark mode grid | SaaS founders, executives |
-| **Academic** | Timeline/research | Researchers, academics |
+```
+Click "Download ZIP" → extract → upload index.html → done
+```
 
-*3 additional themes being added -- Nebula (parallax), Neo Brutalism, Cyberpunk 2.0*
+Works with Netlify, Vercel, Cloudflare Pages, any static host.
 
----
+<br>
 
-## Deploy
+## 🧰 Tech Stack
 
-### GitHub Pages (free)
+| Layer | Technology | Proficiency |
+|-------|-----------|-------------|
+| Core | Vanilla JS (no framework) | ████████████ 100% |
+| Templating | Handlebars.js | ████████████ 100% |
+| Styling | Tailwind CSS (CDN) + custom CSS | ████████████ 100% |
+| Icons | Devicon + Font Awesome 6 | ████████████ 100% |
+| Charts | Chart.js | ████████████ 100% |
+| ZIP | JSZip + FileSaver.js | ████████████ 100% |
+| Deploy | Octokit (GitHub API) | ████████████ 100% |
+| Animations | AOS (Animate on Scroll) | ████████████ 100% |
+| Preview | Sandboxed iframe | ████████████ 100% |
 
-1. Generate your portfolio in the tool
-2. Enter a GitHub Personal Access Token with `repo` scope
-3. Click "Deploy to GitHub Pages"
-4. Your site is live at `https://<username>.github.io/<repo>/`
+> **100% client-side.** Zero data sent to any server. GitHub PAT used only for deploy — stays in browser memory.
 
-The deploy flow:
-- Creates a repository (or pushes to an existing one)
-- Commits `index.html`, `.nojekyll`, and optional `CNAME`
-- Enables GitHub Pages automatically
+<br>
 
-### ZIP Export
-
-For hosting on Netlify, Vercel, or any static host:
-1. Click "Download ZIP"
-2. Extract and upload `index.html` to your host
-3. Done
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Core | Vanilla JavaScript (no framework) |
-| Templating | Handlebars.js |
-| Styling | Tailwind CSS (CDN) + custom CSS |
-| Icons | Devicon + Font Awesome 6 |
-| Charts | Chart.js |
-| ZIP | JSZip + FileSaver.js |
-| Deploy | Octokit (GitHub API) |
-| Animations | AOS (Animate on Scroll) |
-| Preview | Sandboxed iframe |
-
-All processing happens client-side. No data is sent to any server (except GitHub API during deploy, which requires explicit PAT input).
-
----
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 universal-portfolio-generator/
-  index.html            Entry point
-  css/style.css         Custom styles + Tailwind overrides
-  js/
-    i18n.js             Arabic/English internationalization
-    utils.js            Icon mappings, sanitization, helpers
-    design-tokens.js    Color tokens, spacing, font definitions
-    themes.js           7 theme templates (inline HTML/CSS/JS)
-    form.js             Multi-step form controller and state
-    preview.js          Live preview iframe rendering
-    github.js           GitHub deploy + repo sync
-    export.js           ZIP download + config import/export
-    app.js              App initialization, event bindings
-  assets/               Thumbnails, images
+├── index.html                 🏁 Entry point
+├── css/
+│   └── style.css              🎨 Custom styles + Tailwind override
+├── js/
+│   ├── i18n.js                🌍 Arabic/English translations
+│   ├── utils.js               🔧 Icon maps, sanitization, helpers
+│   ├── design-tokens.js       🎯 Colors, spacing, fonts
+│   ├── themes.js              🖼️ 7 portfolio templates
+│   ├── form.js                📝 Multi-step form controller
+│   ├── preview.js             👁️ Live preview iframe
+│   ├── github.js              🚀 GitHub deploy + repo sync
+│   ├── export.js              📦 ZIP + config export/import
+│   └── app.js                 ⚡ Init, events, bindings
+├── assets/                    🖼️ Thumbnails, images
+└── README.md                  📖 You are here
 ```
 
----
+<br>
 
-## Development
-
-No build tools required. Edit the JS files directly:
+## 🛠️ Development
 
 ```bash
 # Clone
 git clone https://github.com/Aether-DZ/universal-portfolio-generator.git
 
-# Edit and serve
+# Edit + serve
 cd universal-portfolio-generator
 npx serve .
 ```
 
+Make changes to any `.js` file — no build step, no bundler, no refresh needed (browser auto-loads).
+
 ### Key Files
 
-| File | Purpose |
-|------|---------|
-| `js/themes.js` | Theme templates -- each is a `{id, name, icon, render()}` object |
-| `js/form.js` | Form state, steps, and data collection |
-| `js/utils.js` | Skill icons, social icons, sanitization |
-| `js/i18n.js` | Translation strings for all UI labels |
+| File | What to touch |
+|------|---------------|
+| `js/themes.js` | Template HTML/CSS/JS — each theme is `{id, name, icon, render()}` |
+| `js/form.js` | Form steps, data model, validation |
+| `js/utils.js` | Skill/social icon maps, helpers |
+| `js/i18n.js` | All UI text translations |
+| `js/app.js` | App wiring, event handlers |
 
----
+<br>
 
-## License
+## 📜 License
 
-MIT -- free to use, modify, and distribute.
+```
+MIT — Free to use, modify, and distribute.
+No attribution required (but appreciated).
+```
+
+<br>
 
 ---
 
 <p align="center">
-  <sub>Built by <a href="https://github.com/Aether-DZ">Aether-DZ</a></sub>
+  <img src="https://img.shields.io/badge/built%20by-Aether--DZ-8B5E3C?style=flat-square" alt="Built by">
   <br>
-  <sub>Bug Bounty Hunter &bull; Software Engineer &bull; AI Security Researcher</sub>
+  <sub>
+    <a href="https://github.com/Aether-DZ">GitHub</a> · 
+    <a href="https://hackerone.com/aether_dz">HackerOne</a> · 
+    <a href="https://x.com/aether_dz">X</a>
+  </sub>
+  <br>
+  <sub>Bug Bounty Hunter · Software Engineer · AI Security Researcher</sub>
 </p>
