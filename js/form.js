@@ -612,12 +612,24 @@ function nextStep() {
   // Validate required fields before advancing
   if (FormState.currentStep === 1) {
     const name = (document.getElementById('input-name')?.value || '').trim();
+    const role = (document.getElementById('input-role')?.value || '').trim();
+    let valid = true;
     if (!name) {
       document.getElementById('input-name')?.classList.add('border-red-500', 'ring-1', 'ring-red-300');
-      Utils.showToast('Name is required to build your portfolio', 'error');
+      valid = false;
+    } else {
+      document.getElementById('input-name')?.classList.remove('border-red-500', 'ring-1', 'ring-red-300');
+    }
+    if (!role) {
+      document.getElementById('input-role')?.classList.add('border-red-500', 'ring-1', 'ring-red-300');
+      valid = false;
+    } else {
+      document.getElementById('input-role')?.classList.remove('border-red-500', 'ring-1', 'ring-red-300');
+    }
+    if (!valid) {
+      Utils.showToast(I18N.current === 'ar' ? 'الاسم والمسمى الوظيفي مطلوبان' : 'Name and role are required to build your portfolio', 'error');
       return;
     }
-    document.getElementById('input-name')?.classList.remove('border-red-500', 'ring-1', 'ring-red-300');
   }
   if (FormState.currentStep < FormState.totalSteps) {
     FormState.renderStep(FormState.currentStep + 1);
@@ -630,8 +642,9 @@ function prevStep() {
 }
 function finishForm() {
   const name = (FormState.data.name || '').trim();
-  if (!name) {
-    Utils.showToast('Please enter your name first!', 'error');
+  const role = (FormState.data.role || '').trim();
+  if (!name || !role) {
+    Utils.showToast(I18N.current === 'ar' ? 'الاسم والمسمى الوظيفي مطلوبان للإنشاء' : 'Name and role are required to generate your portfolio', 'error');
     FormState.renderStep(1);
     return;
   }

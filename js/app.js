@@ -68,20 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
     previewToggle.innerHTML = '<i class="fas fa-eye"></i><span class="hidden sm:inline">Preview</span>';
   });
 
-  // GitHub deploy
-  document.getElementById('btn-deploy').addEventListener('click', deployToGitHub);
-
   // ZIP download
   document.getElementById('btn-zip').addEventListener('click', downloadZIP);
 
-  // Show deploy section on first deploy click
   document.getElementById('btn-deploy').addEventListener('click', function showDeploy() {
-    document.getElementById('deploy-section').classList.remove('hidden');
-  }, { once: true });
+    const sec = document.getElementById('deploy-section');
+    sec.classList.toggle('hidden');
+    sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 
-  // GitHub sync + CNAME
-  document.getElementById('btn-sync-repos').addEventListener('click', syncGitHubRepos);
-  document.getElementById('btn-cname').addEventListener('click', generateCNAME);
+  document.getElementById('btn-deploy-go').addEventListener('click', deployToGitHub);
 
   // Generate confirmation modal
   document.getElementById('modal-confirm').addEventListener('click', confirmGenerate);

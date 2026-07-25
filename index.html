@@ -194,34 +194,19 @@
         </button>
       </div>
       <!-- Deploy Section -->
-      <div id="deploy-section" class="hidden max-w-xl mx-auto mt-4 space-y-3">
-        <div class="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
-          <div class="flex items-start gap-3">
-            <i class="fas fa-code-branch text-blue-600 mt-0.5"></i>
-            <div class="flex-1">
-              <label class="block text-xs font-medium mb-1 text-mono-700 dark:text-mono-300">Repository Name <span class="text-mono-400">(optional)</span></label>
-              <input type="text" id="repo-name-input" class="w-full px-3 py-2 rounded-lg border border-mono-300 dark:border-mono-700 bg-white dark:bg-mono-900 text-sm" placeholder="Leave empty for {username}.github.io">
-              <p class="text-xs text-blue-700 dark:text-blue-400 mt-1">Creates repo under your account. Default: username.github.io</p>
-            </div>
+      <div id="deploy-section" class="hidden max-w-lg mx-auto mt-4 space-y-3">
+        <div class="bg-white dark:bg-mono-900 border border-mono-200 dark:border-mono-800 rounded-xl p-5 space-y-3.5">
+          <div class="flex items-center gap-2.5">
+            <i class="fab fa-github text-lg text-mono-600 dark:text-mono-400"></i>
+            <span class="text-sm font-semibold text-mono-800 dark:text-mono-200">Deploy to portfolio</span>
           </div>
-        </div>
-        <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
-          <div class="flex items-start gap-3">
-            <i class="fas fa-shield-halved text-amber-600 mt-0.5"></i>
-            <div class="flex-1">
-              <label class="block text-xs font-medium mb-1 text-mono-700 dark:text-mono-300" data-i18n="export.patLabel">GitHub Personal Access Token</label>
-              <input type="password" id="pat-input" class="w-full px-3 py-2 rounded-lg border border-mono-300 dark:border-mono-700 bg-white dark:bg-mono-900 text-sm mb-1.5" placeholder="ghp_...">
-              <p class="text-xs text-amber-700 dark:text-amber-400" data-i18n="export.patNote">Requires repo scope. Never stored — stays in browser memory only.</p>
-            </div>
-          </div>
-        </div>
-        <div id="deploy-result"></div>
-        <div class="flex flex-wrap gap-2">
-          <button id="btn-sync-repos" class="flex-1 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-medium transition shadow-sm">
-            <i class="fas fa-sync mr-1"></i> Sync GitHub Repos
-          </button>
-          <button id="btn-cname" class="flex-1 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-medium transition shadow-sm">
-            <i class="fas fa-globe mr-1"></i> Generate CNAME
+          <input type="text" id="deploy-username" class="w-full px-3 py-2.5 rounded-lg border border-mono-300 dark:border-mono-700 bg-white dark:bg-mono-950 text-sm" placeholder="GitHub username">
+          <input type="password" id="pat-input" class="w-full px-3 py-2.5 rounded-lg border border-mono-300 dark:border-mono-700 bg-white dark:bg-mono-950 text-sm" placeholder="GitHub token (ghp_...)">
+          <p class="text-xs text-mono-500 dark:text-mono-500">Token needs <code class="text-xs bg-mono-200 dark:bg-mono-800 px-1.5 py-0.5 rounded">repo</code> scope. Never stored.</p>
+          <div id="deploy-result"></div>
+          <button id="btn-deploy-go" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold transition shadow-sm flex items-center justify-center gap-2">
+            <i class="fas fa-rocket text-xs"></i>
+            Create &amp; Deploy
           </button>
         </div>
       </div>
