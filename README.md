@@ -48,6 +48,36 @@
 
 <br>
 
+<p align="center">
+  <a href="https://universal-portfolio-generator.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/Deployed%20on%20Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel">
+  </a>
+  &nbsp;
+  <a href="https://portfolio-generat.netlify.app" target="_blank">
+    <img src="https://img.shields.io/badge/Deployed%20on%20Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Netlify">
+  </a>
+  &nbsp;
+  <a href="https://aether-dz.github.io/universal-portfolio-generator" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub%20Pages-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Pages">
+  </a>
+</p>
+
+<br>
+
+<p align="center">
+  <code>universal-portfolio-generator.vercel.app</code>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <code>portfolio-generat.netlify.app</code>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <code>aether-dz.github.io/universal-portfolio-generator</code>
+</p>
+
+<br>
+
+---
+
+<br>
+
 ## ✨ Features
 
 <pre>
@@ -140,6 +170,16 @@ Then open `http://localhost:8080` and start building.
 <br>
 
 ## 📦 Deploy
+
+### ▸ Live Demos
+
+| Platform | URL | Status |
+|----------|-----|--------|
+| **Vercel** | [`universal-portfolio-generator.vercel.app`](https://universal-portfolio-generator.vercel.app) | <img src="https://img.shields.io/badge/UP-brightgreen?style=flat-square" alt="Up"> |
+| **Netlify** | [`portfolio-generat.netlify.app`](https://portfolio-generat.netlify.app) | <img src="https://img.shields.io/badge/UP-brightgreen?style=flat-square" alt="Up"> |
+| **GitHub Pages** | [`aether-dz.github.io/universal-portfolio-generator`](https://aether-dz.github.io/universal-portfolio-generator) | <img src="https://img.shields.io/badge/UP-brightgreen?style=flat-square" alt="Up"> |
+
+<br>
 
 ### ▸ GitHub Pages (one-click)
 
