@@ -594,9 +594,42 @@ const FormState = {
         if (e.target.value) {
           const url = await Utils.urlToBase64(e.target.value);
           if (url) { this.data.photo = url; triggerPreview(); }
+          // Update the preview image src directly without full re-render
+          const img = document.querySelector('.file-upload-area .preview-img');
+          if (img) img.src = this.data.photo;
         }
       }, 500);
     }
+    // Education inputs (step 1)
+    document.querySelectorAll('.edu-degree').forEach(el => {
+      el.oninput = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.education[i]) this.data.education[i].degree = e.target.value; triggerPreview(); };
+    });
+    document.querySelectorAll('.edu-school').forEach(el => {
+      el.oninput = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.education[i]) this.data.education[i].school = e.target.value; triggerPreview(); };
+    });
+    document.querySelectorAll('.edu-year').forEach(el => {
+      el.oninput = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.education[i]) this.data.education[i].year = e.target.value; triggerPreview(); };
+    });
+    // Bug Bounty inputs (step 1)
+    document.querySelectorAll('.bb-platform').forEach(el => {
+      el.onchange = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.bugbounty[i]) this.data.bugbounty[i].platform = e.target.value; triggerPreview(); };
+    });
+    document.querySelectorAll('.bb-username').forEach(el => {
+      el.oninput = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.bugbounty[i]) this.data.bugbounty[i].username = e.target.value; triggerPreview(); };
+    });
+    // Project inputs (step 4)
+    document.querySelectorAll('.proj-name').forEach(el => {
+      el.oninput = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.projects[i]) this.data.projects[i].name = e.target.value; triggerPreview(); };
+    });
+    document.querySelectorAll('.proj-desc').forEach(el => {
+      el.oninput = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.projects[i]) this.data.projects[i].desc = e.target.value; triggerPreview(); };
+    });
+    document.querySelectorAll('.proj-tags').forEach(el => {
+      el.oninput = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.projects[i]) this.data.projects[i].tags = e.target.value; triggerPreview(); };
+    });
+    document.querySelectorAll('.proj-url').forEach(el => {
+      el.oninput = (e) => { const i = parseInt(e.target.dataset.idx); if (this.data.projects[i]) this.data.projects[i].url = e.target.value; triggerPreview(); };
+    });
     // Social inputs
     document.querySelectorAll('.social-input').forEach(inp => {
       inp.oninput = (e) => {
@@ -608,11 +641,15 @@ const FormState = {
 };
 
 // === Global helper functions (called from inline onclick) ===
+let _nextStepLock = false;
 function nextStep() {
+  if (_nextStepLock) return;
+  _nextStepLock = true;
+  setTimeout(() => _nextStepLock = false, 600);
   // Validate required fields before advancing
   if (FormState.currentStep === 1) {
     const name = (document.getElementById('input-name')?.value || '').trim();
-    const role = (document.getElementById('input-role')?.value || '').trim();
+    const role = (FormState.data.role || '').trim();
     let valid = true;
     if (!name) {
       document.getElementById('input-name')?.classList.add('border-red-500', 'ring-1', 'ring-red-300');
@@ -621,10 +658,10 @@ function nextStep() {
       document.getElementById('input-name')?.classList.remove('border-red-500', 'ring-1', 'ring-red-300');
     }
     if (!role) {
-      document.getElementById('input-role')?.classList.add('border-red-500', 'ring-1', 'ring-red-300');
+      document.querySelectorAll('.role-chip').forEach(c => c.classList.add('ring-2', 'ring-red-300', 'border-red-400'));
       valid = false;
     } else {
-      document.getElementById('input-role')?.classList.remove('border-red-500', 'ring-1', 'ring-red-300');
+      document.querySelectorAll('.role-chip').forEach(c => c.classList.remove('ring-2', 'ring-red-300', 'border-red-400'));
     }
     if (!valid) {
       Utils.showToast(I18N.current === 'ar' ? 'الاسم والمسمى الوظيفي مطلوبان' : 'Name and role are required to build your portfolio', 'error');
